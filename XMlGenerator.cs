@@ -47,47 +47,54 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteStartElement("QuestionReplies");
                     writer.WriteAttributeString("QuestionSourceMDA", "UWProduct::product-master::waic-CA-PersonalAuto-v01-00-01:://ProductSetup[@id='ProductSetup']");
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionFraud");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply", 
+                           new Dictionary<string, string> { 
+                               { "Name", "UWQuestionFraud" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionVehicleSharing");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWQuestionVehicleSharing" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWPublicDelivery");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWPublicDelivery" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionOtherDelivery");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWQuestionOtherDelivery" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionGaragingLocation");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWQuestionGaragingLocation" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionOtherVehicles");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWQuestionOtherVehicles" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
-                    writer.WriteStartElement("QuestionReply");
-                    writer.WriteAttributeString("Name", "UWQuestionHousehold");
-                    writer.WriteAttributeString("Value", "NO");
-                    writer.WriteAttributeString("VisibleInd", "YES");
-                    writer.WriteEndElement();
+                    StartElementWithAttributes(writer, "QuestionReply",
+                           new Dictionary<string, string> {
+                               { "Name", "UWQuestionHousehold" } ,
+                               { "Value", "NO" } ,
+                               { "VisibleInd", "YES" } ,
+                           });
 
                     writer.WriteEndElement();
 
@@ -103,6 +110,16 @@ namespace InsuranceNow_XMLGenerator
             {
                 throw e;
             }
+        }
+
+        private void StartElementWithAttributes(XmlWriter writer, string Element, Dictionary<string,string> Attributes)
+        {
+            writer.WriteStartElement(Element);
+
+            foreach(var attribute in Attributes)
+                writer.WriteAttributeString(attribute.Key, attribute.Value);
+
+            writer.WriteEndElement();
         }
     }
 }
