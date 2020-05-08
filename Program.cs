@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InsuranceNow_XMLGenerator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,29 @@ namespace InsuranceNow_XMLGenerator
         {
             try
             {
-                string fileName = "InsuranceNow_" + Guid.NewGuid().ToString() + ".xml";
-                string path = "C:\\Test\\" + fileName;
-                XMlGenerator Generator = new XMlGenerator(path);
+                string path = "C:\\Test\\";
+                string XmlOutput = path + "InsuranceNow_" + Guid.NewGuid().ToString() + ".xml";
+                string ExcelInput = path + "_dataMigrationVer1.5.xlsx";
+                //string ExcelInput = path + "Test.xlsm";
+                List<Policy> Policies = new List<Policy>();
+
+                Console.WriteLine("Processing excel file...");
+                ExcelUtil excelUtil = new ExcelUtil(ExcelInput);
+                var workBook = excelUtil.OpenFile();
+                excelUtil.ProcessFile(workBook, Policies);
+                excelUtil.CloseFile(workBook);
+
+                Console.WriteLine("Generating XML");
+                XMlGenerator Generator = new XMlGenerator(XmlOutput);
                 Generator.Generate();
-                Console.WriteLine("Done!");
+                
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
 
+            Console.WriteLine("Done!");
             Console.ReadKey();
             
         }

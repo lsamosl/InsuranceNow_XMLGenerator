@@ -101,7 +101,6 @@ namespace InsuranceNow_XMLGenerator
                     #endregion
 
                     writer.WriteEndElement();
-                    writer.WriteEndElement();
 
                     writer.WriteEndDocument();
                 }
