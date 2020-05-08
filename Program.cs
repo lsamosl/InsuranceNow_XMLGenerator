@@ -26,7 +26,7 @@ namespace InsuranceNow_XMLGenerator
                 excelUtil.CloseFile(workBook);
 
                 Console.WriteLine("Generating XML");
-                XMlGenerator Generator = new XMlGenerator(XmlOutput);
+                XMlGenerator Generator = new XMlGenerator(XmlOutput, Policies);
                 Generator.Generate();
                 
             }

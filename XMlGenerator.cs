@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InsuranceNow_XMLGenerator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -10,7 +11,7 @@ namespace InsuranceNow_XMLGenerator
 {
     public class XMlGenerator
     {
-        public XMlGenerator(string path)
+        public XMlGenerator(string path, List<Policy> Policies)
         {
             Path = path;
         }
