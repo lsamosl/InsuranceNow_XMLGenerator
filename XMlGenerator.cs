@@ -141,9 +141,70 @@ namespace InsuranceNow_XMLGenerator
                         countVehicles++;
                     }
 
+                    writer.WriteStartElement("DTOCoverage");
+
+                    writer.WriteAttributeString("Status", XMLStaticValues.DTORisk2_DTOCoverage2_Status);
+                    writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk2_DTOCoverage2_CoverageCd);
+                    writer.WriteAttributeString("Description", XMLStaticValues.DTORisk2_DTOCoverage2_Description);
+
+                    writer.WriteStartElement("DTOLimit");
+
+                    writer.WriteAttributeString("LimitCd", XMLStaticValues.DTOCoverage2_DTOLimit_LimitCd);
+                    writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOCoverage2_DTOLimit_TypeCd);
+                    writer.WriteAttributeString("Value", !String.IsNullOrEmpty(Policy.General.PdCover) ? Policy.General.PdCover : "None");
+
+                    writer.WriteEndElement(); //End DTOLimit
+
+                    writer.WriteEndElement(); //End DTOCoverage
+
                     writer.WriteEndElement(); //End DTORisk
 
                     writer.WriteEndElement(); //End DTOLine
+
+                    writer.WriteStartElement("PartyInfo");
+
+                    writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOApplication_PartyInfo_PartyTypeCd);
+                    writer.WriteAttributeString("Status", XMLStaticValues.DTOApplication_PartyInfo_Status);
+
+                    writer.WriteStartElement("PersonInfo");
+
+                    Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
+                    string Gender = principalDriver != null ? (principalDriver.Gender.Trim() == "M" ? "Male" : "Female") : string.Empty;
+
+                    writer.WriteAttributeString("PersonTypeCd", XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd);
+                    writer.WriteAttributeString("GenderCd", Gender);
+                    writer.WriteAttributeString("BirthDt", principalDriver != null ? principalDriver.BirthDate : string.Empty);
+                    writer.WriteAttributeString("MaritalStatusCd", principalDriver != null ? principalDriver.MaritalStatus : string.Empty);
+                    writer.WriteAttributeString("OccupationClassCd", principalDriver != null ? principalDriver.Occupation : string.Empty);
+                    writer.WriteAttributeString("Age", string.Empty); //TODO
+
+                    writer.WriteEndElement(); //End PersonInfo
+
+                    int countDrivers = 1;
+                    foreach(Driver d in Policy.Drivers)
+                    {
+                        writer.WriteStartElement("DriverInfo");
+
+                        writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd); 
+                        writer.WriteAttributeString("DriverNumber", countDrivers.ToString());
+                        writer.WriteAttributeString("DriverStatusCd", d.DriverStatus.Trim() == "Active" ? "Principal"  : "Excluded"); 
+                        writer.WriteAttributeString("LicenseNumber", d.LicenseNumber.Trim()); 
+                        writer.WriteAttributeString("LicenseDt", d.DateFirstLicense); 
+                        writer.WriteAttributeString("LicensedStateProvCd", d.LicenseState); 
+                        writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip.Trim()); 
+                        writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
+                        writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race); 
+                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType); 
+                        writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus); 
+                        writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(d.Sr22) ? d.Sr22 : "No"); 
+                        writer.WriteAttributeString("OriginalLicenseDt", d.DateFirstLicense);
+
+                        countDrivers++;
+
+                        writer.WriteEndElement(); //End DriverInfo
+                    }
+
+                    writer.WriteEndElement(); //End PartyInfo
 
                     writer.WriteEndElement(); //End DTOApplication
 
