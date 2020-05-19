@@ -11,7 +11,7 @@ namespace InsuranceNow_XMLGenerator
 {
     public class XMLGenerator
     {
-        public XMLGenerator(string path, List<Policy> Policies)
+        public XMLGenerator(string path, Policy Policy)
         {
             Path = path;
         }

@@ -14,10 +14,11 @@ namespace InsuranceNow_XMLGenerator
             try
             {
                 string path = "C:\\Test\\";
-                string XmlOutput = path + "InsuranceNow_" + Guid.NewGuid().ToString() + ".xml";
+                string XmlOutput = path + "InsuranceNow_[POLICYNUMBER].xml";
                 string ExcelInput = path + "_dataMigrationVer1.5.xlsx";
                 //string ExcelInput = path + "Test.xlsm";
                 List<Policy> Policies = new List<Policy>();
+                int total = 1;
 
                 Console.WriteLine("Processing excel file...");
                 ExcelUtil excelUtil = new ExcelUtil(ExcelInput);
@@ -25,10 +26,17 @@ namespace InsuranceNow_XMLGenerator
                 excelUtil.ProcessFile(workBook, Policies);
                 excelUtil.CloseFile(workBook);
 
-                Console.WriteLine("Generating XML");
-                XMLGenerator Generator = new XMLGenerator(XmlOutput, Policies);
-                Generator.Generate();
-                
+                Console.WriteLine("Generating XMLs");
+
+                foreach(Policy p in Policies)
+                {
+                    string fileName = XmlOutput.Replace("[POLICYNUMBER]", p.PolicyNumber.Replace(" ", string.Empty));
+                    XMLGenerator Generator = new XMLGenerator(fileName, p);
+                    Generator.Generate();
+                    Console.Write("\r{0}  ", total);
+                    total++;
+                }
+                Console.WriteLine("");
             }
             catch(Exception e)
             {
