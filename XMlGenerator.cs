@@ -78,6 +78,49 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("TotalNumVehicles", Policy.Vehicles.Count.ToString());
                     writer.WriteAttributeString("TotalNumDrivers", Policy.Drivers.Count.ToString());
 
+                    writer.WriteStartElement("DTORisk");
+
+                    writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOLine_DTORisk_TypeCd);
+                    writer.WriteAttributeString("Status", XMLStaticValues.DTOLine_DTORisk_Status);
+                    writer.WriteAttributeString("Description", string.Empty);
+                    writer.WriteAttributeString("RiskBeanName", string.Empty);
+                    writer.WriteAttributeString("RiskAddDt", string.Empty);
+                    writer.WriteAttributeString("RiskAddPolicyVersion", XMLStaticValues.DTOLine_DTORisk_RiskAddPolicyVersion);
+                    writer.WriteAttributeString("RiskAddTransactionNo", XMLStaticValues.DTOLine_DTORisk_RiskAddTransactionNo);
+
+                    writer.WriteStartElement("DTOCoverage");
+
+                    writer.WriteAttributeString("Status", XMLStaticValues.DTORisk1_DTOCoverage1_Status);
+                    writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk1_DTOCoverage1_CoverageCd);
+                    writer.WriteAttributeString("Description", XMLStaticValues.DTORisk1_DTOCoverage1_Description);
+
+                    string[] limits = XMLStaticValues.DTOCoverage1_DTOLimit_LimitCd.Split('|');
+                    string[] limits_values = XMLStaticValues.DTOCoverage1_DTOLimit_TypeCd.Split('|');
+
+                    for(int i = 0; i< limits.Length; i++){
+
+                        writer.WriteStartElement("DTOLimit");
+
+                        writer.WriteAttributeString("LimitCd", limits[i]);
+                        writer.WriteAttributeString("TypeCd", limits_values[i]);
+                        
+                        if(biCoverArray.Length == limits.Length)
+                            writer.WriteAttributeString("Value", biCoverArray[i] + "000");  
+                        else
+                            writer.WriteAttributeString("Value", string.Empty);
+
+                        writer.WriteEndElement(); //End DTOLimit
+                    }
+
+                    writer.WriteEndElement(); //End DTOCoverage
+
+                    foreach(Vehicle v in Policy.Vehicles)
+                    {
+
+                    }
+
+                    writer.WriteEndElement(); //End DTORisk
+
                     writer.WriteEndElement(); //End DTOLine
 
                     writer.WriteEndElement(); //End DTOApplication
