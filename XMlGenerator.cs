@@ -1,4 +1,5 @@
 ﻿using InsuranceNow_XMLGenerator.Models;
+using InsuranceNow_XMLGenerator.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace InsuranceNow_XMLGenerator
 {
     public class XMLGenerator
     {
-        public XMLGenerator(string path, Policy Policy)
+        public Policy Policy { get; set; }
+        public XMLGenerator(string path, Policy _Policy)
         {
+            Policy = _Policy;
             Path = path;
         }
 
@@ -32,78 +35,56 @@ namespace InsuranceNow_XMLGenerator
 
                     writer.WriteStartElement("DTORoot");
 
-                    #region Header
-
                     writer.WriteStartElement("DTOApplication");
-                    writer.WriteAttributeString("Version", "3.10");
-                    writer.WriteAttributeString("Status", "In Process");
-                    writer.WriteAttributeString("TypeCd", "Application");
-                    writer.WriteAttributeString("Description", "New Application");
-                    writer.WriteAttributeString("ReadyToRateInd", "Yes");
-
-                    #endregion
-
-                    #region QuestionReplies
+                    writer.WriteAttributeString("Version", XMLStaticValues.DTORoot_DTOApplication_Version);
+                    writer.WriteAttributeString("Status", XMLStaticValues.DTORoot_DTOApplication_Status);
+                    writer.WriteAttributeString("TypeCd", XMLStaticValues.DTORoot_DTOApplication_TypeCd);
+                    writer.WriteAttributeString("Description", XMLStaticValues.DTORoot_DTOApplication_Description);
+                    writer.WriteAttributeString("ReadyToRateInd", XMLStaticValues.DTORoot_DTOApplication_ReadyToRateInd);
 
                     writer.WriteStartElement("QuestionReplies");
-                    writer.WriteAttributeString("QuestionSourceMDA", "UWProduct::product-master::waic-CA-PersonalAuto-v01-00-01:://ProductSetup[@id='ProductSetup']");
+                    writer.WriteAttributeString("QuestionSourceMDA", XMLStaticValues.DTOApplication_QuestionReplies_QuestionSourceMDA);
 
-                    StartElementWithAttributes(writer, "QuestionReply", 
-                           new Dictionary<string, string> { 
-                               { "Name", "UWQuestionFraud" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
 
-                    StartElementWithAttributes(writer, "QuestionReply",
+                    foreach (string q in QuestionReply_Names)
+                    {
+                        StartElementWithAttributes(writer, "QuestionReply",
                            new Dictionary<string, string> {
-                               { "Name", "UWQuestionVehicleSharing" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
+                               { "Name", q } ,
+                               { "Value", XMLStaticValues.QuestionReplies_QuestionReply_Value } ,
+                               { "VisibleInd", XMLStaticValues.QuestionReplies_QuestionReply_VisibleInd } ,
                            });
+                    }
 
-                    StartElementWithAttributes(writer, "QuestionReply",
-                           new Dictionary<string, string> {
-                               { "Name", "UWPublicDelivery" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    writer.WriteEndElement(); // End QuestionReplies
 
-                    StartElementWithAttributes(writer, "QuestionReply",
-                           new Dictionary<string, string> {
-                               { "Name", "UWQuestionOtherDelivery" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    writer.WriteStartElement("DTOLine");
 
-                    StartElementWithAttributes(writer, "QuestionReply",
-                           new Dictionary<string, string> {
-                               { "Name", "UWQuestionGaragingLocation" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    string biCover = Policy.General.BiCover;
+                    string[] biCoverArray = biCover.Split('/');
 
-                    StartElementWithAttributes(writer, "QuestionReply",
-                           new Dictionary<string, string> {
-                               { "Name", "UWQuestionOtherVehicles" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    writer.WriteAttributeString("StatusCd", XMLStaticValues.DTOApplication_DTOLine_StatusCd);
+                    writer.WriteAttributeString("LineCd", XMLStaticValues.DTOApplication_DTOLine_LineCd);
+                    writer.WriteAttributeString("RatingService", XMLStaticValues.DTOApplication_DTOLine_RatingService);
+                    writer.WriteAttributeString("MedPayLimit", !String.IsNullOrEmpty(Policy.General.MedCover) ? Policy.General.MedCover : "None");
+                    writer.WriteAttributeString("BILimit", biCoverArray.Length == 2 ? biCoverArray[0] + "000" + "/" + biCoverArray[1] + "000" : "None");
+                    writer.WriteAttributeString("PDLimit", !String.IsNullOrEmpty(Policy.General.PdCover) ? Policy.General.PdCover : "None");
+                    writer.WriteAttributeString("UMBILimit", !String.IsNullOrEmpty(Policy.General.Umbi) ? Policy.General.Umbi : "None");
+                    writer.WriteAttributeString("UMPDWCDInd", !String.IsNullOrEmpty(Policy.General.UmpdCdw) ? Policy.General.UmpdCdw : "No");
+                    writer.WriteAttributeString("LimitedMexicoInd", !String.IsNullOrEmpty(Policy.General.LimMex) ? Policy.General.LimMex : "No");
+                    writer.WriteAttributeString("RoadAssistInd", !String.IsNullOrEmpty(Policy.General.RoadAssis) ? Policy.General.RoadAssis : "No");
+                    writer.WriteAttributeString("PolicyType", XMLStaticValues.DTOApplication_DTOLine_PolicyType);
+                    writer.WriteAttributeString("TotalNumVehicles", Policy.Vehicles.Count.ToString());
+                    writer.WriteAttributeString("TotalNumDrivers", Policy.Drivers.Count.ToString());
 
-                    StartElementWithAttributes(writer, "QuestionReply",
-                           new Dictionary<string, string> {
-                               { "Name", "UWQuestionHousehold" } ,
-                               { "Value", "NO" } ,
-                               { "VisibleInd", "YES" } ,
-                           });
+                    writer.WriteEndElement(); //End DTOLine
 
-                    writer.WriteEndElement();
+                    writer.WriteEndElement(); //End DTOApplication
 
-                    #endregion
+                    writer.WriteEndElement(); //End DTORoot
 
-                    writer.WriteEndElement();
-
-                    writer.WriteEndDocument();
+                    writer.WriteEndDocument(); 
                 }
             }
             catch(Exception e)
