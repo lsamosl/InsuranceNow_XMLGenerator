@@ -47,14 +47,15 @@
   <ItemGroup>
     <Compile Include="ExcelUtil.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\General.cs" />
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ExcelResources.Designer.cs">
+    <Compile Include="Resources\ExcelConfiguration.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExcelResources.resx</DependentUpon>
+      <DependentUpon>ExcelConfiguration.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\XMLStaticValues.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -67,9 +68,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ExcelResources.resx">
+    <EmbeddedResource Include="Resources\ExcelConfiguration.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExcelResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ExcelConfiguration.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\XMLStaticValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>

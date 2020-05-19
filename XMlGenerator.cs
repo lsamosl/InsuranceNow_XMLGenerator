@@ -9,9 +9,9 @@ using System.Xml;
 
 namespace InsuranceNow_XMLGenerator
 {
-    public class XMlGenerator
+    public class XMLGenerator
     {
-        public XMlGenerator(string path, List<Policy> Policies)
+        public XMLGenerator(string path, List<Policy> Policies)
         {
             Path = path;
         }
