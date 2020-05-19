@@ -114,9 +114,31 @@ namespace InsuranceNow_XMLGenerator
 
                     writer.WriteEndElement(); //End DTOCoverage
 
-                    foreach(Vehicle v in Policy.Vehicles)
+                    int countVehicles = 1;
+                    foreach (Vehicle v in Policy.Vehicles)
                     {
+                        writer.WriteStartElement("DTOVehicle");
 
+                        writer.WriteAttributeString("VehNumber", countVehicles.ToString());
+                        writer.WriteAttributeString("Status", XMLStaticValues.DTORisk_DTOVehicle_Status);
+                        writer.WriteAttributeString("VehIdentificationNumber", v.VIN.Trim());
+                        writer.WriteAttributeString("ValidVinInd", XMLStaticValues.DTORisk_DTOVehicle_ValidVinInd);
+                        writer.WriteAttributeString("VehUseCd", XMLStaticValues.DTORisk_DTOVehicle_VehUseCd);
+                        writer.WriteAttributeString("CollisionDed", !string.IsNullOrEmpty(v.CollDeduct) ? v.CollDeduct : "No Coverage");
+                        writer.WriteAttributeString("ComprehensiveDed", !string.IsNullOrEmpty(v.CompDeduct) ? v.CompDeduct : "No Coverage");
+                        writer.WriteAttributeString("EstimatedAnnualDistance", v.AnnualMileage);
+                        writer.WriteAttributeString("OdometerReading", v.CurrentOdometer);
+                        writer.WriteAttributeString("LessorLiabilityInd", !string.IsNullOrEmpty(v.Lessor) ? v.Lessor : "No");
+                        writer.WriteAttributeString("RentalReimbursement", !string.IsNullOrEmpty(v.Rental) ? v.Rental : "None");
+                        writer.WriteAttributeString("DamageInd", XMLStaticValues.DTORisk_DTOVehicle_DamageInd);
+                        writer.WriteAttributeString("RegisterdOwner", XMLStaticValues.DTORisk_DTOVehicle_RegisterdOwner);
+                        writer.WriteAttributeString("NonOwnedVehicleInd", !string.IsNullOrEmpty(v.No) ? v.No : "No");
+                        writer.WriteAttributeString("PermissiveUseInd", !string.IsNullOrEmpty(v.Pub) ? v.Pub : "No");
+                        writer.WriteAttributeString("DirectRepairInd", !string.IsNullOrEmpty(v.Dr) ? v.Dr : "No");
+
+                        writer.WriteEndElement(); //End DTOVehicle
+
+                        countVehicles++;
                     }
 
                     writer.WriteEndElement(); //End DTORisk
