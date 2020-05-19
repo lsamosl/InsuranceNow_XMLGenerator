@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DTOApplication_DTOBasicPolicy_CarrierCd" xml:space="preserve">
+    <value>WAIC</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_CarrierGroupCd" xml:space="preserve">
+    <value>WAIC</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_ControllingStateCd" xml:space="preserve">
+    <value>CA</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_Description" xml:space="preserve">
+    <value>Personal Auto</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_PolicyNumber" xml:space="preserve">
+    <value>Converted Renewal</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_ProductVersionIdRef" xml:space="preserve">
+    <value>waic-CA-PersonalAuto-v01-00-01</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_RenewedFromPolicyNumber" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_Source" xml:space="preserve">
+    <value>Converted Renewal</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_SubTypeCd" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_TransactionCd" xml:space="preserve">
+    <value>Renewal Start</value>
+  </data>
+  <data name="DTOApplication_DTOBasicPolicy_TreatAsConvRenewal" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DTOApplication_DTOInsured_EntityTypeCd" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="DTOApplication_DTOLine_LineCd" xml:space="preserve">
+    <value>PersonalAuto</value>
+  </data>
+  <data name="DTOApplication_DTOLine_PolicyType" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="DTOApplication_DTOLine_RatingService" xml:space="preserve">
+    <value>ManualRate</value>
+  </data>
+  <data name="DTOApplication_DTOLine_StatusCd" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTOApplication_PartyInfo_PartyTypeCd" xml:space="preserve">
+    <value>DriverParty</value>
+  </data>
+  <data name="DTOApplication_PartyInfo_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTOApplication_QuestionReplies_QuestionSourceMDA" xml:space="preserve">
+    <value>UWProduct::product-master::waic-CA-PersonalAuto-v01-00-01:://ProductSetup[@id='ProductSetup']</value>
+  </data>
+  <data name="DTOCoverage1_DTOLimit_LimitCd" xml:space="preserve">
+    <value>Limit1|Limit2</value>
+  </data>
+  <data name="DTOCoverage1_DTOLimit_TypeCd" xml:space="preserve">
+    <value>Occurrence|AccidentAggregate</value>
+  </data>
+  <data name="DTOCoverage2_DTOLimit_LimitCd" xml:space="preserve">
+    <value>Limit1</value>
+  </data>
+  <data name="DTOCoverage2_DTOLimit_TypeCd" xml:space="preserve">
+    <value>Occurrence</value>
+  </data>
+  <data name="DTOCoverage_DTOLimit_LimitCd" xml:space="preserve">
+    <value>Limit1</value>
+  </data>
+  <data name="DTOCoverage_DTOLimit_TypeCd" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DTOInsured_PartyInfo_PartyTypeCd" xml:space="preserve">
+    <value>InsuredParty</value>
+  </data>
+  <data name="DTOLine_DTORisk_RiskAddPolicyVersion" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DTOLine_DTORisk_RiskAddTransactionNo" xml:space="preserve">
+    <value>CurrentTransaction</value>
+  </data>
+  <data name="DTOLine_DTORisk_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTOLine_DTORisk_TypeCd" xml:space="preserve">
+    <value>PrivatePassengerAuto</value>
+  </data>
+  <data name="DTORisk1_DTOCoverage1_CoverageCd" xml:space="preserve">
+    <value>BI</value>
+  </data>
+  <data name="DTORisk1_DTOCoverage1_Description" xml:space="preserve">
+    <value>Bodily Injury - Per Person /Per Accident</value>
+  </data>
+  <data name="DTORisk1_DTOCoverage1_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTORisk2_DTOCoverage2_CoverageCd" xml:space="preserve">
+    <value>PD</value>
+  </data>
+  <data name="DTORisk2_DTOCoverage2_Description" xml:space="preserve">
+    <value>Property Damage</value>
+  </data>
+  <data name="DTORisk2_DTOCoverage2_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTORisk_DTOCoverage_CoverageCd" xml:space="preserve">
+    <value>PD</value>
+  </data>
+  <data name="DTORisk_DTOCoverage_Description" xml:space="preserve">
+    <value>Bodily Injury - Per Person /Per Accident|Property Damage</value>
+    <comment>Array Values</comment>
+  </data>
+  <data name="DTORisk_DTOCoverage_Status" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="DTORisk_DTOVehicle_DamageInd" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="DTORisk_DTOVehicle_RegisterdOwner" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DTORisk_DTOVehicle_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DTORisk_DTOVehicle_ValidVinInd" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DTORisk_DTOVehicle_VehUseCd" xml:space="preserve">
+    <value>Personal</value>
+  </data>
+  <data name="DTORoot_DTOApplication_Description" xml:space="preserve">
+    <value>New Application</value>
+  </data>
+  <data name="DTORoot_DTOApplication_ReadyToRateInd" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DTORoot_DTOApplication_Status" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="DTORoot_DTOApplication_TypeCd" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="DTORoot_DTOApplication_Version" xml:space="preserve">
+    <value>3.10</value>
+  </data>
+  <data name="PartyInfo_Addr_AddrTypeCd" xml:space="preserve">
+    <value>InsuredMailingAddr|InsuredGaragingAddr</value>
+    <comment>Array Values</comment>
+  </data>
+  <data name="PartyInfo_DriverInfo_DriverInfoCd" xml:space="preserve">
+    <value>ContactDriver</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_LicenseStatus" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_LicenseType" xml:space="preserve">
+    <value>US License</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_Race" xml:space="preserve">
+    <value>Insured does not wish to provide information</value>
+  </data>
+  <data name="PartyInfo_NameInfo_NameTypeCd" xml:space="preserve">
+    <value>ContactName|InsuredName</value>
+    <comment>Array Values</comment>
+  </data>
+  <data name="PartyInfo_PersonInfo_PersonTypeCd" xml:space="preserve">
+    <value>ContactPersonal|InsuredPersonal</value>
+    <comment>Array Values</comment>
+  </data>
+  <data name="PartyInfo_PhoneInfo_PhoneName" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="PartyInfo_PhoneInfo_PhoneTypeCd" xml:space="preserve">
+    <value>InsuredPhonePrimary</value>
+  </data>
+  <data name="QuestionReplies_QuestionReply_Name" xml:space="preserve">
+    <value>UWQuestionFraud|UWQuestionVehicleSharing|UWPublicDelivery|WQuestionOtherDelivery|UWQuestionGaragingLocation|WQuestionOtherVehicles|UWQuestionHousehold</value>
+    <comment>Array Values</comment>
+  </data>
+  <data name="QuestionReplies_QuestionReply_Value" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="QuestionReplies_QuestionReply_VisibleInd" xml:space="preserve">
+    <value>YES</value>
+  </data>
+</root>

@@ -11,5 +11,14 @@ namespace InsuranceNow_XMLGenerator.Models
         public string Make { get; set; }
         public string Model { get; set; }
         public string VIN { get; set; }
+        public string CollDeduct { get; set; }
+        public string CompDeduct { get; set; }
+        public string AnnualMileage { get; set; }
+        public string CurrentOdometer { get; set; }
+        public string Lessor { get; set; }
+        public string Rental { get; set; }
+        public string No { get; set; }
+        public string Pub { get; set; }
+        public string Dr { get; set; }
     }
 }
