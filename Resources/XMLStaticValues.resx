@@ -255,10 +255,6 @@
   <data name="DTORisk_DTOCoverage_CoverageCd" xml:space="preserve">
     <value>PD</value>
   </data>
-  <data name="DTORisk_DTOCoverage_Description" xml:space="preserve">
-    <value>Bodily Injury - Per Person /Per Accident|Property Damage</value>
-    <comment>Array Values</comment>
-  </data>
   <data name="DTORisk_DTOCoverage_Status" xml:space="preserve">
     <value>Activate</value>
   </data>

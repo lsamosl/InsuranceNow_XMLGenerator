@@ -421,15 +421,6 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bodily Injury - Per Person /Per Accident|Property Damage.
-        /// </summary>
-        internal static string DTORisk_DTOCoverage_Description {
-            get {
-                return ResourceManager.GetString("DTORisk_DTOCoverage_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Activate.
         /// </summary>
         internal static string DTORisk_DTOCoverage_Status {

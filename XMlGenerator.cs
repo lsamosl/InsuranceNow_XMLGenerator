@@ -29,17 +29,18 @@ namespace InsuranceNow_XMLGenerator
                 settings.Indent = true;
                 settings.OmitXmlDeclaration = true;
 
-                string fullName = string.Format("{0} {1}", Policy.FirstName, Policy.LastName);
-                string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
-                string biCover = Policy.General.BiCover;
-                string[] biCoverArray = biCover.Split('/');
                 int countVehicles = 1;
                 int countDrivers = 1;
                 Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
+                string fullName = string.Format("{0} {1}", Policy.FirstName, Policy.LastName);
+                string biCover = Policy.General.BiCover;
                 string Gender = principalDriver != null ? (principalDriver.Gender == "M" ? "Male" : "Female") : string.Empty;
+                string term = string.Format("{0} {1}", Int32.Parse(Policy.Term).ToString(), "Months");
                 string[] NameTypeCd = XMLStaticValues.PartyInfo_NameInfo_NameTypeCd.Split('|');
-                string[] PersonTypeCd = XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd.Split('|');
-                
+                string[] PersonTypeCd = XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd.Split('|'); 
+                string[] AddrTypeCd = XMLStaticValues.PartyInfo_Addr_AddrTypeCd.Split('|');
+                string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
+                string[] biCoverArray = biCover.Split('/');
 
                 using (XmlWriter writer = XmlWriter.Create(Path, settings))
                 {
@@ -49,6 +50,7 @@ namespace InsuranceNow_XMLGenerator
 
                     #region <DTOApplication>
                     writer.WriteStartElement("DTOApplication");
+
                     writer.WriteAttributeString("Version", XMLStaticValues.DTORoot_DTOApplication_Version);
                     writer.WriteAttributeString("Status", XMLStaticValues.DTORoot_DTOApplication_Status);
                     writer.WriteAttributeString("TypeCd", XMLStaticValues.DTORoot_DTOApplication_TypeCd);
@@ -293,8 +295,6 @@ namespace InsuranceNow_XMLGenerator
 
                     #region <Addr>
 
-                    string[] AddrTypeCd = XMLStaticValues.PartyInfo_Addr_AddrTypeCd.Split('|');
-
                     writer.WriteStartElement("Addr");
 
                     writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
@@ -345,7 +345,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("EffectiveDt", Policy.EffectiveDate);
                     writer.WriteAttributeString("EffectiveTm", "12:01am");
                     writer.WriteAttributeString("ExpirationDt", Policy.ExpirationDate);
-                    writer.WriteAttributeString("RenewalTermCd", Policy.Term);
+                    writer.WriteAttributeString("RenewalTermCd", term);
                     writer.WriteAttributeString("ProductVersionIdRef", XMLStaticValues.DTOApplication_DTOBasicPolicy_ProductVersionIdRef);
                     writer.WriteAttributeString("SubTypeCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_SubTypeCd);
                     writer.WriteAttributeString("Description", XMLStaticValues.DTOApplication_DTOBasicPolicy_Description);
@@ -378,7 +378,7 @@ namespace InsuranceNow_XMLGenerator
 
                     writer.WriteEndElement(); //End DTORoot
 
-                    writer.WriteEndDocument(); 
+                    writer.WriteEndDocument(); //End Document
                 }
             }
             catch(Exception e)
