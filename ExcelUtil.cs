@@ -41,6 +41,7 @@ namespace InsuranceNow_XMLGenerator
 
                 Range rangeObject;
                 string policyNumber = string.Empty;
+                string dateFormat = "yyyyMMdd";
 
                 Policy policy = new Policy();
                 List<General> GeneralList = new List<General>();
@@ -80,15 +81,15 @@ namespace InsuranceNow_XMLGenerator
                     DriverList.Add(new Driver
                     {
                         Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim(),
-                        BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString("MM/dd/yyyy"),
+                        BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString(dateFormat),
                         MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString(),
                         Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),
                         DriverNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_DriverNumber].Value2.ToString(),
                         DriverStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_driverStatus].Value2.ToString().Trim(),
                         LicenseNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseNumber].Value2.ToString().Trim(),
-                        DateFirstLicense = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2).ToString("MM/dd/yyyy"),
+                        DateFirstLicense = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2).ToString(dateFormat),
                         LicenseState = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseState].Value2.ToString(),
-                        RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString(),
+                        RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim(),
                         MatureDriver = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_matureDriver].Value2.ToString(),
                         Sr22 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_sr22].Value2.ToString(),
                         PolicyNumber = policyNumber
@@ -141,7 +142,7 @@ namespace InsuranceNow_XMLGenerator
                         FirstName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_firstName].Value2.ToString().Trim(),
                         LastName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_lastName].Value2.ToString().Trim(),
                         BillReminder = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_BillReminder].Value2.ToString(),
-                        BirthDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2).ToString("MM/dd/yyyy"),
+                        BirthDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2).ToString(dateFormat),
                         PrimaryPhone = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_primaryPhone].Value2.ToString(),
                         MailingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingAddress].Value2.ToString().Trim(),
                         MailingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingCity].Value2.ToString().Trim(),
@@ -151,11 +152,11 @@ namespace InsuranceNow_XMLGenerator
                         GaragingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingCity].Value2.ToString().Trim(),
                         GaragingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingState].Value2.ToString().Trim(),
                         GaragingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingZip].Value2.ToString().Trim(),
-                        InceptionDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2).ToString("MM/dd/yyyy"),
-                        EffectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2).ToString("MM/dd/yyyy"),
-                        ExpirationDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2).ToString("MM/dd/yyyy"),
+                        InceptionDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2).ToString(dateFormat),
+                        EffectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2).ToString(dateFormat),
+                        ExpirationDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2).ToString(dateFormat),
                         Term = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString(),
-                        ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString(),
+                        ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString().Replace(" ", string.Empty),
                         PolicyNumber = policyNumber,
 
                         General = GeneralList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),

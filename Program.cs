@@ -44,7 +44,7 @@ namespace InsuranceNow_XMLGenerator
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
-            }
+            } 
 
             Console.WriteLine("Done!");
             Console.ReadKey();

@@ -358,8 +358,6 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("RenewedFromPolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_RenewedFromPolicyNumber);
                     writer.WriteAttributeString("PolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_PolicyNumber);
 
-                    writer.WriteEndElement(); //End DTOBasicPolicy
-
                     #region <ElectronicPaymentSource>
 
                     writer.WriteStartElement("ElectronicPaymentSource");
@@ -371,6 +369,8 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteEndElement(); //End ElectronicPaymentSource
 
                     #endregion
+
+                    writer.WriteEndElement(); //End DTOBasicPolicy
 
                     #endregion
 

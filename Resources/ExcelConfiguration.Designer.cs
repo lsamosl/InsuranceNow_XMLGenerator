@@ -457,7 +457,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AA.
+        ///   Looks up a localized string similar to AG.
         /// </summary>
         internal static string Policy_producerCode {
             get {
