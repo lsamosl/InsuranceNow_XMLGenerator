@@ -153,6 +153,9 @@
   <data name="DTOApplication_DTOInsured_EntityTypeCd" xml:space="preserve">
     <value>Individual</value>
   </data>
+  <data name="DTOApplication_DTOInsured_PreferredDeliveryMethod" xml:space="preserve">
+    <value>Batch</value>
+  </data>
   <data name="DTOApplication_DTOLine_LineCd" xml:space="preserve">
     <value>PersonalAuto</value>
   </data>
@@ -165,6 +168,21 @@
   <data name="DTOApplication_DTOLine_StatusCd" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="DTOApplication_DTOTransactionInfo_ChargeEndorsementFeeInd" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="DTOApplication_DTOTransactionInfo_RewriteToProductVersion" xml:space="preserve">
+    <value>waic-CA-PersonalAuto-v01-00-01</value>
+  </data>
+  <data name="DTOApplication_DTOTransactionInfo_SourceCd" xml:space="preserve">
+    <value>Innovation</value>
+  </data>
+  <data name="DTOApplication_DTOTransactionInfo_TransactionCd" xml:space="preserve">
+    <value>Renewal Start</value>
+  </data>
+  <data name="DTOApplication_DTOTransactionInfo_TransactionShortDescription" xml:space="preserve">
+    <value>Renewal Start</value>
+  </data>
   <data name="DTOApplication_PartyInfo_PartyTypeCd" xml:space="preserve">
     <value>DriverParty</value>
   </data>
@@ -173,6 +191,15 @@
   </data>
   <data name="DTOApplication_QuestionReplies_QuestionSourceMDA" xml:space="preserve">
     <value>UWProduct::product-master::waic-CA-PersonalAuto-v01-00-01:://ProductSetup[@id='ProductSetup']</value>
+  </data>
+  <data name="DTOBasicPolicy_ElectronicPaymentSource_id" xml:space="preserve">
+    <value>ElectronicPaymentSource-77832465-342</value>
+  </data>
+  <data name="DTOBasicPolicy_ElectronicPaymentSource_MethodCd" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="DTOBasicPolicy_ElectronicPaymentSource_SourceTypeCd" xml:space="preserve">
+    <value>InstallmentSource</value>
   </data>
   <data name="DTOCoverage1_DTOLimit_LimitCd" xml:space="preserve">
     <value>Limit1|Limit2</value>

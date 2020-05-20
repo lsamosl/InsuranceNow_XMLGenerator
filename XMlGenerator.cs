@@ -29,12 +29,25 @@ namespace InsuranceNow_XMLGenerator
                 settings.Indent = true;
                 settings.OmitXmlDeclaration = true;
 
+                string fullName = string.Format("{0} {1}", Policy.FirstName, Policy.LastName);
+                string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
+                string biCover = Policy.General.BiCover;
+                string[] biCoverArray = biCover.Split('/');
+                int countVehicles = 1;
+                int countDrivers = 1;
+                Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
+                string Gender = principalDriver != null ? (principalDriver.Gender == "M" ? "Male" : "Female") : string.Empty;
+                string[] NameTypeCd = XMLStaticValues.PartyInfo_NameInfo_NameTypeCd.Split('|');
+                string[] PersonTypeCd = XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd.Split('|');
+                
+
                 using (XmlWriter writer = XmlWriter.Create(Path, settings))
                 {
                     writer.WriteStartDocument();
 
                     writer.WriteStartElement("DTORoot");
 
+                    #region <DTOApplication>
                     writer.WriteStartElement("DTOApplication");
                     writer.WriteAttributeString("Version", XMLStaticValues.DTORoot_DTOApplication_Version);
                     writer.WriteAttributeString("Status", XMLStaticValues.DTORoot_DTOApplication_Status);
@@ -42,10 +55,9 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("Description", XMLStaticValues.DTORoot_DTOApplication_Description);
                     writer.WriteAttributeString("ReadyToRateInd", XMLStaticValues.DTORoot_DTOApplication_ReadyToRateInd);
 
+                    #region <QuestionReplies>
                     writer.WriteStartElement("QuestionReplies");
                     writer.WriteAttributeString("QuestionSourceMDA", XMLStaticValues.DTOApplication_QuestionReplies_QuestionSourceMDA);
-
-                    string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
 
                     foreach (string q in QuestionReply_Names)
                     {
@@ -58,11 +70,10 @@ namespace InsuranceNow_XMLGenerator
                     }
 
                     writer.WriteEndElement(); // End QuestionReplies
+                    #endregion
 
+                    #region <DTOLine>
                     writer.WriteStartElement("DTOLine");
-
-                    string biCover = Policy.General.BiCover;
-                    string[] biCoverArray = biCover.Split('/');
 
                     writer.WriteAttributeString("StatusCd", XMLStaticValues.DTOApplication_DTOLine_StatusCd);
                     writer.WriteAttributeString("LineCd", XMLStaticValues.DTOApplication_DTOLine_LineCd);
@@ -78,6 +89,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("TotalNumVehicles", Policy.Vehicles.Count.ToString());
                     writer.WriteAttributeString("TotalNumDrivers", Policy.Drivers.Count.ToString());
 
+                    #region <DTORisk>
                     writer.WriteStartElement("DTORisk");
 
                     writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOLine_DTORisk_TypeCd);
@@ -114,14 +126,14 @@ namespace InsuranceNow_XMLGenerator
 
                     writer.WriteEndElement(); //End DTOCoverage
 
-                    int countVehicles = 1;
+                    #region <DTOVehicle>
                     foreach (Vehicle v in Policy.Vehicles)
                     {
                         writer.WriteStartElement("DTOVehicle");
 
                         writer.WriteAttributeString("VehNumber", countVehicles.ToString());
                         writer.WriteAttributeString("Status", XMLStaticValues.DTORisk_DTOVehicle_Status);
-                        writer.WriteAttributeString("VehIdentificationNumber", v.VIN.Trim());
+                        writer.WriteAttributeString("VehIdentificationNumber", v.VIN);
                         writer.WriteAttributeString("ValidVinInd", XMLStaticValues.DTORisk_DTOVehicle_ValidVinInd);
                         writer.WriteAttributeString("VehUseCd", XMLStaticValues.DTORisk_DTOVehicle_VehUseCd);
                         writer.WriteAttributeString("CollisionDed", !string.IsNullOrEmpty(v.CollDeduct) ? v.CollDeduct : "No Coverage");
@@ -140,6 +152,7 @@ namespace InsuranceNow_XMLGenerator
 
                         countVehicles++;
                     }
+                    #endregion
 
                     writer.WriteStartElement("DTOCoverage");
 
@@ -158,20 +171,21 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteEndElement(); //End DTOCoverage
 
                     writer.WriteEndElement(); //End DTORisk
+                    #endregion
 
                     writer.WriteEndElement(); //End DTOLine
+                    #endregion
 
+                    #region <PartyInfo>
                     writer.WriteStartElement("PartyInfo");
 
                     writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOApplication_PartyInfo_PartyTypeCd);
                     writer.WriteAttributeString("Status", XMLStaticValues.DTOApplication_PartyInfo_Status);
 
+                    #region <PersonInfo>
                     writer.WriteStartElement("PersonInfo");
 
-                    Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
-                    string Gender = principalDriver != null ? (principalDriver.Gender.Trim() == "M" ? "Male" : "Female") : string.Empty;
-
-                    writer.WriteAttributeString("PersonTypeCd", XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd);
+                    writer.WriteAttributeString("PersonTypeCd", PersonTypeCd[0]);
                     writer.WriteAttributeString("GenderCd", Gender);
                     writer.WriteAttributeString("BirthDt", principalDriver != null ? principalDriver.BirthDate : string.Empty);
                     writer.WriteAttributeString("MaritalStatusCd", principalDriver != null ? principalDriver.MaritalStatus : string.Empty);
@@ -179,19 +193,21 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("Age", string.Empty); //TODO
 
                     writer.WriteEndElement(); //End PersonInfo
+                    #endregion
 
-                    int countDrivers = 1;
+                    #region <DriverInfo>
+                    
                     foreach(Driver d in Policy.Drivers)
                     {
                         writer.WriteStartElement("DriverInfo");
 
                         writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd); 
                         writer.WriteAttributeString("DriverNumber", countDrivers.ToString());
-                        writer.WriteAttributeString("DriverStatusCd", d.DriverStatus.Trim() == "Active" ? "Principal"  : "Excluded"); 
-                        writer.WriteAttributeString("LicenseNumber", d.LicenseNumber.Trim()); 
+                        writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal"  : "Excluded"); 
+                        writer.WriteAttributeString("LicenseNumber", d.LicenseNumber); 
                         writer.WriteAttributeString("LicenseDt", d.DateFirstLicense); 
                         writer.WriteAttributeString("LicensedStateProvCd", d.LicenseState); 
-                        writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip.Trim()); 
+                        writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip); 
                         writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
                         writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race); 
                         writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType); 
@@ -203,10 +219,162 @@ namespace InsuranceNow_XMLGenerator
 
                         writer.WriteEndElement(); //End DriverInfo
                     }
+                    #endregion
+
+                    #region <NameInfo>
+
+                    writer.WriteStartElement("NameInfo");
+
+                    writer.WriteAttributeString("NameTypeCd", NameTypeCd[0]);
+                    writer.WriteAttributeString("GivenName", Policy.FirstName);
+                    writer.WriteAttributeString("Surname", Policy.LastName);
+
+                    writer.WriteEndElement(); //EndNameInfo
+                    #endregion
 
                     writer.WriteEndElement(); //End PartyInfo
+                    #endregion
+
+                    #region <DTOTransactionInfo>
+                    writer.WriteStartElement("DTOTransactionInfo");
+
+                    writer.WriteAttributeString("TransactionCd", XMLStaticValues.DTOApplication_DTOTransactionInfo_TransactionCd);
+                    writer.WriteAttributeString("TransactionEffectiveDt", string.Empty); //TODO
+                    writer.WriteAttributeString("TransactionShortDescription", XMLStaticValues.DTOApplication_DTOTransactionInfo_TransactionShortDescription);
+                    writer.WriteAttributeString("RewriteToProductVersion", XMLStaticValues.DTOApplication_DTOTransactionInfo_RewriteToProductVersion);
+                    writer.WriteAttributeString("SourceCd", XMLStaticValues.DTOApplication_DTOTransactionInfo_SourceCd);
+                    writer.WriteAttributeString("ChargeEndorsementFeeInd", XMLStaticValues.DTOApplication_DTOTransactionInfo_ChargeEndorsementFeeInd);
+
+                    writer.WriteEndElement(); //End DTOTransactionInfo
+                    #endregion
+
+                    #region <DTOInsured>
+                    writer.WriteStartElement("DTOInsured");
+
+                    writer.WriteAttributeString("IndexName", fullName);
+                    writer.WriteAttributeString("EntityTypeCd", XMLStaticValues.DTOApplication_DTOInsured_EntityTypeCd);
+                    writer.WriteAttributeString("PreferredDeliveryMethod", XMLStaticValues.DTOApplication_DTOInsured_PreferredDeliveryMethod);
+                    writer.WriteAttributeString("BillRemind", !string.IsNullOrEmpty(Policy.BillReminder) ? Policy.BillReminder : "No");
+
+                    #region <PartyInfo>
+                    writer.WriteStartElement("PartyInfo");
+
+                    writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOInsured_PartyInfo_PartyTypeCd);
+
+                    #region <PersonInfo>
+                    writer.WriteStartElement("PersonInfo");
+
+                    writer.WriteAttributeString("PersonTypeCd", PersonTypeCd[1]);
+                    writer.WriteAttributeString("BirthDt", Policy.BirthDate);
+
+                    writer.WriteEndElement(); //End PersonInfo
+                    #endregion
+
+                    #region <PhoneInfo>
+                    writer.WriteStartElement("PhoneInfo");
+
+                    writer.WriteAttributeString("PhoneTypeCd", XMLStaticValues.PartyInfo_PhoneInfo_PhoneTypeCd);
+                    writer.WriteAttributeString("PhoneNumber", Policy.PrimaryPhone);
+                    writer.WriteAttributeString("PhoneName", XMLStaticValues.PartyInfo_PhoneInfo_PhoneName);
+
+                    writer.WriteEndElement(); //End PhoneInfo
+                    #endregion
+
+                    #region <NameInfo>
+                    writer.WriteStartElement("NameInfo");
+
+                    writer.WriteAttributeString("NameTypeCd", NameTypeCd[1]);
+                    writer.WriteAttributeString("GivenName", Policy.FirstName);
+                    writer.WriteAttributeString("Surname", Policy.LastName);
+                    writer.WriteAttributeString("CommercialName", fullName);
+
+                    writer.WriteEndElement(); //End NameInfo
+                    #endregion
+
+                    #region <Addr>
+
+                    string[] AddrTypeCd = XMLStaticValues.PartyInfo_Addr_AddrTypeCd.Split('|');
+
+                    writer.WriteStartElement("Addr");
+
+                    writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
+                    writer.WriteAttributeString("Addr1", Policy.MailingAddress);
+                    writer.WriteAttributeString("City", Policy.MailingCity);
+                    writer.WriteAttributeString("StateProvCd", Policy.MailingState);
+                    writer.WriteAttributeString("PostalCode", Policy.MailingZip);
+
+                    writer.WriteEndElement(); //End Addr
+                    #endregion
+
+                    #region <Addr>
+
+                    if(Policy.MailingAddress != Policy.GaragingAddress &&
+                       Policy.MailingCity != Policy.GaragingCity &&
+                       Policy.MailingState != Policy.GaragingState &&
+                       Policy.MailingZip != Policy.GaragingZip)
+                    {
+                        writer.WriteStartElement("Addr");
+
+                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
+                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
+                        writer.WriteAttributeString("City", Policy.GaragingCity);
+                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
+                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
+
+                        writer.WriteEndElement(); //End Addr
+                    }
+
+                    #endregion
+
+                    writer.WriteEndElement(); //End PartyInfo
+                    #endregion
+
+                    writer.WriteEndElement(); //End DTOInsured
+                    #endregion
+
+                    #region <DTOBasicPolicy>
+
+                    writer.WriteStartElement("DTOBasicPolicy");
+
+                    writer.WriteAttributeString("CarrierGroupCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_CarrierGroupCd);
+                    writer.WriteAttributeString("CarrierCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_CarrierCd);
+                    writer.WriteAttributeString("ControllingStateCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_ControllingStateCd);
+                    writer.WriteAttributeString("TransactionCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_TransactionCd);
+                    writer.WriteAttributeString("InceptionDt", Policy.InceptionDate);
+                    writer.WriteAttributeString("InceptionTm", "12:01am");
+                    writer.WriteAttributeString("EffectiveDt", Policy.EffectiveDate);
+                    writer.WriteAttributeString("EffectiveTm", "12:01am");
+                    writer.WriteAttributeString("ExpirationDt", Policy.ExpirationDate);
+                    writer.WriteAttributeString("RenewalTermCd", Policy.Term);
+                    writer.WriteAttributeString("ProductVersionIdRef", XMLStaticValues.DTOApplication_DTOBasicPolicy_ProductVersionIdRef);
+                    writer.WriteAttributeString("SubTypeCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_SubTypeCd);
+                    writer.WriteAttributeString("Description", XMLStaticValues.DTOApplication_DTOBasicPolicy_Description);
+                    writer.WriteAttributeString("ProviderNumber", string.Format("{0}-{1}", Policy.ProducerCode, "001"));
+                    writer.WriteAttributeString("TreatAsConvRenewal", XMLStaticValues.DTOApplication_DTOBasicPolicy_TreatAsConvRenewal);
+                    writer.WriteAttributeString("LegacyPolNumber", Policy.PolicyNumber);
+                    writer.WriteAttributeString("LegacyPolIncepDt", Policy.InceptionDate);
+                    writer.WriteAttributeString("Source", XMLStaticValues.DTOApplication_DTOBasicPolicy_Source);
+                    writer.WriteAttributeString("RenewedFromPolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_RenewedFromPolicyNumber);
+                    writer.WriteAttributeString("PolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_PolicyNumber);
+
+                    writer.WriteEndElement(); //End DTOBasicPolicy
+
+                    #region <ElectronicPaymentSource>
+
+                    writer.WriteStartElement("ElectronicPaymentSource");
+
+                    writer.WriteAttributeString("id", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_id); //TODO
+                    writer.WriteAttributeString("SourceTypeCd", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_SourceTypeCd); //TODO
+                    writer.WriteAttributeString("MethodCd", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_MethodCd); //TODO
+
+                    writer.WriteEndElement(); //End ElectronicPaymentSource
+
+                    #endregion
+
+                    #endregion
 
                     writer.WriteEndElement(); //End DTOApplication
+                    #endregion
 
                     writer.WriteEndElement(); //End DTORoot
 

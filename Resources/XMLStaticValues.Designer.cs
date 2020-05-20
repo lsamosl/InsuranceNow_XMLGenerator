@@ -169,6 +169,15 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Batch.
+        /// </summary>
+        internal static string DTOApplication_DTOInsured_PreferredDeliveryMethod {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOInsured_PreferredDeliveryMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PersonalAuto.
         /// </summary>
         internal static string DTOApplication_DTOLine_LineCd {
@@ -205,6 +214,51 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string DTOApplication_DTOTransactionInfo_ChargeEndorsementFeeInd {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOTransactionInfo_ChargeEndorsementFeeInd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to waic-CA-PersonalAuto-v01-00-01.
+        /// </summary>
+        internal static string DTOApplication_DTOTransactionInfo_RewriteToProductVersion {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOTransactionInfo_RewriteToProductVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Innovation.
+        /// </summary>
+        internal static string DTOApplication_DTOTransactionInfo_SourceCd {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOTransactionInfo_SourceCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renewal Start.
+        /// </summary>
+        internal static string DTOApplication_DTOTransactionInfo_TransactionCd {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOTransactionInfo_TransactionCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renewal Start.
+        /// </summary>
+        internal static string DTOApplication_DTOTransactionInfo_TransactionShortDescription {
+            get {
+                return ResourceManager.GetString("DTOApplication_DTOTransactionInfo_TransactionShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DriverParty.
         /// </summary>
         internal static string DTOApplication_PartyInfo_PartyTypeCd {
@@ -228,6 +282,33 @@ namespace InsuranceNow_XMLGenerator.Resources {
         internal static string DTOApplication_QuestionReplies_QuestionSourceMDA {
             get {
                 return ResourceManager.GetString("DTOApplication_QuestionReplies_QuestionSourceMDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ElectronicPaymentSource-77832465-342.
+        /// </summary>
+        internal static string DTOBasicPolicy_ElectronicPaymentSource_id {
+            get {
+                return ResourceManager.GetString("DTOBasicPolicy_ElectronicPaymentSource_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string DTOBasicPolicy_ElectronicPaymentSource_MethodCd {
+            get {
+                return ResourceManager.GetString("DTOBasicPolicy_ElectronicPaymentSource_MethodCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InstallmentSource.
+        /// </summary>
+        internal static string DTOBasicPolicy_ElectronicPaymentSource_SourceTypeCd {
+            get {
+                return ResourceManager.GetString("DTOBasicPolicy_ElectronicPaymentSource_SourceTypeCd", resourceCulture);
             }
         }
         

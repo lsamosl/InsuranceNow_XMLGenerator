@@ -102,19 +102,19 @@ namespace InsuranceNow_XMLGenerator
                             PdCover = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_pdCover].Value2.ToString()
                         },
 
-                        FirstName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_firstName].Value2.ToString(),
-                        LastName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_lastName].Value2.ToString(),
+                        FirstName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_firstName].Value2.ToString().Trim(),
+                        LastName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_lastName].Value2.ToString().Trim(),
                         BillReminder = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_BillReminder].Value2.ToString(),
                         BirthDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2.ToString(),
                         PrimaryPhone = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_primaryPhone].Value2.ToString(),
-                        MailingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingAddress].Value2.ToString(),
-                        MailingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingCity].Value2.ToString(),
-                        MailingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingState].Value2.ToString(),
-                        MailingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingZip].Value2.ToString(),
-                        GaragingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingAddress].Value2.ToString(),
-                        GaragingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingCity].Value2.ToString(),
-                        GaragingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingState].Value2.ToString(),
-                        GaragingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingZip].Value2.ToString(),
+                        MailingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingAddress].Value2.ToString().Trim(),
+                        MailingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingCity].Value2.ToString().Trim(),
+                        MailingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingState].Value2.ToString().Trim(),
+                        MailingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingZip].Value2.ToString().Trim(),
+                        GaragingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingAddress].Value2.ToString().Trim(),
+                        GaragingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingCity].Value2.ToString().Trim(),
+                        GaragingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingState].Value2.ToString().Trim(),
+                        GaragingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingZip].Value2.ToString().Trim(),
                         InceptionDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2.ToString(),
                         EffectiveDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2.ToString(),
                         ExpirationDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2.ToString(),
@@ -139,16 +139,16 @@ namespace InsuranceNow_XMLGenerator
                         {
                             policy.Drivers.Add(new Driver
                             {
-                                Gender = areaValues[i, DRIVER_GENDER] != null ? areaValues[i, DRIVER_GENDER].ToString() : string.Empty,
+                                Gender = areaValues[i, DRIVER_GENDER] != null ? areaValues[i, DRIVER_GENDER].ToString().Trim() : string.Empty,
                                 BirthDate = areaValues[i, DRIVER_BIRTHDATE] != null? areaValues[i, DRIVER_BIRTHDATE].ToString() : string.Empty,
                                 MaritalStatus = areaValues[i, DRIVER_MARITALSTATUS] != null? areaValues[i, DRIVER_MARITALSTATUS].ToString() : string.Empty,
-                                Occupation = areaValues[i, DRIVER_OCCUPATION] != null? areaValues[i, DRIVER_OCCUPATION].ToString() : string.Empty,
+                                Occupation = areaValues[i, DRIVER_OCCUPATION] != null? areaValues[i, DRIVER_OCCUPATION].ToString().Trim() : string.Empty,
                                 DriverNumber =areaValues[i, DRIVER_DRIVERNUMBER] != null ? Int32.Parse(areaValues[i, DRIVER_DRIVERNUMBER].ToString()) : 0,
-                                DriverStatus = areaValues[i, DRIVER_DRIVERSTATUS] != null? areaValues[i, DRIVER_DRIVERSTATUS].ToString() : string.Empty,
-                                LicenseNumber = areaValues[i, DRIVER_LICENSENUMBER] != null? areaValues[i, DRIVER_LICENSENUMBER].ToString() : string.Empty,
+                                DriverStatus = areaValues[i, DRIVER_DRIVERSTATUS] != null? areaValues[i, DRIVER_DRIVERSTATUS].ToString().Trim() : string.Empty,
+                                LicenseNumber = areaValues[i, DRIVER_LICENSENUMBER] != null? areaValues[i, DRIVER_LICENSENUMBER].ToString().Trim() : string.Empty,
                                 DateFirstLicense = areaValues[i, DRIVER_DATEFIRSTLICENSE] != null? areaValues[i, DRIVER_DATEFIRSTLICENSE].ToString() : string.Empty,
                                 LicenseState = areaValues[i, DRIVER_LICENSESTATE] != null? areaValues[i, DRIVER_LICENSESTATE].ToString() : string.Empty,
-                                RelationShip = areaValues[i, DRIVER_RELATIONSHIP] != null? areaValues[i, DRIVER_RELATIONSHIP].ToString() : string.Empty,
+                                RelationShip = areaValues[i, DRIVER_RELATIONSHIP] != null? areaValues[i, DRIVER_RELATIONSHIP].ToString().Trim() : string.Empty,
                                 MatureDriver = areaValues[i, DRIVER_MATUREDRIVER] != null? areaValues[i, DRIVER_MATUREDRIVER].ToString() : string.Empty,
                                 Sr22 = areaValues[i, DRIVER_SR22] != null ? areaValues[i, DRIVER_SR22].ToString() : string.Empty,
                             });
@@ -168,7 +168,7 @@ namespace InsuranceNow_XMLGenerator
                         {
                             policy.Vehicles.Add(new Vehicle
                             {
-                                VIN = areaValues[i, VEHICLE_VIN] != null ? areaValues[i, VEHICLE_VIN].ToString() : string.Empty,
+                                VIN = areaValues[i, VEHICLE_VIN] != null ? areaValues[i, VEHICLE_VIN].ToString().Trim() : string.Empty,
                                 CollDeduct = areaValues[i, VEHICLE_COLLDEDUCT] != null ? areaValues[i, VEHICLE_COLLDEDUCT].ToString() : string.Empty,
                                 CompDeduct = areaValues[i, VEHICLE_COMPDEDUCT] != null ? areaValues[i, VEHICLE_COMPDEDUCT].ToString(): string.Empty,
                                 AnnualMileage = areaValues[i, VEHICLE_ANNUALMILEAGE] != null ? areaValues[i, VEHICLE_ANNUALMILEAGE].ToString(): string.Empty,

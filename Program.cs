@@ -14,9 +14,8 @@ namespace InsuranceNow_XMLGenerator
             try
             {
                 string path = "C:\\Test\\";
-                string XmlOutput = "InsuranceNow_[POLICYNUMBER].xml";
+                string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
                 string ExcelInput = "_dataMigrationVer1.5.xlsx";
-                //string ExcelInput = path + "Test.xlsm";
                 List<Policy> Policies = new List<Policy>();
                 int total = 1;
 
@@ -30,7 +29,10 @@ namespace InsuranceNow_XMLGenerator
 
                 foreach(Policy p in Policies)
                 {
-                    string fileName = XmlOutput.Replace("[POLICYNUMBER]", p.PolicyNumber.Replace(" ", string.Empty));
+                    string fileName = XmlOutput.Replace("[POLICYNUMBER]", p.PolicyNumber.Replace(" ", string.Empty)).
+                                                Replace("[DRIVERS]", p.Drivers.Count.ToString()).
+                                                Replace("[VEHICLES]", p.Vehicles.Count.ToString());
+
                     XMLGenerator Generator = new XMLGenerator(path + "XMLs\\" + fileName, p);
                     Generator.Generate();
                     Console.Write("\r{0}  ", total);
