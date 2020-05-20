@@ -8,6 +8,7 @@ namespace InsuranceNow_XMLGenerator.Models
 {
     public class Vehicle
     {
+        public string PolicyNumber { get; set; }
         public string VIN { get; set; }
         public string CollDeduct { get; set; }
         public string CompDeduct { get; set; }

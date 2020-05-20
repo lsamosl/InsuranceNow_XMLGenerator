@@ -132,6 +132,9 @@
   <data name="AutoGeneral_pdCover" xml:space="preserve">
     <value>O</value>
   </data>
+  <data name="AutoGeneral_PolicyNumber" xml:space="preserve">
+    <value>L</value>
+  </data>
   <data name="AutoGeneral_roadAssis" xml:space="preserve">
     <value>T</value>
   </data>
@@ -186,6 +189,9 @@
   <data name="Driver_Policy" xml:space="preserve">
     <value>B</value>
     <comment>Column name of Policy Number in driver sheet</comment>
+  </data>
+  <data name="Driver_PolicyNumber" xml:space="preserve">
+    <value>B</value>
   </data>
   <data name="Driver_relationShip" xml:space="preserve">
     <value>G</value>
@@ -261,10 +267,10 @@
     <value>AG</value>
   </data>
   <data name="Vehicle_COLLDEDUCT" xml:space="preserve">
-    <value>J</value>
+    <value>Y</value>
   </data>
   <data name="Vehicle_COMPDEDUCT" xml:space="preserve">
-    <value>I</value>
+    <value>X</value>
   </data>
   <data name="Vehicle_currentOdometer" xml:space="preserve">
     <value>AF</value>
@@ -285,6 +291,9 @@
     <value>AA</value>
   </data>
   <data name="Vehicle_Policy" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Vehicle_PolicyNumber" xml:space="preserve">
     <value>S</value>
   </data>
   <data name="Vehicle_PUB" xml:space="preserve">

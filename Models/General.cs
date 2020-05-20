@@ -8,6 +8,7 @@ namespace InsuranceNow_XMLGenerator.Models
 {
     public class General
     {
+        public string PolicyNumber { get; set; }
         public string MedCover { get; set; }
         public string BiCover { get; set; }
         public string Umbi { get; set; }

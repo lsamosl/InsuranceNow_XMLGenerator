@@ -33,14 +33,15 @@ namespace InsuranceNow_XMLGenerator
                 int countDrivers = 1;
                 Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
                 string fullName = string.Format("{0} {1}", Policy.FirstName, Policy.LastName);
-                string biCover = Policy.General.BiCover;
                 string Gender = principalDriver != null ? (principalDriver.Gender == "M" ? "Male" : "Female") : string.Empty;
                 string term = string.Format("{0} {1}", Int32.Parse(Policy.Term).ToString(), "Months");
                 string[] NameTypeCd = XMLStaticValues.PartyInfo_NameInfo_NameTypeCd.Split('|');
                 string[] PersonTypeCd = XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd.Split('|'); 
                 string[] AddrTypeCd = XMLStaticValues.PartyInfo_Addr_AddrTypeCd.Split('|');
                 string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
-                string[] biCoverArray = biCover.Split('/');
+                string[] biCoverArray = Policy.General.BiCover.Split('/'); 
+                string BILimit = GetFormatLimits(Policy.General.BiCover);
+                //string UMBILimit = GetFormatLimits(Policy.General.Umbi);
 
                 using (XmlWriter writer = XmlWriter.Create(Path, settings))
                 {
@@ -81,7 +82,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("LineCd", XMLStaticValues.DTOApplication_DTOLine_LineCd);
                     writer.WriteAttributeString("RatingService", XMLStaticValues.DTOApplication_DTOLine_RatingService);
                     writer.WriteAttributeString("MedPayLimit", !String.IsNullOrEmpty(Policy.General.MedCover) ? Policy.General.MedCover : "None");
-                    writer.WriteAttributeString("BILimit", biCoverArray.Length == 2 ? biCoverArray[0] + "000" + "/" + biCoverArray[1] + "000" : "None");
+                    writer.WriteAttributeString("BILimit", BILimit);
                     writer.WriteAttributeString("PDLimit", !String.IsNullOrEmpty(Policy.General.PdCover) ? Policy.General.PdCover : "None");
                     writer.WriteAttributeString("UMBILimit", !String.IsNullOrEmpty(Policy.General.Umbi) ? Policy.General.Umbi : "None");
                     writer.WriteAttributeString("UMPDWCDInd", !String.IsNullOrEmpty(Policy.General.UmpdCdw) ? Policy.General.UmpdCdw : "No");
@@ -395,6 +396,20 @@ namespace InsuranceNow_XMLGenerator
                 writer.WriteAttributeString(attribute.Key, attribute.Value);
 
             writer.WriteEndElement();
+        }
+
+        private string GetFormatLimits(string limits)
+        {
+            string limit = "None";
+
+            if (limits.ToLower() == "no" || limits.ToLower() == "yes")
+                return limits;
+
+            string[] limitsArray = limits.Split('/');
+            if (limitsArray.Length == 2)
+                limit = string.Format("{0}/{1}", limitsArray[0] + "000", limitsArray[1] + "000");
+
+            return limit;
         }
     }
 }

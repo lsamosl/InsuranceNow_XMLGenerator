@@ -15,7 +15,7 @@ namespace InsuranceNow_XMLGenerator
             {
                 string path = "C:\\Test\\";
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
-                string ExcelInput = "_dataMigrationVer1.5.xlsx";
+                string ExcelInput = "dataMigrationVer1.5 - Copy.xlsm";
                 List<Policy> Policies = new List<Policy>();
                 int total = 1;
 
@@ -43,6 +43,7 @@ namespace InsuranceNow_XMLGenerator
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
 
             Console.WriteLine("Done!");

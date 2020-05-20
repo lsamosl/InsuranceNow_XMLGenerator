@@ -97,6 +97,15 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to L.
+        /// </summary>
+        internal static string AutoGeneral_PolicyNumber {
+            get {
+                return ResourceManager.GetString("AutoGeneral_PolicyNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to T.
         /// </summary>
         internal static string AutoGeneral_roadAssis {
@@ -255,6 +264,15 @@ namespace InsuranceNow_XMLGenerator.Resources {
         internal static string Driver_Policy {
             get {
                 return ResourceManager.GetString("Driver_Policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string Driver_PolicyNumber {
+            get {
+                return ResourceManager.GetString("Driver_PolicyNumber", resourceCulture);
             }
         }
         
@@ -475,7 +493,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to J.
+        ///   Looks up a localized string similar to Y.
         /// </summary>
         internal static string Vehicle_COLLDEDUCT {
             get {
@@ -484,7 +502,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I.
+        ///   Looks up a localized string similar to X.
         /// </summary>
         internal static string Vehicle_COMPDEDUCT {
             get {
@@ -552,6 +570,15 @@ namespace InsuranceNow_XMLGenerator.Resources {
         internal static string Vehicle_Policy {
             get {
                 return ResourceManager.GetString("Vehicle_Policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string Vehicle_PolicyNumber {
+            get {
+                return ResourceManager.GetString("Vehicle_PolicyNumber", resourceCulture);
             }
         }
         
