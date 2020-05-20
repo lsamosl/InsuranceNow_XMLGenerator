@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Resources\_dataMigrationVer1.5.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ExcelConfiguration.resx">

@@ -80,13 +80,13 @@ namespace InsuranceNow_XMLGenerator
                     DriverList.Add(new Driver
                     {
                         Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim(),
-                        BirthDate = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2.ToString(),
+                        BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString("MM/dd/yyyy"),
                         MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString(),
                         Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),
                         DriverNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_DriverNumber].Value2.ToString(),
                         DriverStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_driverStatus].Value2.ToString().Trim(),
                         LicenseNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseNumber].Value2.ToString().Trim(),
-                        DateFirstLicense = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2.ToString(),
+                        DateFirstLicense = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2).ToString("MM/dd/yyyy"),
                         LicenseState = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseState].Value2.ToString(),
                         RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString(),
                         MatureDriver = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_matureDriver].Value2.ToString(),
@@ -141,7 +141,7 @@ namespace InsuranceNow_XMLGenerator
                         FirstName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_firstName].Value2.ToString().Trim(),
                         LastName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_lastName].Value2.ToString().Trim(),
                         BillReminder = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_BillReminder].Value2.ToString(),
-                        BirthDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2.ToString(),
+                        BirthDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2).ToString("MM/dd/yyyy"),
                         PrimaryPhone = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_primaryPhone].Value2.ToString(),
                         MailingAddress = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingAddress].Value2.ToString().Trim(),
                         MailingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_mailingCity].Value2.ToString().Trim(),
@@ -151,9 +151,9 @@ namespace InsuranceNow_XMLGenerator
                         GaragingCity = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingCity].Value2.ToString().Trim(),
                         GaragingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingState].Value2.ToString().Trim(),
                         GaragingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingZip].Value2.ToString().Trim(),
-                        InceptionDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2.ToString(),
-                        EffectiveDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2.ToString(),
-                        ExpirationDate = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2.ToString(),
+                        InceptionDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2).ToString("MM/dd/yyyy"),
+                        EffectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2).ToString("MM/dd/yyyy"),
+                        ExpirationDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2).ToString("MM/dd/yyyy"),
                         Term = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString(),
                         ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString(),
                         PolicyNumber = policyNumber,
@@ -182,30 +182,6 @@ namespace InsuranceNow_XMLGenerator
         public void CloseFile(Workbook xlWorkbook)
         {
             xlWorkbook.Close(false, FileName, Missing.Value);
-        }
-
-        private static int GetExcelColumnNumber(string columnName)
-        {
-            if (string.IsNullOrEmpty(columnName))
-                throw new ArgumentNullException("Invalid column name parameter");
-
-            columnName = columnName.ToUpperInvariant();
-
-            int sum = 0;
-
-            char ch;
-            for (int i = 0; i < columnName.Length; i++)
-            {
-                ch = columnName[i];
-
-                if (char.IsDigit(ch))
-                    throw new ArgumentNullException("Invalid column name parameter on character " + ch);
-
-                sum *= 26;
-                sum += (ch - 'A' + 1);
-            }
-
-            return sum;
         }
     }
 }
