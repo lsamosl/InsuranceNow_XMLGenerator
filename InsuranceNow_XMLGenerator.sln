@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceNow_XMLGenerator", "InsuranceNow_XMLGenerator.csproj", "{737567FB-9C08-46C4-8E99-658FB6308E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{73DACBE4-D9A7-47C7-8502-DB658233B43E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{737567FB-9C08-46C4-8E99-658FB6308E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{737567FB-9C08-46C4-8E99-658FB6308E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{737567FB-9C08-46C4-8E99-658FB6308E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73DACBE4-D9A7-47C7-8502-DB658233B43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73DACBE4-D9A7-47C7-8502-DB658233B43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73DACBE4-D9A7-47C7-8502-DB658233B43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73DACBE4-D9A7-47C7-8502-DB658233B43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

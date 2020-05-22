@@ -7,6 +7,9 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Services;
+using Services.Models;
+using System.Net;
 
 namespace InsuranceNow_XMLGenerator
 {
@@ -41,7 +44,13 @@ namespace InsuranceNow_XMLGenerator
                 string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
                 string[] biCoverArray = Policy.General.BiCover.Split('/'); 
                 string BILimit = GetFormatLimits(Policy.General.BiCover);
+                string licenseNumber = string.Empty;
                 //string UMBILimit = GetFormatLimits(Policy.General.Umbi);
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => true;
+                Tokenizer tokenizerService = new Tokenizer();
+                
 
                 using (XmlWriter writer = XmlWriter.Create(Path, settings))
                 {
@@ -202,12 +211,19 @@ namespace InsuranceNow_XMLGenerator
                     
                     foreach(Driver d in Policy.Drivers)
                     {
+
+                        var response = tokenizerService.Detokenize(d.LicenseNumber);
                         writer.WriteStartElement("DriverInfo");
 
                         writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd); 
                         writer.WriteAttributeString("DriverNumber", countDrivers.ToString());
                         writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal"  : "Excluded"); 
-                        writer.WriteAttributeString("LicenseNumber", d.LicenseNumber); 
+
+                        if(response.Result)
+                            writer.WriteAttributeString("LicenseNumber", response.DetokenizedString);
+                        else
+                            writer.WriteAttributeString("LicenseNumber", string.Empty);
+
                         writer.WriteAttributeString("LicenseDt", d.DateFirstLicense); 
                         writer.WriteAttributeString("LicensedStateProvCd", d.LicenseState); 
                         writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip); 
