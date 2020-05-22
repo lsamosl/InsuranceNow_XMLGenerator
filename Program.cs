@@ -15,7 +15,7 @@ namespace InsuranceNow_XMLGenerator
             {
                 string path = "C:\\Test\\";
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
-                string ExcelInput = "dataMigrationVer1.5 - Copy.xlsm";
+                string ExcelInput = "_dataMigrationVer1.5.xlsm";
                 List<Policy> Policies = new List<Policy>();
                 int total = 1;
 

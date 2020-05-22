@@ -61,7 +61,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D.
+        ///   Looks up a localized string similar to N.
         /// </summary>
         internal static string AutoGeneral_biCover {
             get {
@@ -79,7 +79,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F.
+        ///   Looks up a localized string similar to P.
         /// </summary>
         internal static string AutoGeneral_medCover {
             get {
@@ -115,7 +115,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to G.
+        ///   Looks up a localized string similar to Q.
         /// </summary>
         internal static string AutoGeneral_umbi {
             get {
@@ -124,7 +124,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to H.
+        ///   Looks up a localized string similar to R.
         /// </summary>
         internal static string AutoGeneral_umpdcdw {
             get {
@@ -304,7 +304,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AZ.
+        ///   Looks up a localized string similar to BB.
         /// </summary>
         internal static string Policy_BillReminder {
             get {
@@ -313,7 +313,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to L.
+        ///   Looks up a localized string similar to AM.
         /// </summary>
         internal static string Policy_birthDate {
             get {
@@ -322,7 +322,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D.
+        ///   Looks up a localized string similar to AF.
         /// </summary>
         internal static string Policy_effectiveDate {
             get {
@@ -331,7 +331,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E.
+        ///   Looks up a localized string similar to AF.
         /// </summary>
         internal static string Policy_expirationDate {
             get {
@@ -340,7 +340,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I.
+        ///   Looks up a localized string similar to AJ.
         /// </summary>
         internal static string Policy_firstName {
             get {
@@ -349,7 +349,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Q.
+        ///   Looks up a localized string similar to AR.
         /// </summary>
         internal static string Policy_garagingAddress {
             get {
@@ -358,7 +358,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to R.
+        ///   Looks up a localized string similar to AS.
         /// </summary>
         internal static string Policy_garagingCity {
             get {
@@ -367,7 +367,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S.
+        ///   Looks up a localized string similar to AT.
         /// </summary>
         internal static string Policy_garagingState {
             get {
@@ -376,7 +376,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to T.
+        ///   Looks up a localized string similar to AU.
         /// </summary>
         internal static string Policy_garagingZip {
             get {
@@ -385,7 +385,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to F.
+        ///   Looks up a localized string similar to AG.
         /// </summary>
         internal static string Policy_inceptionDate {
             get {
@@ -394,7 +394,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to K.
+        ///   Looks up a localized string similar to AL.
         /// </summary>
         internal static string Policy_lastName {
             get {
@@ -403,7 +403,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to M.
+        ///   Looks up a localized string similar to AN.
         /// </summary>
         internal static string Policy_mailingAddress {
             get {
@@ -412,7 +412,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to N.
+        ///   Looks up a localized string similar to AO.
         /// </summary>
         internal static string Policy_mailingCity {
             get {
@@ -421,7 +421,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O.
+        ///   Looks up a localized string similar to AP.
         /// </summary>
         internal static string Policy_mailingState {
             get {
@@ -430,7 +430,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to P.
+        ///   Looks up a localized string similar to AQ.
         /// </summary>
         internal static string Policy_mailingZip {
             get {
@@ -439,7 +439,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AA.
+        ///   Looks up a localized string similar to AB.
         /// </summary>
         internal static string Policy_PolicyNumber {
             get {
@@ -448,7 +448,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V.
+        ///   Looks up a localized string similar to AW.
         /// </summary>
         internal static string Policy_primaryPhone {
             get {
@@ -457,7 +457,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AG.
+        ///   Looks up a localized string similar to AD.
         /// </summary>
         internal static string Policy_producerCode {
             get {
@@ -466,7 +466,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to G.
+        ///   Looks up a localized string similar to AH.
         /// </summary>
         internal static string Policy_term {
             get {
@@ -484,7 +484,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AG.
+        ///   Looks up a localized string similar to AF.
         /// </summary>
         internal static string Vehicle_annualMileage {
             get {
@@ -493,7 +493,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Y.
+        ///   Looks up a localized string similar to X.
         /// </summary>
         internal static string Vehicle_COLLDEDUCT {
             get {
@@ -502,7 +502,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to X.
+        ///   Looks up a localized string similar to W.
         /// </summary>
         internal static string Vehicle_COMPDEDUCT {
             get {
@@ -511,7 +511,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AF.
+        ///   Looks up a localized string similar to AE.
         /// </summary>
         internal static string Vehicle_currentOdometer {
             get {
@@ -520,7 +520,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AC.
+        ///   Looks up a localized string similar to AB.
         /// </summary>
         internal static string Vehicle_DR {
             get {
@@ -529,7 +529,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Z.
+        ///   Looks up a localized string similar to Y.
         /// </summary>
         internal static string Vehicle_LESSOR {
             get {
@@ -538,7 +538,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to U.
+        ///   Looks up a localized string similar to T.
         /// </summary>
         internal static string Vehicle_Make {
             get {
@@ -547,7 +547,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V.
+        ///   Looks up a localized string similar to U.
         /// </summary>
         internal static string Vehicle_Model {
             get {
@@ -556,7 +556,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AA.
+        ///   Looks up a localized string similar to Z.
         /// </summary>
         internal static string Vehicle_NO {
             get {
@@ -565,7 +565,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S.
+        ///   Looks up a localized string similar to R.
         /// </summary>
         internal static string Vehicle_Policy {
             get {
@@ -574,7 +574,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S.
+        ///   Looks up a localized string similar to R.
         /// </summary>
         internal static string Vehicle_PolicyNumber {
             get {
@@ -583,7 +583,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AB.
+        ///   Looks up a localized string similar to AA.
         /// </summary>
         internal static string Vehicle_PUB {
             get {
@@ -592,7 +592,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AD.
+        ///   Looks up a localized string similar to AC.
         /// </summary>
         internal static string Vehicle_Rental {
             get {
@@ -601,7 +601,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to W.
+        ///   Looks up a localized string similar to V.
         /// </summary>
         internal static string Vehicle_VIN {
             get {
