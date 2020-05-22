@@ -44,7 +44,7 @@ namespace InsuranceNow_XMLGenerator
                 string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
                 string[] biCoverArray = Policy.General.BiCover.Split('/'); 
                 string BILimit = GetFormatLimits(Policy.General.BiCover);
-                string licenseNumber = string.Empty;
+                string licenseNumber, vehicleDescription = string.Empty;
                 //string UMBILimit = GetFormatLimits(Policy.General.Umbi);
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -102,45 +102,45 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("TotalNumDrivers", Policy.Drivers.Count.ToString());
 
                     #region <DTORisk>
-                    writer.WriteStartElement("DTORisk");
-
-                    writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOLine_DTORisk_TypeCd);
-                    writer.WriteAttributeString("Status", XMLStaticValues.DTOLine_DTORisk_Status);
-                    writer.WriteAttributeString("Description", string.Empty);
-                    writer.WriteAttributeString("RiskBeanName", string.Empty);
-                    writer.WriteAttributeString("RiskAddDt", string.Empty);
-                    writer.WriteAttributeString("RiskAddPolicyVersion", XMLStaticValues.DTOLine_DTORisk_RiskAddPolicyVersion);
-                    writer.WriteAttributeString("RiskAddTransactionNo", XMLStaticValues.DTOLine_DTORisk_RiskAddTransactionNo);
-
-                    writer.WriteStartElement("DTOCoverage");
-
-                    writer.WriteAttributeString("Status", XMLStaticValues.DTORisk1_DTOCoverage1_Status);
-                    writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk1_DTOCoverage1_CoverageCd);
-                    writer.WriteAttributeString("Description", XMLStaticValues.DTORisk1_DTOCoverage1_Description);
-
-                    string[] limits = XMLStaticValues.DTOCoverage1_DTOLimit_LimitCd.Split('|');
-                    string[] limits_values = XMLStaticValues.DTOCoverage1_DTOLimit_TypeCd.Split('|');
-
-                    for(int i = 0; i< limits.Length; i++){
-
-                        writer.WriteStartElement("DTOLimit");
-
-                        writer.WriteAttributeString("LimitCd", limits[i]);
-                        writer.WriteAttributeString("TypeCd", limits_values[i]);
-                        
-                        if(biCoverArray.Length == limits.Length)
-                            writer.WriteAttributeString("Value", biCoverArray[i] + "000");  
-                        else
-                            writer.WriteAttributeString("Value", string.Empty);
-
-                        writer.WriteEndElement(); //End DTOLimit
-                    }
-
-                    writer.WriteEndElement(); //End DTOCoverage
-
-                    #region <DTOVehicle>
                     foreach (Vehicle v in Policy.Vehicles)
                     {
+                        writer.WriteStartElement("DTORisk");
+
+                        writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOLine_DTORisk_TypeCd);
+                        writer.WriteAttributeString("Status", XMLStaticValues.DTOLine_DTORisk_Status);
+                        writer.WriteAttributeString("Description", string.Format("{0} {1} - {2}", v.Make, v.Model, v.VIN));
+                        writer.WriteAttributeString("RiskBeanName", XMLStaticValues.DTOLine_DTORisk_RiskBeanName);
+                        writer.WriteAttributeString("RiskAddDt", Policy.EffectiveDate); 
+                        writer.WriteAttributeString("RiskAddPolicyVersion", XMLStaticValues.DTOLine_DTORisk_RiskAddPolicyVersion);
+                        writer.WriteAttributeString("RiskAddTransactionNo", XMLStaticValues.DTOLine_DTORisk_RiskAddTransactionNo);
+
+                        writer.WriteStartElement("DTOCoverage");
+
+                        writer.WriteAttributeString("Status", XMLStaticValues.DTORisk1_DTOCoverage1_Status);
+                        writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk1_DTOCoverage1_CoverageCd);
+                        writer.WriteAttributeString("Description", XMLStaticValues.DTORisk1_DTOCoverage1_Description);
+
+                        string[] limits = XMLStaticValues.DTOCoverage1_DTOLimit_LimitCd.Split('|');
+                        string[] limits_values = XMLStaticValues.DTOCoverage1_DTOLimit_TypeCd.Split('|');
+
+                        for (int i = 0; i < limits.Length; i++)
+                        {
+
+                            writer.WriteStartElement("DTOLimit");
+
+                            writer.WriteAttributeString("LimitCd", limits[i]);
+                            writer.WriteAttributeString("TypeCd", limits_values[i]);
+
+                            if (biCoverArray.Length == limits.Length)
+                                writer.WriteAttributeString("Value", biCoverArray[i] + "000");
+                            else
+                                writer.WriteAttributeString("Value", string.Empty);
+
+                            writer.WriteEndElement(); //End DTOLimit
+                        }
+
+                        writer.WriteEndElement(); //End DTOCoverage
+
                         writer.WriteStartElement("DTOVehicle");
 
                         writer.WriteAttributeString("VehNumber", countVehicles.ToString());
@@ -163,27 +163,28 @@ namespace InsuranceNow_XMLGenerator
                         writer.WriteEndElement(); //End DTOVehicle
 
                         countVehicles++;
+
+                        writer.WriteStartElement("DTOCoverage");
+
+                        writer.WriteAttributeString("Status", XMLStaticValues.DTORisk2_DTOCoverage2_Status);
+                        writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk2_DTOCoverage2_CoverageCd);
+                        writer.WriteAttributeString("Description", XMLStaticValues.DTORisk2_DTOCoverage2_Description);
+
+                        writer.WriteStartElement("DTOLimit");
+
+                        writer.WriteAttributeString("LimitCd", XMLStaticValues.DTOCoverage2_DTOLimit_LimitCd);
+                        writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOCoverage2_DTOLimit_TypeCd);
+                        writer.WriteAttributeString("Value", !String.IsNullOrEmpty(Policy.General.PdCover) ? Policy.General.PdCover : "None");
+
+                        writer.WriteEndElement(); //End DTOLimit
+
+                        writer.WriteEndElement(); //End DTOCoverage
+
+                        writer.WriteEndElement(); //End DTORisk
                     }
                     #endregion
 
-                    writer.WriteStartElement("DTOCoverage");
 
-                    writer.WriteAttributeString("Status", XMLStaticValues.DTORisk2_DTOCoverage2_Status);
-                    writer.WriteAttributeString("CoverageCd", XMLStaticValues.DTORisk2_DTOCoverage2_CoverageCd);
-                    writer.WriteAttributeString("Description", XMLStaticValues.DTORisk2_DTOCoverage2_Description);
-
-                    writer.WriteStartElement("DTOLimit");
-
-                    writer.WriteAttributeString("LimitCd", XMLStaticValues.DTOCoverage2_DTOLimit_LimitCd);
-                    writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOCoverage2_DTOLimit_TypeCd);
-                    writer.WriteAttributeString("Value", !String.IsNullOrEmpty(Policy.General.PdCover) ? Policy.General.PdCover : "None");
-
-                    writer.WriteEndElement(); //End DTOLimit
-
-                    writer.WriteEndElement(); //End DTOCoverage
-
-                    writer.WriteEndElement(); //End DTORisk
-                    #endregion
 
                     writer.WriteEndElement(); //End DTOLine
                     #endregion
@@ -202,7 +203,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("BirthDt", principalDriver != null ? principalDriver.BirthDate : string.Empty);
                     writer.WriteAttributeString("MaritalStatusCd", principalDriver != null ? principalDriver.MaritalStatus : string.Empty);
                     writer.WriteAttributeString("OccupationClassCd", principalDriver != null ? principalDriver.Occupation : string.Empty);
-                    writer.WriteAttributeString("Age", string.Empty); //TODO
+                    writer.WriteAttributeString("Age", Policy.Age); //TODO
 
                     writer.WriteEndElement(); //End PersonInfo
                     #endregion
@@ -258,7 +259,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteStartElement("DTOTransactionInfo");
 
                     writer.WriteAttributeString("TransactionCd", XMLStaticValues.DTOApplication_DTOTransactionInfo_TransactionCd);
-                    writer.WriteAttributeString("TransactionEffectiveDt", string.Empty); //TODO
+                    writer.WriteAttributeString("TransactionEffectiveDt", Policy.EffectiveDate); //TODO
                     writer.WriteAttributeString("TransactionShortDescription", XMLStaticValues.DTOApplication_DTOTransactionInfo_TransactionShortDescription);
                     writer.WriteAttributeString("RewriteToProductVersion", XMLStaticValues.DTOApplication_DTOTransactionInfo_RewriteToProductVersion);
                     writer.WriteAttributeString("SourceCd", XMLStaticValues.DTOApplication_DTOTransactionInfo_SourceCd);
@@ -312,15 +313,31 @@ namespace InsuranceNow_XMLGenerator
 
                     #region <Addr>
 
-                    writer.WriteStartElement("Addr");
+                    if(string.IsNullOrEmpty(Policy.MailingAddress) && !string.IsNullOrEmpty(Policy.GaragingAddress))
+                    {
+                        writer.WriteStartElement("Addr");
 
-                    writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
-                    writer.WriteAttributeString("Addr1", Policy.MailingAddress);
-                    writer.WriteAttributeString("City", Policy.MailingCity);
-                    writer.WriteAttributeString("StateProvCd", Policy.MailingState);
-                    writer.WriteAttributeString("PostalCode", Policy.MailingZip);
+                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
+                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
+                        writer.WriteAttributeString("City", Policy.GaragingCity);
+                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
+                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
 
-                    writer.WriteEndElement(); //End Addr
+                        writer.WriteEndElement(); //End Addr
+                    }
+                    else
+                    {
+                        writer.WriteStartElement("Addr");
+
+                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
+                        writer.WriteAttributeString("Addr1", Policy.MailingAddress);
+                        writer.WriteAttributeString("City", Policy.MailingCity);
+                        writer.WriteAttributeString("StateProvCd", Policy.MailingState);
+                        writer.WriteAttributeString("PostalCode", Policy.MailingZip);
+
+                        writer.WriteEndElement(); //End Addr
+                    }
+                    
                     #endregion
 
                     #region <Addr>

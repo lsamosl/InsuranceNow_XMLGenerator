@@ -49,7 +49,7 @@ namespace InsuranceNow_XMLGenerator
                 List<Vehicle> VehicleList = new List<Vehicle>();
 
                 int term;
-                DateTime effectiveDate, expirationDate;
+                DateTime effectiveDate, expirationDate, birthDate;
 
                 /*General*/
                 rangeObject = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_PolicyNumber];
@@ -85,16 +85,16 @@ namespace InsuranceNow_XMLGenerator
                     {
                         Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim(),
                         BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString(dateFormat),
-                        MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString(),
+                        MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString().Trim() == "M" ? "Married" : "Single",
                         Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),
                         DriverNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_DriverNumber].Value2.ToString(),
                         DriverStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_driverStatus].Value2.ToString().Trim(),
                         LicenseNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseNumber].Value2.ToString().Trim(),
                         DateFirstLicense = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2).ToString(dateFormat),
                         LicenseState = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseState].Value2.ToString(),
-                        RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim(),
-                        MatureDriver = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_matureDriver].Value2.ToString(),
-                        Sr22 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_sr22].Value2.ToString(),
+                        RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim() == "Insured" ? "Self" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim(),
+                        MatureDriver = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_matureDriver].Value2.ToString().Trim() == "Y" ? "Yes" : "No",
+                        Sr22 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_sr22].Value2.ToString().Trim() == "Y" ? "Yes" : "No",
                         PolicyNumber = policyNumber
                     });
 
@@ -124,6 +124,8 @@ namespace InsuranceNow_XMLGenerator
                         No = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_NO].Value2.ToString(),
                         Pub = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PUB].Value2.ToString(),
                         Dr = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_DR].Value2.ToString(),
+                        Make = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Make].Value2.ToString().Trim(),
+                        Model = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Model].Value2.ToString().Trim(),
                         PolicyNumber = policyNumber
                     });
 
@@ -142,6 +144,7 @@ namespace InsuranceNow_XMLGenerator
                 {
                     term = Int32.Parse(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString());
                     effectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2);
+                    birthDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_birthDate].Value2);
                     expirationDate = effectiveDate.AddMonths(term);
 
                     policy = new Policy
@@ -164,6 +167,7 @@ namespace InsuranceNow_XMLGenerator
                         ExpirationDate = expirationDate.ToString(dateFormat),
                         Term = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString(),
                         ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString().Replace(" ", string.Empty),
+                        Age = (DateTime.Today.Year - birthDate.Year).ToString(),
                         PolicyNumber = policyNumber,
 
                         General = GeneralList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),

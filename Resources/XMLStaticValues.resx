@@ -130,7 +130,7 @@
     <value>Personal Auto</value>
   </data>
   <data name="DTOApplication_DTOBasicPolicy_PolicyNumber" xml:space="preserve">
-    <value>Converted Renewal</value>
+    <value />
   </data>
   <data name="DTOApplication_DTOBasicPolicy_ProductVersionIdRef" xml:space="preserve">
     <value>waic-CA-PersonalAuto-v01-00-01</value>
@@ -228,6 +228,9 @@
   <data name="DTOLine_DTORisk_RiskAddTransactionNo" xml:space="preserve">
     <value>CurrentTransaction</value>
   </data>
+  <data name="DTOLine_DTORisk_RiskBeanName" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
   <data name="DTOLine_DTORisk_Status" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -319,13 +322,13 @@
     <value>InsuredPhonePrimary</value>
   </data>
   <data name="QuestionReplies_QuestionReply_Name" xml:space="preserve">
-    <value>UWQuestionFraud|UWQuestionVehicleSharing|UWPublicDelivery|WQuestionOtherDelivery|UWQuestionGaragingLocation|WQuestionOtherVehicles|UWQuestionHousehold</value>
+    <value>UWQuestionFraud|UWQuestionVehicleSharing|UWPublicDelivery|UWQuestionOtherDelivery|UWQuestionGaragingLocation|UWQuestionOtherVehicles|UWQuestionHousehold</value>
     <comment>Array Values</comment>
   </data>
   <data name="QuestionReplies_QuestionReply_Value" xml:space="preserve">
     <value>NO</value>
   </data>
   <data name="QuestionReplies_QuestionReply_VisibleInd" xml:space="preserve">
-    <value>YES</value>
+    <value>Yes</value>
   </data>
 </root>

@@ -19,5 +19,7 @@ namespace InsuranceNow_XMLGenerator.Models
         public string No { get; set; }
         public string Pub { get; set; }
         public string Dr { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
     }
 }

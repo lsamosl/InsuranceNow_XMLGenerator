@@ -97,7 +97,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Converted Renewal.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string DTOApplication_DTOBasicPolicy_PolicyNumber {
             get {
@@ -394,6 +394,15 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        internal static string DTOLine_DTORisk_RiskBeanName {
+            get {
+                return ResourceManager.GetString("DTOLine_DTORisk_RiskBeanName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         internal static string DTOLine_DTORisk_Status {
@@ -655,7 +664,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UWQuestionFraud|UWQuestionVehicleSharing|UWPublicDelivery|WQuestionOtherDelivery|UWQuestionGaragingLocation|WQuestionOtherVehicles|UWQuestionHousehold.
+        ///   Looks up a localized string similar to UWQuestionFraud|UWQuestionVehicleSharing|UWPublicDelivery|UWQuestionOtherDelivery|UWQuestionGaragingLocation|UWQuestionOtherVehicles|UWQuestionHousehold.
         /// </summary>
         internal static string QuestionReplies_QuestionReply_Name {
             get {
@@ -673,7 +682,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to YES.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string QuestionReplies_QuestionReply_VisibleInd {
             get {

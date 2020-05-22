@@ -30,6 +30,6 @@ namespace InsuranceNow_XMLGenerator.Models
         public string ExpirationDate { get; set; }
         public string Term { get; set; }
         public string ProducerCode { get; set; }
-
+        public string Age { get; set; }
     }
 }
