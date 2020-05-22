@@ -16,5 +16,6 @@ namespace InsuranceNow_XMLGenerator.Models
         public string LimMex { get; set; }
         public string RoadAssis { get; set; }
         public string PdCover { get; set; }
+        public GeneralCoverages Coverages { get; set; }
     }
 }

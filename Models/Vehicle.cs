@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,5 +22,6 @@ namespace InsuranceNow_XMLGenerator.Models
         public string Dr { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
+        public VehicleCoverages Coverages { get; set; }
     }
 }

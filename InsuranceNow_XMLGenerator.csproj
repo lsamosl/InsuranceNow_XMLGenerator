@@ -46,10 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelUtil.cs" />
+    <Compile Include="Models\Coverage.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\General.cs" />
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\GeneralCoverages.cs" />
+    <Compile Include="Models\VehicleCoverages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ExcelConfiguration.Designer.cs">

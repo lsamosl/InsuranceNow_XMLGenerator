@@ -117,6 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Coverage_BI_Description" xml:space="preserve">
+    <value>Bodily Injury - Per Person /Per Accident</value>
+  </data>
+  <data name="Coverage_BI_Name" xml:space="preserve">
+    <value>BI</value>
+  </data>
+  <data name="Coverage_COLL_Description" xml:space="preserve">
+    <value>Collision</value>
+  </data>
+  <data name="Coverage_COLL_Name" xml:space="preserve">
+    <value>COLL</value>
+  </data>
+  <data name="Coverage_CPR_Description" xml:space="preserve">
+    <value>Comprehensive</value>
+  </data>
+  <data name="Coverage_CPR_Name" xml:space="preserve">
+    <value>CPR</value>
+  </data>
+  <data name="Coverage_PD_Description" xml:space="preserve">
+    <value>Property Damage</value>
+  </data>
+  <data name="Coverage_PD_Name" xml:space="preserve">
+    <value>PD</value>
+  </data>
+  <data name="Coverage_Status" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Coverage_UMBI_Description" xml:space="preserve">
+    <value>UM-Bodily Injury - Per Person / Per Accident</value>
+  </data>
+  <data name="Coverage_UMBI_Name" xml:space="preserve">
+    <value>UMBI</value>
+  </data>
+  <data name="Deductible_DeductibleCd" xml:space="preserve">
+    <value>Deductible1</value>
+  </data>
+  <data name="Deductible_TypeCd" xml:space="preserve">
+    <value>Amount</value>
+  </data>
   <data name="DTOApplication_DTOBasicPolicy_CarrierCd" xml:space="preserve">
     <value>WAIC</value>
   </data>
@@ -236,30 +275,6 @@
   </data>
   <data name="DTOLine_DTORisk_TypeCd" xml:space="preserve">
     <value>PrivatePassengerAuto</value>
-  </data>
-  <data name="DTORisk1_DTOCoverage1_CoverageCd" xml:space="preserve">
-    <value>BI</value>
-  </data>
-  <data name="DTORisk1_DTOCoverage1_Description" xml:space="preserve">
-    <value>Bodily Injury - Per Person /Per Accident</value>
-  </data>
-  <data name="DTORisk1_DTOCoverage1_Status" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="DTORisk2_DTOCoverage2_CoverageCd" xml:space="preserve">
-    <value>PD</value>
-  </data>
-  <data name="DTORisk2_DTOCoverage2_Description" xml:space="preserve">
-    <value>Property Damage</value>
-  </data>
-  <data name="DTORisk2_DTOCoverage2_Status" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="DTORisk_DTOCoverage_CoverageCd" xml:space="preserve">
-    <value>PD</value>
-  </data>
-  <data name="DTORisk_DTOCoverage_Status" xml:space="preserve">
-    <value>Activate</value>
   </data>
   <data name="DTORisk_DTOVehicle_DamageInd" xml:space="preserve">
     <value>N/A</value>

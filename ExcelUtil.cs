@@ -57,7 +57,8 @@ namespace InsuranceNow_XMLGenerator
 
                 do
                 {
-                    GeneralList.Add(new General() {
+                    General general = new General()
+                    {
                         MedCover = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_medCover].Value2.ToString(),
                         BiCover = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_biCover].Value2.ToString(),
                         Umbi = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_umbi].Value2.ToString(),
@@ -66,7 +67,12 @@ namespace InsuranceNow_XMLGenerator
                         RoadAssis = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_roadAssis].Value2.ToString(),
                         PdCover = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_pdCover].Value2.ToString(),
                         PolicyNumber = policyNumber
-                    });
+                    };
+
+                    general.Coverages = new GeneralCoverages(general.BiCover, general.PdCover, general.Umbi, general.MedCover);
+                    general.Coverages.ProcessCoverages();
+
+                    GeneralList.Add(general);
 
                     IndexRow++;
                     rangeObject = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_PolicyNumber];
@@ -112,7 +118,7 @@ namespace InsuranceNow_XMLGenerator
 
                 do
                 {
-                    VehicleList.Add(new Vehicle
+                    Vehicle vehicle = new Vehicle
                     {
                         VIN = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_VIN].Value2.ToString().Trim(),
                         CollDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COLLDEDUCT].Value2.ToString(),
@@ -127,7 +133,12 @@ namespace InsuranceNow_XMLGenerator
                         Make = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Make].Value2.ToString().Trim(),
                         Model = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Model].Value2.ToString().Trim(),
                         PolicyNumber = policyNumber
-                    });
+                    };
+
+                    vehicle.Coverages = new VehicleCoverages(vehicle.CollDeduct, vehicle.CompDeduct, vehicle.Rental);
+                    vehicle.Coverages.ProcessCoverages();
+
+                    VehicleList.Add(vehicle);
 
                     IndexRow++;
                     rangeObject = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PolicyNumber];

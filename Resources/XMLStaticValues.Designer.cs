@@ -61,6 +61,123 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bodily Injury - Per Person /Per Accident.
+        /// </summary>
+        internal static string Coverage_BI_Description {
+            get {
+                return ResourceManager.GetString("Coverage_BI_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BI.
+        /// </summary>
+        internal static string Coverage_BI_Name {
+            get {
+                return ResourceManager.GetString("Coverage_BI_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collision.
+        /// </summary>
+        internal static string Coverage_COLL_Description {
+            get {
+                return ResourceManager.GetString("Coverage_COLL_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COLL.
+        /// </summary>
+        internal static string Coverage_COLL_Name {
+            get {
+                return ResourceManager.GetString("Coverage_COLL_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comprehensive.
+        /// </summary>
+        internal static string Coverage_CPR_Description {
+            get {
+                return ResourceManager.GetString("Coverage_CPR_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CPR.
+        /// </summary>
+        internal static string Coverage_CPR_Name {
+            get {
+                return ResourceManager.GetString("Coverage_CPR_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Damage.
+        /// </summary>
+        internal static string Coverage_PD_Description {
+            get {
+                return ResourceManager.GetString("Coverage_PD_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PD.
+        /// </summary>
+        internal static string Coverage_PD_Name {
+            get {
+                return ResourceManager.GetString("Coverage_PD_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string Coverage_Status {
+            get {
+                return ResourceManager.GetString("Coverage_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UM-Bodily Injury - Per Person / Per Accident.
+        /// </summary>
+        internal static string Coverage_UMBI_Description {
+            get {
+                return ResourceManager.GetString("Coverage_UMBI_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UMBI.
+        /// </summary>
+        internal static string Coverage_UMBI_Name {
+            get {
+                return ResourceManager.GetString("Coverage_UMBI_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deductible1.
+        /// </summary>
+        internal static string Deductible_DeductibleCd {
+            get {
+                return ResourceManager.GetString("Deductible_DeductibleCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        internal static string Deductible_TypeCd {
+            get {
+                return ResourceManager.GetString("Deductible_TypeCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WAIC.
         /// </summary>
         internal static string DTOApplication_DTOBasicPolicy_CarrierCd {
@@ -421,24 +538,6 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PD.
-        /// </summary>
-        internal static string DTORisk_DTOCoverage_CoverageCd {
-            get {
-                return ResourceManager.GetString("DTORisk_DTOCoverage_CoverageCd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Activate.
-        /// </summary>
-        internal static string DTORisk_DTOCoverage_Status {
-            get {
-                return ResourceManager.GetString("DTORisk_DTOCoverage_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
         internal static string DTORisk_DTOVehicle_DamageInd {
@@ -480,60 +579,6 @@ namespace InsuranceNow_XMLGenerator.Resources {
         internal static string DTORisk_DTOVehicle_VehUseCd {
             get {
                 return ResourceManager.GetString("DTORisk_DTOVehicle_VehUseCd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BI.
-        /// </summary>
-        internal static string DTORisk1_DTOCoverage1_CoverageCd {
-            get {
-                return ResourceManager.GetString("DTORisk1_DTOCoverage1_CoverageCd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bodily Injury - Per Person /Per Accident.
-        /// </summary>
-        internal static string DTORisk1_DTOCoverage1_Description {
-            get {
-                return ResourceManager.GetString("DTORisk1_DTOCoverage1_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        internal static string DTORisk1_DTOCoverage1_Status {
-            get {
-                return ResourceManager.GetString("DTORisk1_DTOCoverage1_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PD.
-        /// </summary>
-        internal static string DTORisk2_DTOCoverage2_CoverageCd {
-            get {
-                return ResourceManager.GetString("DTORisk2_DTOCoverage2_CoverageCd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Property Damage.
-        /// </summary>
-        internal static string DTORisk2_DTOCoverage2_Description {
-            get {
-                return ResourceManager.GetString("DTORisk2_DTOCoverage2_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        internal static string DTORisk2_DTOCoverage2_Status {
-            get {
-                return ResourceManager.GetString("DTORisk2_DTOCoverage2_Status", resourceCulture);
             }
         }
         
