@@ -366,7 +366,7 @@ namespace InsuranceNow_XMLGenerator
                     writer.WriteAttributeString("ProductVersionIdRef", XMLStaticValues.DTOApplication_DTOBasicPolicy_ProductVersionIdRef);
                     writer.WriteAttributeString("SubTypeCd", XMLStaticValues.DTOApplication_DTOBasicPolicy_SubTypeCd);
                     writer.WriteAttributeString("Description", XMLStaticValues.DTOApplication_DTOBasicPolicy_Description);
-                    writer.WriteAttributeString("ProviderNumber", string.Format("{0}-{1}", Policy.ProducerCode, "001"));
+                    writer.WriteAttributeString("ProviderNumber", Policy.ProducerCode);
                     writer.WriteAttributeString("TreatAsConvRenewal", XMLStaticValues.DTOApplication_DTOBasicPolicy_TreatAsConvRenewal);
                     writer.WriteAttributeString("LegacyPolNumber", Policy.PolicyNumber);
                     writer.WriteAttributeString("LegacyPolIncepDt", Policy.InceptionDate);
