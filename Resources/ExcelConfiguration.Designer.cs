@@ -331,15 +331,6 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AF.
-        /// </summary>
-        internal static string Policy_expirationDate {
-            get {
-                return ResourceManager.GetString("Policy_expirationDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AJ.
         /// </summary>
         internal static string Policy_firstName {

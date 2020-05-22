@@ -48,6 +48,9 @@ namespace InsuranceNow_XMLGenerator
                 List<Driver> DriverList = new List<Driver>();
                 List<Vehicle> VehicleList = new List<Vehicle>();
 
+                int term;
+                DateTime effectiveDate, expirationDate;
+
                 /*General*/
                 rangeObject = AutoGeneralSheet.Cells[IndexRow, ExcelConfiguration.AutoGeneral_PolicyNumber];
                 policyNumber = (string)rangeObject.Value2;
@@ -137,6 +140,10 @@ namespace InsuranceNow_XMLGenerator
 
                 do
                 {
+                    term = Int32.Parse(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString());
+                    effectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2);
+                    expirationDate = effectiveDate.AddMonths(term);
+
                     policy = new Policy
                     {
                         FirstName = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_firstName].Value2.ToString().Trim(),
@@ -153,8 +160,8 @@ namespace InsuranceNow_XMLGenerator
                         GaragingState = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingState].Value2.ToString().Trim(),
                         GaragingZip = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_garagingZip].Value2.ToString().Trim(),
                         InceptionDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_inceptionDate].Value2).ToString(dateFormat),
-                        EffectiveDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_effectiveDate].Value2).ToString(dateFormat),
-                        ExpirationDate = DateTime.FromOADate(PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_expirationDate].Value2).ToString(dateFormat),
+                        EffectiveDate = effectiveDate.ToString(dateFormat),
+                        ExpirationDate = expirationDate.ToString(dateFormat),
                         Term = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_term].Value2.ToString(),
                         ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString().Replace(" ", string.Empty),
                         PolicyNumber = policyNumber,

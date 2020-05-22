@@ -211,10 +211,6 @@
   <data name="Policy_effectiveDate" xml:space="preserve">
     <value>AF</value>
   </data>
-  <data name="Policy_expirationDate" xml:space="preserve">
-    <value>AF</value>
-    <comment>NOT FOUND</comment>
-  </data>
   <data name="Policy_firstName" xml:space="preserve">
     <value>AJ</value>
   </data>
