@@ -48,7 +48,18 @@ namespace InsuranceNow_XMLGenerator.Models
 
         private void ProcessRental()
         {
-            //TODO
+            if (!string.IsNullOrEmpty(Rental.InputValue) && Rental.InputValue.Split('/').Length == 2)
+            {
+                Rental.hasCoverage = true;
+                string[] limits = Rental.InputValue.Split('/');
+                limits[0] = limits[0] + "000";
+                limits[1] = limits[1] + "000";
+                string newInputValue = string.Format("{0}/{1}", limits[0], limits[1]);
+
+                Rental.InputValue = newInputValue;
+                Rental.Value1 = limits[0];
+                Rental.Value2 = limits[1];
+            }
         }
     }
 }

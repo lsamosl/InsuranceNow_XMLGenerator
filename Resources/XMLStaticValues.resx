@@ -346,4 +346,16 @@
   <data name="QuestionReplies_QuestionReply_VisibleInd" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Coverage_MED_Description" xml:space="preserve">
+    <value>Medical Payments</value>
+  </data>
+  <data name="Coverage_MED_Name" xml:space="preserve">
+    <value>MP</value>
+  </data>
+  <data name="Coverage_Rental_Description" xml:space="preserve">
+    <value>Rental</value>
+  </data>
+  <data name="Coverage_Rental_Name" xml:space="preserve">
+    <value>RE</value>
+  </data>
 </root>

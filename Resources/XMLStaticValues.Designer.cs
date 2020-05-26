@@ -19,7 +19,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class XMLStaticValues {
@@ -115,6 +115,24 @@ namespace InsuranceNow_XMLGenerator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Medical Payments.
+        /// </summary>
+        internal static string Coverage_MED_Description {
+            get {
+                return ResourceManager.GetString("Coverage_MED_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MP.
+        /// </summary>
+        internal static string Coverage_MED_Name {
+            get {
+                return ResourceManager.GetString("Coverage_MED_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property Damage.
         /// </summary>
         internal static string Coverage_PD_Description {
@@ -129,6 +147,24 @@ namespace InsuranceNow_XMLGenerator.Resources {
         internal static string Coverage_PD_Name {
             get {
                 return ResourceManager.GetString("Coverage_PD_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental.
+        /// </summary>
+        internal static string Coverage_Rental_Description {
+            get {
+                return ResourceManager.GetString("Coverage_Rental_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RE.
+        /// </summary>
+        internal static string Coverage_Rental_Name {
+            get {
+                return ResourceManager.GetString("Coverage_Rental_Name", resourceCulture);
             }
         }
         

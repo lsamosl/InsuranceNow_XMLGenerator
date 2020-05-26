@@ -43,12 +43,9 @@ namespace InsuranceNow_XMLGenerator
                 string[] AddrTypeCd = XMLStaticValues.PartyInfo_Addr_AddrTypeCd.Split('|');
                 string[] QuestionReply_Names = XMLStaticValues.QuestionReplies_QuestionReply_Name.Split('|');
                 string[] biCoverArray = Policy.General.BiCover.Split('/'); 
-                string BILimit = GetFormatLimits(Policy.General.BiCover);
                 string vehicleDescription = string.Empty;
-
                 string[] limits = XMLStaticValues.DTOCoverage1_DTOLimit_LimitCd.Split('|');
                 string[] limits_values = XMLStaticValues.DTOCoverage1_DTOLimit_TypeCd.Split('|');
-                //string UMBILimit = GetFormatLimits(Policy.General.Umbi);
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => true;
@@ -197,6 +194,23 @@ namespace InsuranceNow_XMLGenerator
                             writer.WriteEndElement(); //End DTOCoverage
                         }
 
+                        if (Policy.General.Coverages.MED.hasCoverage)
+                        {
+                            writer.WriteStartElement("DTOCoverage");
+
+                            writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                            writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_MED_Name);
+                            writer.WriteAttributeString("Description", XMLStaticValues.Coverage_MED_Description);
+
+                            writer.WriteStartElement("DTOLimit");
+                            writer.WriteAttributeString("LimitCd", limits[0]);
+                            writer.WriteAttributeString("TypeCd", limits_values[0]);
+                            writer.WriteAttributeString("Value", Policy.General.Coverages.MED.InputValue);
+                            writer.WriteEndElement(); //End DTOLimit
+
+                            writer.WriteEndElement(); //End DTOCoverage
+                        }
+
                         if (Policy.General.Coverages.UMBI.hasCoverage)
                         {
                             writer.WriteStartElement("DTOCoverage");
@@ -254,6 +268,29 @@ namespace InsuranceNow_XMLGenerator
                             writer.WriteAttributeString("Value", v.Coverages.COLL.InputValue);
 
                             writer.WriteEndElement(); //End DTODeductible
+
+                            writer.WriteEndElement(); //End DTOCoverage
+                        }
+
+                        if (v.Coverages.Rental.hasCoverage)
+                        {
+                            writer.WriteStartElement("DTOCoverage");
+
+                            writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                            writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_Rental_Name);
+                            writer.WriteAttributeString("Description", XMLStaticValues.Coverage_Rental_Description);
+
+                            writer.WriteStartElement("DTOLimit");
+                            writer.WriteAttributeString("LimitCd", limits[0]);
+                            writer.WriteAttributeString("TypeCd", limits_values[0]);
+                            writer.WriteAttributeString("Value", v.Coverages.Rental.Value1);
+                            writer.WriteEndElement(); //End DTOLimit
+
+                            writer.WriteStartElement("DTOLimit");
+                            writer.WriteAttributeString("LimitCd", limits[1]);
+                            writer.WriteAttributeString("TypeCd", limits_values[1]);
+                            writer.WriteAttributeString("Value", v.Coverages.Rental.Value2);
+                            writer.WriteEndElement(); //End DTOLimit
 
                             writer.WriteEndElement(); //End DTOCoverage
                         }
@@ -505,20 +542,6 @@ namespace InsuranceNow_XMLGenerator
                 writer.WriteAttributeString(attribute.Key, attribute.Value);
 
             writer.WriteEndElement();
-        }
-
-        private string GetFormatLimits(string limits)
-        {
-            string limit = "None";
-
-            if (limits.ToLower() == "no" || limits.ToLower() == "yes")
-                return limits;
-
-            string[] limitsArray = limits.Split('/');
-            if (limitsArray.Length == 2)
-                limit = string.Format("{0}/{1}", limitsArray[0] + "000", limitsArray[1] + "000");
-
-            return limit;
         }
     }
 }

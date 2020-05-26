@@ -18,7 +18,7 @@ namespace InsuranceNow_XMLGenerator.Models
             BI = new Coverage() { InputValue = _BI, hasCoverage = false };
             PD = new Coverage() { InputValue = _PD, hasCoverage = false };
             UMBI = new Coverage() { InputValue = _UMBI, hasCoverage = false };
-            MED = new Coverage() { InputValue = _UMBI, hasCoverage = false };
+            MED = new Coverage() { InputValue = _MED, hasCoverage = false };
         }
 
         public void ProcessCoverages()
@@ -72,7 +72,11 @@ namespace InsuranceNow_XMLGenerator.Models
 
         private void ProcessMed()
         {
-            //TODO
+            if (!string.IsNullOrEmpty(MED.InputValue))
+            {
+                MED.hasCoverage = true;
+                MED.Value1 = PD.InputValue;
+            }
         }
     }
 }
