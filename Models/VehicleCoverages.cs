@@ -52,8 +52,6 @@ namespace InsuranceNow_XMLGenerator.Models
             {
                 Rental.hasCoverage = true;
                 string[] limits = Rental.InputValue.Split('/');
-                limits[0] = limits[0] + "000";
-                limits[1] = limits[1] + "000";
                 string newInputValue = string.Format("{0}/{1}", limits[0], limits[1]);
 
                 Rental.InputValue = newInputValue;
