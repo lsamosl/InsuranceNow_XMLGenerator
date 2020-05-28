@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InsuranceNow_XMLGenerator.Models
+namespace Models
 {
     public class Vehicle
     {

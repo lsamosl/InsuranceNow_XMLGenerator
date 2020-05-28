@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{737567FB-9C08-46C4-8E99-658FB6308E94}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>InsuranceNow_XMLGenerator</RootNamespace>
-    <AssemblyName>InsuranceNow_XMLGenerator</AssemblyName>
+    <ProjectGuid>{C24D43DA-19F1-4307-8E2E-77D169F7E13F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConsoleTest</RootNamespace>
+    <AssemblyName>ConsoleTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -48,41 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelUtil.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ExcelConfiguration.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ExcelConfiguration.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\XMLStaticValues.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>XMLStaticValues.resx</DependentUpon>
-    </Compile>
-    <Compile Include="XMlGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ExcelConfiguration.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExcelConfiguration.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\XMLStaticValues.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>XMLStaticValues.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\ExcelParser\ExcelParser.csproj">
+      <Project>{5e53c085-872e-4908-8436-de31ac5ef8d0}</Project>
+      <Name>ExcelParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{3fb51981-c979-4a87-a901-d2c13b947bdb}</Project>
+      <Project>{2a58acb9-0ade-4398-a78d-f5376956e0c8}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="Services\Services.csproj">
-      <Project>{73dacbe4-d9a7-47c7-8502-db658233b43e}</Project>
-      <Name>Services</Name>
+    <ProjectReference Include="..\XMLParser\XMLParser.csproj">
+      <Project>{e94109e8-e786-43c1-84b9-17615e4796ee}</Project>
+      <Name>XMLParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

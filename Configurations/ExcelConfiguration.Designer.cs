@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InsuranceNow_XMLGenerator.Resources {
+namespace Configurations {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ExcelConfiguration {
+    public class ExcelConfiguration {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace InsuranceNow_XMLGenerator.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("InsuranceNow_XMLGenerator.Resources.ExcelConfiguration", typeof(ExcelConfiguration).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Configurations.ExcelConfiguration", typeof(ExcelConfiguration).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        internal static string AutoGeneral_biCover {
+        public static string AutoGeneral_biCover {
             get {
                 return ResourceManager.GetString("AutoGeneral_biCover", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to S.
         /// </summary>
-        internal static string AutoGeneral_limMex {
+        public static string AutoGeneral_limMex {
             get {
                 return ResourceManager.GetString("AutoGeneral_limMex", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to P.
         /// </summary>
-        internal static string AutoGeneral_medCover {
+        public static string AutoGeneral_medCover {
             get {
                 return ResourceManager.GetString("AutoGeneral_medCover", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to O.
         /// </summary>
-        internal static string AutoGeneral_pdCover {
+        public static string AutoGeneral_pdCover {
             get {
                 return ResourceManager.GetString("AutoGeneral_pdCover", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to L.
         /// </summary>
-        internal static string AutoGeneral_PolicyNumber {
+        public static string AutoGeneral_PolicyNumber {
             get {
                 return ResourceManager.GetString("AutoGeneral_PolicyNumber", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to T.
         /// </summary>
-        internal static string AutoGeneral_roadAssis {
+        public static string AutoGeneral_roadAssis {
             get {
                 return ResourceManager.GetString("AutoGeneral_roadAssis", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Q.
         /// </summary>
-        internal static string AutoGeneral_umbi {
+        public static string AutoGeneral_umbi {
             get {
                 return ResourceManager.GetString("AutoGeneral_umbi", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string AutoGeneral_umpdcdw {
+        public static string AutoGeneral_umpdcdw {
             get {
                 return ResourceManager.GetString("AutoGeneral_umpdcdw", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Auto General.
         /// </summary>
-        internal static string AutoGeneralSheet {
+        public static string AutoGeneralSheet {
             get {
                 return ResourceManager.GetString("AutoGeneralSheet", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to I.
         /// </summary>
-        internal static string Driver_birthDate {
+        public static string Driver_birthDate {
             get {
                 return ResourceManager.GetString("Driver_birthDate", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to M.
         /// </summary>
-        internal static string Driver_dateFirstLicense {
+        public static string Driver_dateFirstLicense {
             get {
                 return ResourceManager.GetString("Driver_dateFirstLicense", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to C.
         /// </summary>
-        internal static string Driver_DriverNumber {
+        public static string Driver_DriverNumber {
             get {
                 return ResourceManager.GetString("Driver_DriverNumber", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to H.
         /// </summary>
-        internal static string Driver_driverStatus {
+        public static string Driver_driverStatus {
             get {
                 return ResourceManager.GetString("Driver_driverStatus", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to D.
         /// </summary>
-        internal static string Driver_FirstName {
+        public static string Driver_FirstName {
             get {
                 return ResourceManager.GetString("Driver_FirstName", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to J.
         /// </summary>
-        internal static string Driver_Gender {
+        public static string Driver_Gender {
             get {
                 return ResourceManager.GetString("Driver_Gender", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to F.
         /// </summary>
-        internal static string Driver_LastName {
+        public static string Driver_LastName {
             get {
                 return ResourceManager.GetString("Driver_LastName", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to O.
         /// </summary>
-        internal static string Driver_licenseNumber {
+        public static string Driver_licenseNumber {
             get {
                 return ResourceManager.GetString("Driver_licenseNumber", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        internal static string Driver_licenseState {
+        public static string Driver_licenseState {
             get {
                 return ResourceManager.GetString("Driver_licenseState", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to K.
         /// </summary>
-        internal static string Driver_maritalStatus {
+        public static string Driver_maritalStatus {
             get {
                 return ResourceManager.GetString("Driver_maritalStatus", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to P.
         /// </summary>
-        internal static string Driver_matureDriver {
+        public static string Driver_matureDriver {
             get {
                 return ResourceManager.GetString("Driver_matureDriver", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to E.
         /// </summary>
-        internal static string Driver_MiddleName {
+        public static string Driver_MiddleName {
             get {
                 return ResourceManager.GetString("Driver_MiddleName", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to L.
         /// </summary>
-        internal static string Driver_occupation {
+        public static string Driver_occupation {
             get {
                 return ResourceManager.GetString("Driver_occupation", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
-        internal static string Driver_Policy {
+        public static string Driver_Policy {
             get {
                 return ResourceManager.GetString("Driver_Policy", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
-        internal static string Driver_PolicyNumber {
+        public static string Driver_PolicyNumber {
             get {
                 return ResourceManager.GetString("Driver_PolicyNumber", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to G.
         /// </summary>
-        internal static string Driver_relationShip {
+        public static string Driver_relationShip {
             get {
                 return ResourceManager.GetString("Driver_relationShip", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Q.
         /// </summary>
-        internal static string Driver_sr22 {
+        public static string Driver_sr22 {
             get {
                 return ResourceManager.GetString("Driver_sr22", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Driver.
         /// </summary>
-        internal static string DriverSheet {
+        public static string DriverSheet {
             get {
                 return ResourceManager.GetString("DriverSheet", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to BB.
         /// </summary>
-        internal static string Policy_BillReminder {
+        public static string Policy_BillReminder {
             get {
                 return ResourceManager.GetString("Policy_BillReminder", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AM.
         /// </summary>
-        internal static string Policy_birthDate {
+        public static string Policy_birthDate {
             get {
                 return ResourceManager.GetString("Policy_birthDate", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AF.
         /// </summary>
-        internal static string Policy_effectiveDate {
+        public static string Policy_effectiveDate {
             get {
                 return ResourceManager.GetString("Policy_effectiveDate", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AJ.
         /// </summary>
-        internal static string Policy_firstName {
+        public static string Policy_firstName {
             get {
                 return ResourceManager.GetString("Policy_firstName", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AR.
         /// </summary>
-        internal static string Policy_garagingAddress {
+        public static string Policy_garagingAddress {
             get {
                 return ResourceManager.GetString("Policy_garagingAddress", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AS.
         /// </summary>
-        internal static string Policy_garagingCity {
+        public static string Policy_garagingCity {
             get {
                 return ResourceManager.GetString("Policy_garagingCity", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AT.
         /// </summary>
-        internal static string Policy_garagingState {
+        public static string Policy_garagingState {
             get {
                 return ResourceManager.GetString("Policy_garagingState", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AU.
         /// </summary>
-        internal static string Policy_garagingZip {
+        public static string Policy_garagingZip {
             get {
                 return ResourceManager.GetString("Policy_garagingZip", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AG.
         /// </summary>
-        internal static string Policy_inceptionDate {
+        public static string Policy_inceptionDate {
             get {
                 return ResourceManager.GetString("Policy_inceptionDate", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AL.
         /// </summary>
-        internal static string Policy_lastName {
+        public static string Policy_lastName {
             get {
                 return ResourceManager.GetString("Policy_lastName", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AN.
         /// </summary>
-        internal static string Policy_mailingAddress {
+        public static string Policy_mailingAddress {
             get {
                 return ResourceManager.GetString("Policy_mailingAddress", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AO.
         /// </summary>
-        internal static string Policy_mailingCity {
+        public static string Policy_mailingCity {
             get {
                 return ResourceManager.GetString("Policy_mailingCity", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AP.
         /// </summary>
-        internal static string Policy_mailingState {
+        public static string Policy_mailingState {
             get {
                 return ResourceManager.GetString("Policy_mailingState", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AQ.
         /// </summary>
-        internal static string Policy_mailingZip {
+        public static string Policy_mailingZip {
             get {
                 return ResourceManager.GetString("Policy_mailingZip", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AB.
         /// </summary>
-        internal static string Policy_PolicyNumber {
+        public static string Policy_PolicyNumber {
             get {
                 return ResourceManager.GetString("Policy_PolicyNumber", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AW.
         /// </summary>
-        internal static string Policy_primaryPhone {
+        public static string Policy_primaryPhone {
             get {
                 return ResourceManager.GetString("Policy_primaryPhone", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AD.
         /// </summary>
-        internal static string Policy_producerCode {
+        public static string Policy_producerCode {
             get {
                 return ResourceManager.GetString("Policy_producerCode", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AH.
         /// </summary>
-        internal static string Policy_term {
+        public static string Policy_term {
             get {
                 return ResourceManager.GetString("Policy_term", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Policy Info.
         /// </summary>
-        internal static string PolicySheet {
+        public static string PolicySheet {
             get {
                 return ResourceManager.GetString("PolicySheet", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AF.
         /// </summary>
-        internal static string Vehicle_annualMileage {
+        public static string Vehicle_annualMileage {
             get {
                 return ResourceManager.GetString("Vehicle_annualMileage", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to X.
         /// </summary>
-        internal static string Vehicle_COLLDEDUCT {
+        public static string Vehicle_COLLDEDUCT {
             get {
                 return ResourceManager.GetString("Vehicle_COLLDEDUCT", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to W.
         /// </summary>
-        internal static string Vehicle_COMPDEDUCT {
+        public static string Vehicle_COMPDEDUCT {
             get {
                 return ResourceManager.GetString("Vehicle_COMPDEDUCT", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AE.
         /// </summary>
-        internal static string Vehicle_currentOdometer {
+        public static string Vehicle_currentOdometer {
             get {
                 return ResourceManager.GetString("Vehicle_currentOdometer", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AB.
         /// </summary>
-        internal static string Vehicle_DR {
+        public static string Vehicle_DR {
             get {
                 return ResourceManager.GetString("Vehicle_DR", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Y.
         /// </summary>
-        internal static string Vehicle_LESSOR {
+        public static string Vehicle_LESSOR {
             get {
                 return ResourceManager.GetString("Vehicle_LESSOR", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to T.
         /// </summary>
-        internal static string Vehicle_Make {
+        public static string Vehicle_Make {
             get {
                 return ResourceManager.GetString("Vehicle_Make", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to U.
         /// </summary>
-        internal static string Vehicle_Model {
+        public static string Vehicle_Model {
             get {
                 return ResourceManager.GetString("Vehicle_Model", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Z.
         /// </summary>
-        internal static string Vehicle_NO {
+        public static string Vehicle_NO {
             get {
                 return ResourceManager.GetString("Vehicle_NO", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string Vehicle_Policy {
+        public static string Vehicle_Policy {
             get {
                 return ResourceManager.GetString("Vehicle_Policy", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string Vehicle_PolicyNumber {
+        public static string Vehicle_PolicyNumber {
             get {
                 return ResourceManager.GetString("Vehicle_PolicyNumber", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AA.
         /// </summary>
-        internal static string Vehicle_PUB {
+        public static string Vehicle_PUB {
             get {
                 return ResourceManager.GetString("Vehicle_PUB", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to AC.
         /// </summary>
-        internal static string Vehicle_Rental {
+        public static string Vehicle_Rental {
             get {
                 return ResourceManager.GetString("Vehicle_Rental", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to V.
         /// </summary>
-        internal static string Vehicle_VIN {
+        public static string Vehicle_VIN {
             get {
                 return ResourceManager.GetString("Vehicle_VIN", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace InsuranceNow_XMLGenerator.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Vehicle.
         /// </summary>
-        internal static string VehicleSheet {
+        public static string VehicleSheet {
             get {
                 return ResourceManager.GetString("VehicleSheet", resourceCulture);
             }

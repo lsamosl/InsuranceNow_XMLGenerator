@@ -1,11 +1,10 @@
-﻿using InsuranceNow_XMLGenerator.Models;
+﻿using ExcelParser;
+using Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using XMLParser;
 
-namespace InsuranceNow_XMLGenerator
+namespace ConsoleTest
 {
     class Program
     {
@@ -27,7 +26,7 @@ namespace InsuranceNow_XMLGenerator
 
                 Console.WriteLine("Generating XMLs");
 
-                foreach(Policy p in Policies)
+                foreach (Policy p in Policies)
                 {
                     string fileName = XmlOutput.Replace("[POLICYNUMBER]", p.PolicyNumber.Replace(" ", string.Empty)).
                                                 Replace("[DRIVERS]", p.Drivers.Count.ToString()).
@@ -40,15 +39,15 @@ namespace InsuranceNow_XMLGenerator
                 }
                 Console.WriteLine("");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
-            } 
+            }
 
             Console.WriteLine("Done!");
             Console.ReadKey();
-            
+
         }
     }
 }

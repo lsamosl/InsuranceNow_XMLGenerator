@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using InsuranceNow_XMLGenerator.Models;
-using InsuranceNow_XMLGenerator.Resources;
+using Models;
 using Microsoft.Office.Interop.Excel;
+using Configurations;
 
-namespace InsuranceNow_XMLGenerator
+namespace ExcelParser
 {
     public class ExcelUtil
     {
