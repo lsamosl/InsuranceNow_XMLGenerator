@@ -14,7 +14,7 @@ namespace ConsoleTest
             {
                 string path = "C:\\Test\\";
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
-                string ExcelInput = "_dataMigrationVer1.5.xlsm";
+                string ExcelInput = "dataMigrationVer1.5.xlsm";
                 List<Policy> Policies = new List<Policy>();
                 int total = 1;
 

@@ -86,7 +86,10 @@ namespace ExcelParser
                 {
                     DriverList.Add(new Driver
                     {
-                        Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim(),
+                        FirstName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_FirstName].Value2.ToString().Trim(),
+                        MiddleName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_MiddleName].Value2.ToString().Trim(),
+                        LastName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_LastName].Value2.ToString().Trim(),
+                        Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim() == "M" ? "Male" : "Female",
                         BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString(dateFormat),
                         MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString().Trim() == "M" ? "Married" : "Single",
                         Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),

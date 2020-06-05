@@ -317,36 +317,34 @@ namespace XMLParser
                     #endregion
 
                     #region <DriverInfo>
-                    
-                    foreach(Driver d in Policy.Drivers)
-                    {
 
-                        var response = tokenizerService.Detokenize(d.LicenseNumber);
-                        writer.WriteStartElement("DriverInfo");
+                    Driver d = Policy.Drivers[0];
+                    var response = tokenizerService.Detokenize(d.LicenseNumber);
+                    writer.WriteStartElement("DriverInfo");
 
-                        writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd); 
-                        writer.WriteAttributeString("DriverNumber", countDrivers.ToString());
-                        writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal"  : "Excluded"); 
+                    writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd);
+                    writer.WriteAttributeString("DriverNumber", 1.ToString());
+                    writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal" : "Excluded");
 
-                        if(response.Result)
-                            writer.WriteAttributeString("LicenseNumber", response.DetokenizedString);
-                        else
-                            writer.WriteAttributeString("LicenseNumber", string.Empty);
+                    if (response.Result)
+                        writer.WriteAttributeString("LicenseNumber", response.DetokenizedString);
+                    else
+                        writer.WriteAttributeString("LicenseNumber", string.Empty);
 
-                        writer.WriteAttributeString("LicenseDt", d.DateFirstLicense); 
-                        writer.WriteAttributeString("LicensedStateProvCd", d.LicenseState); 
-                        writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip); 
-                        writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
-                        writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race); 
-                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType); 
-                        writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus); 
-                        writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(d.Sr22) ? d.Sr22 : "No"); 
-                        writer.WriteAttributeString("OriginalLicenseDt", d.DateFirstLicense);
+                    writer.WriteAttributeString("LicenseDt", d.DateFirstLicense);
+                    writer.WriteAttributeString("LicensedStateProvCd", d.LicenseState);
+                    writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip);
+                    writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
+                    writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
+                    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType);
+                    writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
+                    writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(d.Sr22) ? d.Sr22 : "No");
+                    writer.WriteAttributeString("OriginalLicenseDt", d.DateFirstLicense);
 
-                        countDrivers++;
+                    countDrivers++;
 
-                        writer.WriteEndElement(); //End DriverInfo
-                    }
+                    writer.WriteEndElement(); //End DriverInfo
+                                       
                     #endregion
 
                     #region <NameInfo>
@@ -514,7 +512,63 @@ namespace XMLParser
                     writer.WriteEndElement(); //End DTOBasicPolicy
 
                     #endregion
+                    
+                    for(int i = 0; i < Policy.Drivers.Count; i++){
 
+                        if(i != 0){
+                            Driver driver = Policy.Drivers[i];
+                            int driverNumber = i + 1;
+                            var licenseResponse = tokenizerService.Detokenize(driver.LicenseNumber);
+
+                            writer.WriteStartElement("PartyInfo");
+                            writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOApplication_PartyInfo_PartyTypeCd);
+                            writer.WriteAttributeString("Status", XMLStaticValues.DTOApplication_PartyInfo_Status);
+                            
+                            writer.WriteStartElement("PersonInfo");
+
+                            writer.WriteAttributeString("PersonTypeCd", PersonTypeCd[0]);
+                            writer.WriteAttributeString("GenderCd", driver.Gender);
+                            writer.WriteAttributeString("BirthDt", driver.BirthDate);
+                            writer.WriteAttributeString("MaritalStatusCd", driver.MaritalStatus);
+                            writer.WriteAttributeString("OccupationClassCd", driver.Occupation);
+                            //writer.WriteAttributeString("Age", Policy.Age); //TODO
+
+                            writer.WriteEndElement(); //End PersonInfo                                                       
+
+                            writer.WriteStartElement("DriverInfo");
+
+                            writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd);
+                            writer.WriteAttributeString("DriverNumber", driverNumber.ToString());
+                            writer.WriteAttributeString("DriverStatusCd", driver.DriverStatus == "Active" ? "Principal" : "Excluded");
+
+                            if (licenseResponse.Result)
+                                writer.WriteAttributeString("LicenseNumber", licenseResponse.DetokenizedString);
+                            else
+                                writer.WriteAttributeString("LicenseNumber", string.Empty);
+
+                            writer.WriteAttributeString("LicenseDt", driver.DateFirstLicense);
+                            writer.WriteAttributeString("LicensedStateProvCd", driver.LicenseState);
+                            writer.WriteAttributeString("RelationshipToInsuredCd", driver.RelationShip);
+                            writer.WriteAttributeString("DriverStartDt", driver.DateFirstLicense);
+                            writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(driver.MatureDriver) ? driver.MatureDriver : "No");
+                            writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
+                            writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType);
+                            writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
+                            writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(driver.Sr22) ? driver.Sr22 : "No");
+                            writer.WriteAttributeString("OriginalLicenseDt", driver.DateFirstLicense);                            
+
+                            writer.WriteEndElement(); //End DriverInfo
+
+                            writer.WriteStartElement("NameInfo");
+                            writer.WriteAttributeString("NameTypeCd", NameTypeCd[0]);
+                            writer.WriteAttributeString("GivenName", driver.FirstName);
+                            writer.WriteAttributeString("Surname", driver.LastName);
+                            writer.WriteEndElement(); //EndNameInfo
+
+                            writer.WriteEndElement(); //End PartyInfo
+                        }                        
+                    }
+                    
                     writer.WriteEndElement(); //End DTOApplication
                     #endregion
 
