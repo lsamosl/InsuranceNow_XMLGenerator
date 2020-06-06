@@ -45,6 +45,7 @@
     <Compile Include="Driver.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GeneralCoverages.cs" />
+    <Compile Include="PaymentPlan.cs" />
     <Compile Include="Policy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vehicle.cs" />

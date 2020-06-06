@@ -304,6 +304,51 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        public static string Payment_AccountNumber {
+            get {
+                return ResourceManager.GetString("Payment_AccountNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string Payment_EftType {
+            get {
+                return ResourceManager.GetString("Payment_EftType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        public static string Payment_PolicyNumber {
+            get {
+                return ResourceManager.GetString("Payment_PolicyNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        public static string Payment_Token {
+            get {
+                return ResourceManager.GetString("Payment_Token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PayPlan.
+        /// </summary>
+        public static string PaymentSheet {
+            get {
+                return ResourceManager.GetString("PaymentSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BB.
         /// </summary>
         public static string Policy_BillReminder {

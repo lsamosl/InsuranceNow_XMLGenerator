@@ -301,4 +301,19 @@
   <data name="Vehicle_VIN" xml:space="preserve">
     <value>V</value>
   </data>
+  <data name="PaymentSheet" xml:space="preserve">
+    <value>PayPlan</value>
+  </data>
+  <data name="Payment_AccountNumber" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Payment_EftType" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Payment_PolicyNumber" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Payment_Token" xml:space="preserve">
+    <value>C</value>
+  </data>
 </root>

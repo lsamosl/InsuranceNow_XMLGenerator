@@ -35,6 +35,7 @@ namespace ExcelParser
                 _Worksheet DriverSheet = xlWorkbook.Sheets[ExcelConfiguration.DriverSheet];
                 _Worksheet VehicleSheet = xlWorkbook.Sheets[ExcelConfiguration.VehicleSheet];
                 _Worksheet AutoGeneralSheet = xlWorkbook.Sheets[ExcelConfiguration.AutoGeneralSheet];
+                _Worksheet PaymentSheet = xlWorkbook.Sheets[ExcelConfiguration.PaymentSheet];
 
                 Range rangeObject;
                 string policyNumber = string.Empty;
@@ -92,7 +93,9 @@ namespace ExcelParser
                         Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim() == "M" ? "Male" : "Female",
                         BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString(dateFormat),
                         MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString().Trim() == "M" ? "Married" : "Single",
-                        Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),
+                        Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "EMPLOYED" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() ||
+                                     DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() ||
+                                     DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "-1" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim(),
                         DriverNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_DriverNumber].Value2.ToString(),
                         DriverStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_driverStatus].Value2.ToString().Trim(),
                         LicenseNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseNumber].Value2.ToString().Trim(),
@@ -119,6 +122,41 @@ namespace ExcelParser
                 do
                 {
                     Vehicle vehicle = new Vehicle
+                    {
+                        VIN = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_VIN].Value2.ToString().Trim(),
+                        CollDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COLLDEDUCT].Value2.ToString(),
+                        CompDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COMPDEDUCT].Value2.ToString(),
+                        AnnualMileage = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_annualMileage].Value2.ToString(),
+                        CurrentOdometer = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_currentOdometer].Value2.ToString(),
+                        Lessor = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_LESSOR].Value2.ToString(),
+                        Rental = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Rental].Value2.ToString(),
+                        No = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_NO].Value2.ToString(),
+                        Pub = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PUB].Value2.ToString(),
+                        Dr = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_DR].Value2.ToString(),
+                        Make = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Make].Value2.ToString().Trim(),
+                        Model = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Model].Value2.ToString().Trim(),
+                        PolicyNumber = policyNumber
+                    };
+
+                    vehicle.Coverages = new VehicleCoverages(vehicle.CollDeduct, vehicle.CompDeduct, vehicle.Rental);
+                    vehicle.Coverages.ProcessCoverages();
+
+                    VehicleList.Add(vehicle);
+
+                    IndexRow++;
+                    rangeObject = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PolicyNumber];
+                    policyNumber = (string)rangeObject.Value2;
+                }
+                while (!string.IsNullOrEmpty(policyNumber));
+
+                /*Payment plans*/
+                IndexRow = 2;
+                rangeObject = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_PolicyNumber];
+                policyNumber = (string)rangeObject.Value2;
+
+                do
+                {
+                    Pay vehicle = new Vehicle
                     {
                         VIN = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_VIN].Value2.ToString().Trim(),
                         CollDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COLLDEDUCT].Value2.ToString(),
