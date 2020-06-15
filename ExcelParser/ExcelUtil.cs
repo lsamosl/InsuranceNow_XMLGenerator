@@ -45,6 +45,7 @@ namespace ExcelParser
                 List<General> GeneralList = new List<General>();
                 List<Driver> DriverList = new List<Driver>();
                 List<Vehicle> VehicleList = new List<Vehicle>();
+                List<PaymentPlan> PaymentPlansList = new List<PaymentPlan>();
 
                 int term;
                 DateTime effectiveDate, expirationDate, birthDate;
@@ -156,30 +157,19 @@ namespace ExcelParser
 
                 do
                 {
-                    Pay vehicle = new Vehicle
+                    PaymentPlan plan = new PaymentPlan
                     {
-                        VIN = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_VIN].Value2.ToString().Trim(),
-                        CollDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COLLDEDUCT].Value2.ToString(),
-                        CompDeduct = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_COMPDEDUCT].Value2.ToString(),
-                        AnnualMileage = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_annualMileage].Value2.ToString(),
-                        CurrentOdometer = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_currentOdometer].Value2.ToString(),
-                        Lessor = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_LESSOR].Value2.ToString(),
-                        Rental = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Rental].Value2.ToString(),
-                        No = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_NO].Value2.ToString(),
-                        Pub = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PUB].Value2.ToString(),
-                        Dr = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_DR].Value2.ToString(),
-                        Make = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Make].Value2.ToString().Trim(),
-                        Model = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_Model].Value2.ToString().Trim(),
+                        AccountNumber = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_AccountNumber].Value2.ToString(),
+                        EftType = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_EftType].Value2.ToString(),
+                        Token = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_Token].Value2.ToString(),
                         PolicyNumber = policyNumber
                     };
 
-                    vehicle.Coverages = new VehicleCoverages(vehicle.CollDeduct, vehicle.CompDeduct, vehicle.Rental);
-                    vehicle.Coverages.ProcessCoverages();
 
-                    VehicleList.Add(vehicle);
+                    PaymentPlansList.Add(plan);
 
                     IndexRow++;
-                    rangeObject = VehicleSheet.Cells[IndexRow, ExcelConfiguration.Vehicle_PolicyNumber];
+                    rangeObject = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_PolicyNumber];
                     policyNumber = (string)rangeObject.Value2;
                 }
                 while (!string.IsNullOrEmpty(policyNumber));
@@ -218,7 +208,8 @@ namespace ExcelParser
                         ProducerCode = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_producerCode].Value2.ToString().Replace(" ", string.Empty),
                         Age = (DateTime.Today.Year - birthDate.Year).ToString(),
                         PolicyNumber = policyNumber,
-
+                        
+                        PaymentPlan = PaymentPlansList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),
                         General = GeneralList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),
                         Drivers = DriverList.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList(),
                         Vehicles = VehicleList.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList()

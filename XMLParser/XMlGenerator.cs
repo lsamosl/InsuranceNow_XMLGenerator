@@ -60,7 +60,7 @@ namespace XMLParser
                     writer.WriteAttributeString("Status", XMLStaticValues.DTORoot_DTOApplication_Status);
                     writer.WriteAttributeString("TypeCd", XMLStaticValues.DTORoot_DTOApplication_TypeCd);
                     writer.WriteAttributeString("Description", XMLStaticValues.DTORoot_DTOApplication_Description);
-                    writer.WriteAttributeString("ReadyToRateInd", XMLStaticValues.DTORoot_DTOApplication_ReadyToRateInd);
+                    writer.WriteAttributeString("ReadyToRateInd", XMLStaticValues.DTORoot_DTOApplication_ReadyToRateInd);                                    
 
                     #region <QuestionReplies>
                     writer.WriteStartElement("QuestionReplies");
@@ -496,6 +496,18 @@ namespace XMLParser
                     writer.WriteAttributeString("Source", XMLStaticValues.DTOApplication_DTOBasicPolicy_Source);
                     writer.WriteAttributeString("RenewedFromPolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_RenewedFromPolicyNumber);
                     writer.WriteAttributeString("PolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_PolicyNumber);
+
+                    if (Policy.PaymentPlan)
+                    {
+                        if(Policy.PaymentPlan.Token)
+                        {
+                            writer.WriteAttributeString("Token", Policy.PaymentPlan.Token);
+                        }
+
+                        /*TODO: change with excel values*/ 
+                        writer.WriteAttributeString("PaymentDay", "20");
+
+                    }
 
                     #region <ElectronicPaymentSource>
 
