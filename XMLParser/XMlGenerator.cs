@@ -497,17 +497,17 @@ namespace XMLParser
                     writer.WriteAttributeString("RenewedFromPolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_RenewedFromPolicyNumber);
                     writer.WriteAttributeString("PolicyNumber", XMLStaticValues.DTOApplication_DTOBasicPolicy_PolicyNumber);
 
-                    if (Policy.PaymentPlan)
+                    if (!string.IsNullOrEmpty(Policy.PaymentPlan.Token))
                     {
-                        if(Policy.PaymentPlan.Token)
-                        {
-                            writer.WriteAttributeString("Token", Policy.PaymentPlan.Token);
-                        }
-
-                        /*TODO: change with excel values*/ 
-                        writer.WriteAttributeString("PaymentDay", "20");
-
+                        writer.WriteAttributeString("Token", Policy.PaymentPlan.Token);
                     }
+
+                    if (!string.IsNullOrEmpty(Policy.PaymentPlan.SweepDate))
+                    {
+                        writer.WriteAttributeString("PaymentDay", Policy.PaymentPlan.SweepDate);
+                        //writer.WriteAttributeString("MethodCd", Policy.PaymentPlan.EftType);
+                    } 
+                    
 
                     #region <ElectronicPaymentSource>
 
@@ -515,7 +515,12 @@ namespace XMLParser
 
                     writer.WriteAttributeString("id", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_id); //TODO
                     writer.WriteAttributeString("SourceTypeCd", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_SourceTypeCd); //TODO
-                    writer.WriteAttributeString("MethodCd", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_MethodCd); //TODO
+                    //writer.WriteAttributeString("MethodCd", XMLStaticValues.DTOBasicPolicy_ElectronicPaymentSource_MethodCd); //TODO
+
+                    if (!string.IsNullOrEmpty(Policy.PaymentPlan.EftType))
+                    {
+                        writer.WriteAttributeString("MethodCd", Policy.PaymentPlan.EftType);
+                    }                    
 
                     writer.WriteEndElement(); //End ElectronicPaymentSource
 

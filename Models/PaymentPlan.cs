@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class PaymentPlan
+    public class PaymentPlan
     {
         public string PolicyNumber { get; set; }
         public string EftType { get; set; }
         public string Token { get; set; }
         public string AccountNumber { get; set; }
+        public string SweepDate { get; set; }
     }
 }

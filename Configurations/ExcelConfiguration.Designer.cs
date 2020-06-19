@@ -331,6 +331,15 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E.
+        /// </summary>
+        public static string Payment_Sweepdate {
+            get {
+                return ResourceManager.GetString("Payment_Sweepdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C.
         /// </summary>
         public static string Payment_Token {

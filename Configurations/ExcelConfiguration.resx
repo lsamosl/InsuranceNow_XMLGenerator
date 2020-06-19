@@ -316,4 +316,7 @@
   <data name="Payment_Token" xml:space="preserve">
     <value>C</value>
   </data>
+  <data name="Payment_Sweepdate" xml:space="preserve">
+    <value>E</value>
+  </data>
 </root>
