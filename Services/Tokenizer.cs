@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.IO;
 
 namespace Services
 {
@@ -28,6 +29,9 @@ namespace Services
             service = new TokenizerService.SafeNetTokenizerPortTypeClient();
         }
 
+        public string PolicyNumber { get; set; }
+        public string DriverName { get; set; }
+
         public ResponseDetokenize Detokenize(string Token)
         {
             bool isIntranet = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("isIntranet"));
@@ -50,6 +54,13 @@ namespace Services
 
             catch (Exception e)
             {
+                var path = ConfigurationManager.AppSettings.Get("LogFileName");
+
+                if (!File.Exists(path))
+                    File.WriteAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage    DateTime") + Environment.NewLine);
+
+                File.AppendAllText(path, string.Format("{0}    {1}    {2}    {3}    {4}", PolicyNumber, DriverName, Token, e.Message, DateTime.Now) + Environment.NewLine);
+
                 response.Message = e.Message;
             }
 
