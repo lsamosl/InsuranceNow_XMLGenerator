@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.IO;
-using System.IO.Directory;
+//using System.IO.Directory;
 using System.Configuration;
 using XMLParser;
 
@@ -20,12 +20,13 @@ namespace ConsoleTest
                 string zipsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("zipsPath"));
                 string excelPath = Convert.ToString(ConfigurationManager.AppSettings.Get("excelPath"));
                 string emptyPath = Convert.ToString(ConfigurationManager.AppSettings.Get("emptyPath"));
+                string processedExcelsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("processedExcelsPath"));
 
-                //string path = "C:\\Test\\";
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
-                string[] files = Directory.GetFiles(excelPath, "*.xls", SearchOption.AllDirectories);
 
-                //string ExcelInput = "dataMigrationVer1.6.xlsm";
+                string[] files = Directory.GetFiles(excelPath, "*", SearchOption.AllDirectories);
+                string ExcelInput = Array.Find(files, f => f.Contains(".xlsm") || f.Contains(".xlsx") || f.Contains(".xls"));
+                                               
                 string zipFullPath = string.Empty;
                 string zipName = string.Empty;
                 List<Policy> Policies = new List<Policy>();
@@ -35,7 +36,7 @@ namespace ConsoleTest
                 int zipsCreated = 1;
 
                 Console.WriteLine("Processing excel file...");
-                ExcelUtil excelUtil = new ExcelUtil(excelPath);
+                ExcelUtil excelUtil = new ExcelUtil(ExcelInput);
                 var workBook = excelUtil.OpenFile();
                 excelUtil.ProcessFile(workBook, Policies);
                 excelUtil.CloseFile(workBook);
@@ -77,6 +78,10 @@ namespace ConsoleTest
                         File.Delete(filePath);
                     }                    
                 }
+
+                string[] splitedPath = ExcelInput.Split('\\');
+                string excelFileName = splitedPath[splitedPath.Length - 1];
+                File.Move(ExcelInput, processedExcelsPath + excelFileName);
                 
             }
             catch (Exception e)
@@ -88,6 +93,6 @@ namespace ConsoleTest
             Console.WriteLine("Done!");
             Console.ReadKey();
 
-        }
+        }        
     }
 }

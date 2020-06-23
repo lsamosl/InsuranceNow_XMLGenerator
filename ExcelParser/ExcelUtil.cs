@@ -85,25 +85,7 @@ namespace ExcelParser
                 policyNumber = (string)rangeObject.Value2;
 
                 do
-                {
-                        //var FirstName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_FirstName].Value2.ToString().Trim();
-                        //var MiddleName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_MiddleName].Value2.ToString().Trim();
-                        //var LastName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_LastName].Value2.ToString().Trim();
-                        //var var Gender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim() == "M" ? "Male" : "Female";
-                        //var BirthDate = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_birthDate].Value2).ToString(dateFormat);
-                        //var MaritalStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_maritalStatus].Value2.ToString().Trim() == "M" ? "Married" : "Single";
-                        //var Occupation = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "EMPLOYED" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() ||
-                        //             DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() ||
-                        //             DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim() == "-1" ? "Employed" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_occupation].Value2.ToString().Trim();
-                        //var DriverNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_DriverNumber].Value2.ToString();
-                        //var DriverStatus = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_driverStatus].Value2.ToString().Trim();
-                        //var LicenseNumber = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseNumber].Value2.ToString().Trim();
-                        //var DateFirstLicense = DateTime.FromOADate(DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_dateFirstLicense].Value2).ToString(dateFormat);
-                        //var LicenseState = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_licenseState].Value2.ToString();
-                        //var RelationShip = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim() == "Insured" ? "Self" : DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_relationShip].Value2.ToString().Trim();
-                        //var MatureDriver = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_matureDriver].Value2.ToString().Trim() == "Y" ? "Yes" : "No";
-                        //var Sr22 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_sr22].Value2.ToString().Trim() == "Y" ? "Yes" : "No";
-                        //var PolicyNumber = policyNumber;
+                {                        
                     DriverList.Add(new Driver
                     {
                         FirstName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_FirstName].Value2.ToString().Trim(),
@@ -172,12 +154,7 @@ namespace ExcelParser
                 policyNumber = (string)rangeObject.Value2;
 
                 do
-                {
-                    //var AccountNumber = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_AccountNumber].Value2 != null ? PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_AccountNumber].Value2.ToString() : string.Empty;
-                    //var EftType = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_EftType].Value2 != null ? PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_EftType].Value2.ToString() : string.Empty;
-                    //var Token = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_Token].Value2 != null ? PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_Token].Value2.ToString() : string.Empty;
-                    //var PolicyNumber = policyNumber;
-
+                {                    
                     PaymentPlan plan = new PaymentPlan
                     {
                         AccountNumber = PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_AccountNumber].Value2 != null ? PaymentSheet.Cells[IndexRow, ExcelConfiguration.Payment_AccountNumber].Value2.ToString() : string.Empty,
