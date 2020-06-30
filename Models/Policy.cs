@@ -12,6 +12,7 @@ namespace Models
         public string PolicyNumber { get; set; }
         public List<Driver> Drivers { get; set; }
         public List<Vehicle> Vehicles { get; set; }
+        public List<AdditionalInterest> AdditionalInterests { get; set; }
         public PaymentPlan PaymentPlan { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

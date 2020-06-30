@@ -36,6 +36,7 @@ namespace ExcelParser
                 _Worksheet VehicleSheet = xlWorkbook.Sheets[ExcelConfiguration.VehicleSheet];
                 _Worksheet AutoGeneralSheet = xlWorkbook.Sheets[ExcelConfiguration.AutoGeneralSheet];
                 _Worksheet PaymentSheet = xlWorkbook.Sheets[ExcelConfiguration.PaymentSheet];
+                _Worksheet AdditionalInterestsSheet = xlWorkbook.Sheets[ExcelConfiguration.AdditionalInterestsSheet];
 
                 Range rangeObject;
                 string policyNumber = string.Empty;
@@ -46,6 +47,7 @@ namespace ExcelParser
                 List<Driver> DriverList = new List<Driver>();
                 List<Vehicle> VehicleList = new List<Vehicle>();
                 List<PaymentPlan> PaymentPlansList = new List<PaymentPlan>();
+                List<AdditionalInterest> AdditionalInterestList = new List<AdditionalInterest>();
 
                 int term;
                 DateTime effectiveDate, expirationDate, birthDate;
@@ -173,10 +175,45 @@ namespace ExcelParser
                 }
                 while (!string.IsNullOrEmpty(policyNumber));
 
+                /*Interests*/
+                IndexRow = 2;
+                rangeObject = PaymentSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_PolicyNumber];
+                policyNumber = (string)rangeObject.Value2;                
+
+                do
+                {
+                    AdditionalInterest interest = new AdditionalInterest
+                    {
+                        Unit = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Unit].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Unit].Value2.ToString() : string.Empty,
+                        Type = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Type].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Type].Value2.ToString() : string.Empty,
+                        Name = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Name].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Name].Value2.ToString() : string.Empty,
+                        Address = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Address].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Address].Value2.ToString() : string.Empty,
+                        City = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_City].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_City].Value2.ToString() : string.Empty,
+                        State = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_State].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_State].Value2.ToString() : string.Empty,
+                        Zip = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Zip].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Zip].Value2.ToString() : string.Empty,
+                        Valid = AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Valid].Value2 != null ? AdditionalInterestsSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_Valid].Value2.ToString() : string.Empty,
+                        PolicyNumber = policyNumber
+                    };
+
+                    if(interest.Valid != null)
+                    {
+                        if (interest.Valid != "Yes")
+                        {
+                            AdditionalInterestList.Add(interest);
+                        }                        
+                    }
+                   
+                    IndexRow++;
+                    rangeObject = PaymentSheet.Cells[IndexRow, ExcelConfiguration.AdditionalInterest_PolicyNumber];
+                    policyNumber = (string)rangeObject.Value2;
+                }
+                while (!string.IsNullOrEmpty(policyNumber));
+
                 /*Policies*/
                 IndexRow = 2;
                 rangeObject = PolicySheet.Cells[IndexRow, ExcelConfiguration.Policy_PolicyNumber];
                 policyNumber = (string)rangeObject.Value2;
+                List<AdditionalInterest> AddInterests = AdditionalInterestList.Distinct().ToList(); 
 
                 do
                 {
@@ -211,7 +248,8 @@ namespace ExcelParser
                         PaymentPlan = PaymentPlansList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),
                         General = GeneralList.Where(x => x.PolicyNumber.Equals(policyNumber)).FirstOrDefault(),
                         Drivers = DriverList.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList(),
-                        Vehicles = VehicleList.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList()
+                        Vehicles = VehicleList.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList(),
+                        AdditionalInterests = AddInterests.Where(x => x.PolicyNumber.Equals(policyNumber)).ToList()
                     };
 
                     Policies.Add(policy);

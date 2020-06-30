@@ -61,6 +61,96 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E.
+        /// </summary>
+        public static string AdditionalInterest_Address {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        public static string AdditionalInterest_City {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        public static string AdditionalInterest_Name {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        public static string AdditionalInterest_PolicyNumber {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_PolicyNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G.
+        /// </summary>
+        public static string AdditionalInterest_State {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        public static string AdditionalInterest_Type {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string AdditionalInterest_Unit {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I.
+        /// </summary>
+        public static string AdditionalInterest_Valid {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Valid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to H.
+        /// </summary>
+        public static string AdditionalInterest_Zip {
+            get {
+                return ResourceManager.GetString("AdditionalInterest_Zip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Interest.
+        /// </summary>
+        public static string AdditionalInterestsSheet {
+            get {
+                return ResourceManager.GetString("AdditionalInterestsSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
         public static string AutoGeneral_biCover {

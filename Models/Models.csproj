@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalInterest.cs" />
     <Compile Include="Coverage.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="General.cs" />

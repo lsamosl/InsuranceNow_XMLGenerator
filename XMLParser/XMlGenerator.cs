@@ -582,8 +582,38 @@ namespace XMLParser
                             writer.WriteAttributeString("Surname", driver.LastName);
                             writer.WriteEndElement(); //EndNameInfo
 
-                            writer.WriteEndElement(); //End PartyInfo
+                            writer.WriteEndElement(); //End PartyInfo                                                       
                         }                        
+                    }
+
+                    for (int j = 0; j < Policy.AdditionalInterests.Count; j++)
+                    {
+                        
+                        int interestNumber = j + 1;
+                        AdditionalInterest interest = Policy.AdditionalInterests[j];
+
+                        writer.WriteStartElement("DTOAI"); //DTOAI
+                        writer.WriteAttributeString("SequenceNumber", interestNumber.ToString());
+                        writer.WriteAttributeString("InterestTypeCd", "Lienholder/Loss Payee");
+                        writer.WriteAttributeString("InterestName", interest.Name);
+                        writer.WriteAttributeString("Status", "Active");
+
+                        writer.WriteStartElement("PartyInfo"); //PartyInfo                         
+
+                        writer.WriteStartElement("NameInfo"); //NameInfo 
+                        writer.WriteAttributeString("IndexName", interest.Name);
+                        writer.WriteEndElement(); //End NameInfo
+
+                        writer.WriteStartElement("Addr"); //Addr Info 
+                        writer.WriteAttributeString("Addr1", interest.Address);
+                        writer.WriteAttributeString("City", interest.City);
+                        writer.WriteAttributeString("StateProvCd", interest.State);
+                        writer.WriteAttributeString("PostalCode", interest.Zip);                        
+                        writer.WriteEndElement(); //End Addr
+
+                        writer.WriteEndElement(); //End PartyInfo
+
+                        writer.WriteEndElement(); //End DTOAI
                     }
                     
                     writer.WriteEndElement(); //End DTOApplication

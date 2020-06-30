@@ -319,4 +319,34 @@
   <data name="Payment_Sweepdate" xml:space="preserve">
     <value>E</value>
   </data>
+  <data name="AdditionalInterestsSheet" xml:space="preserve">
+    <value>Additional Interest</value>
+  </data>
+  <data name="AdditionalInterest_Address" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="AdditionalInterest_City" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="AdditionalInterest_Name" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="AdditionalInterest_PolicyNumber" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="AdditionalInterest_State" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="AdditionalInterest_Type" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="AdditionalInterest_Unit" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="AdditionalInterest_Valid" xml:space="preserve">
+    <value>I</value>
+  </data>
+  <data name="AdditionalInterest_Zip" xml:space="preserve">
+    <value>H</value>
+  </data>
 </root>
