@@ -598,13 +598,21 @@ namespace XMLParser
                         writer.WriteAttributeString("InterestName", interest.Name);
                         writer.WriteAttributeString("Status", "Active");
 
-                        writer.WriteStartElement("PartyInfo"); //PartyInfo                         
+                        writer.WriteStartElement("PartyInfo"); //PartyInfo 
+                        writer.WriteAttributeString("PartyTypeCd", "AIParty");
+
+                        writer.WriteStartElement("EmailInfo"); //EmailInfo 
+                        writer.WriteAttributeString("EmailTypeCd", "AIEmail");
+                        // writer.WriteAttributeString("PreferredInd", "No");
+                        writer.WriteEndElement(); //End EmailInfo
 
                         writer.WriteStartElement("NameInfo"); //NameInfo 
                         writer.WriteAttributeString("IndexName", interest.Name);
+                        writer.WriteAttributeString("NameTypeCd", "AIName");
                         writer.WriteEndElement(); //End NameInfo
 
                         writer.WriteStartElement("Addr"); //Addr Info 
+                        writer.WriteAttributeString("AddrTypeCd", "AIMailingAddr");
                         writer.WriteAttributeString("Addr1", interest.Address);
                         writer.WriteAttributeString("City", interest.City);
                         writer.WriteAttributeString("StateProvCd", interest.State);
