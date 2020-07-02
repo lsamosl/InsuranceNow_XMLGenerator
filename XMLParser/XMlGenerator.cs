@@ -45,7 +45,7 @@ namespace XMLParser
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => true;
                 Tokenizer tokenizerService = new Tokenizer();
-                
+                tokenizerService.PolicyNumber = Policy.PolicyNumber;
 
                 using (XmlWriter writer = XmlWriter.Create(Path, settings))
                 {
@@ -319,6 +319,7 @@ namespace XMLParser
                     #region <DriverInfo>
 
                     Driver d = Policy.Drivers[0];
+                    tokenizerService.DriverName = string.Format("{0} {1}", d.FirstName, d.LastName);
                     var response = tokenizerService.Detokenize(d.LicenseNumber);
                     writer.WriteStartElement("DriverInfo");
 
@@ -533,8 +534,10 @@ namespace XMLParser
                     for(int i = 0; i < Policy.Drivers.Count; i++){
 
                         if(i != 0){
+
                             Driver driver = Policy.Drivers[i];
                             int driverNumber = i + 1;
+                            tokenizerService.DriverName = string.Format("{0} {1}", driver.FirstName, driver.LastName);
                             var licenseResponse = tokenizerService.Detokenize(driver.LicenseNumber);
 
                             writer.WriteStartElement("PartyInfo");
