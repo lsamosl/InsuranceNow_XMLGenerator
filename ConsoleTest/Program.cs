@@ -34,6 +34,7 @@ namespace ConsoleTest
                 int total = 1;
                 int zippedFiles = 0;
                 int zipsCreated = 1;
+                String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
                 Console.WriteLine("Processing excel file...");
                 ExcelUtil excelUtil = new ExcelUtil(ExcelInput);
@@ -63,8 +64,8 @@ namespace ConsoleTest
                 {
                     
                     if (zippedFiles % 10 == 0)
-                    {                        
-                        zipName = "InsuranceNow_" + zipsCreated.ToString() + ".zip";
+                    {
+                        zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
                         zipFullPath = zipsPath + zipName;                        
                         ZipFile.CreateFromDirectory(emptyPath, zipFullPath);                        
                         zipsCreated++;
