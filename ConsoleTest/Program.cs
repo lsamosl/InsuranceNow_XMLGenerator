@@ -25,7 +25,7 @@ namespace ConsoleTest
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
 
                 string[] files = Directory.GetFiles(excelPath, "*", SearchOption.AllDirectories);
-                string ExcelInput = Array.Find(files, f => f.Contains(".xlsm") || f.Contains(".xlsx") || f.Contains(".xls"));
+                string ExcelInput = Array.Find(files, f => f.Contains(excelPath) && !f.Contains(processedExcelsPath) && (f.Contains(".xlsm") || f.Contains(".xlsx") || f.Contains(".xls")));
                                                
                 string zipFullPath = string.Empty;
                 string zipName = string.Empty;
@@ -82,7 +82,16 @@ namespace ConsoleTest
 
                 string[] splitedPath = ExcelInput.Split('\\');
                 string excelFileName = splitedPath[splitedPath.Length - 1];
-                File.Move(ExcelInput, processedExcelsPath + excelFileName);
+                string[] newFileData = excelFileName.Split('.');
+                string newFileName = String.Empty;
+                string newFileExtension = newFileData[newFileData.Length - 1];
+
+                for (int i = 0; i < newFileData.Length - 1; i++)
+                {
+                    newFileName = newFileName + newFileData[i] + ".";
+                }
+                string processedTimeStamp = DateTime.Now.ToString("yyyy-MM-dd h-mm-ss tt");
+                File.Move(ExcelInput, processedExcelsPath + newFileName + "Processed at " + processedTimeStamp + "." + newFileExtension);
                 
             }
             catch (Exception e)
@@ -92,7 +101,7 @@ namespace ConsoleTest
             }
 
             Console.WriteLine("Done!");
-            Console.ReadKey();
+            //Console.ReadKey();
 
         }        
     }

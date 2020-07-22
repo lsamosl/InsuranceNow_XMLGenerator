@@ -59,7 +59,7 @@ namespace XMLParser
                     writer.WriteAttributeString("Version", XMLStaticValues.DTORoot_DTOApplication_Version);
                     writer.WriteAttributeString("Status", XMLStaticValues.DTORoot_DTOApplication_Status);
                     writer.WriteAttributeString("TypeCd", XMLStaticValues.DTORoot_DTOApplication_TypeCd);
-                    writer.WriteAttributeString("Description", XMLStaticValues.DTORoot_DTOApplication_Description);
+                    writer.WriteAttributeString("Description", Policy.PolicyNumber);
                     writer.WriteAttributeString("ReadyToRateInd", XMLStaticValues.DTORoot_DTOApplication_ReadyToRateInd);                                    
 
                     #region <QuestionReplies>
