@@ -424,7 +424,7 @@ namespace XMLParser
                     {
                         writer.WriteStartElement("Addr");
 
-                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
+                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
                         writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
                         writer.WriteAttributeString("City", Policy.GaragingCity);
                         writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
