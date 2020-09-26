@@ -24,9 +24,13 @@ namespace XMLGeneretorApp
         public string processedExcelsPath { get; set; }
         public string XmlOutput { get; set; }
 
+        delegate void del(string data);
+        del formDelegate;
+
         public Form1()
         {
             InitializeComponent();
+            formDelegate = new del(UpdateStatusTB);
             xmlPath = "C:\\Test\\XMLs\\";
             emptyPath = "C:\\Test\\Empty\\";
             processedExcelsPath = "C:\\Test\\Processed\\";
@@ -42,8 +46,9 @@ namespace XMLGeneretorApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LogForm logForm = new LogForm();
-            logForm.ShowDialog();
+            //LogForm logForm = new LogForm();
+            //logForm.ShowDialog();
+            System.Diagnostics.Process.Start("notepad.exe", "C:\\Test\\SafeNetLog.txt");
             return;
         }
 
@@ -81,10 +86,15 @@ namespace XMLGeneretorApp
                 int zipsCreated = 1;
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
+                button2.Enabled = false;
+                button3.Enabled = false;
+
                 ExcelUtil excelUtil = new ExcelUtil(excelPath);
                 var workBook = excelUtil.OpenFile();
                 excelUtil.ProcessFile(workBook, Policies);
                 excelUtil.CloseFile(workBook);
+
+                UpdateStatusTB("Generating XMLs...");                
 
                 foreach (Policy p in Policies)
                 {
@@ -98,13 +108,15 @@ namespace XMLGeneretorApp
                     total++;
                 }
 
+                UpdateStatusTB("Compressing into zip files");                
+
                 foreach (string xmlFileName in XmlFileNames)
                 {
 
                     if (zippedFiles % 10 == 0)
                     {
                         zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
-                        zipFullPath = zipsPath + zipName;
+                        zipFullPath = zipsPath + "\\" + zipName;
                         ZipFile.CreateFromDirectory(emptyPath, zipFullPath);
                         zipsCreated++;
                     }
@@ -118,23 +130,29 @@ namespace XMLGeneretorApp
                     }
                 }
 
-                //string[] splitedPath = excelPath.Split('\\');
-                //string excelFileName = splitedPath[splitedPath.Length - 1];
-                //string[] newFileData = excelFileName.Split('.');
-                //string newFileName = String.Empty;
-                //string newFileExtension = newFileData[newFileData.Length - 1];
-
-                //for (int i = 0; i < newFileData.Length - 1; i++)
-                //{
-                //    newFileName = newFileName + newFileData[i] + ".";
-                //}
-                //string processedTimeStamp = DateTime.Now.ToString("yyyy-MM-dd h-mm-ss tt");
-                //File.Move(excelPath, processedExcelsPath + newFileName + "Processed at " + processedTimeStamp + "." + newFileExtension);
+                button2.Enabled = true;
+                button3.Enabled = true;                
             }
             catch (Exception ex)
             {
-
+                errorLabel.Visible = true;
             }
+        }
+
+        private void statusTb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void errorLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateStatusTB(string newLine)
+        {
+            statusTb.Text += Environment.NewLine;
+            statusTb.Text += newLine;
         }
     }
 }

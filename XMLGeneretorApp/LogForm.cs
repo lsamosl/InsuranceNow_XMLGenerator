@@ -16,5 +16,16 @@ namespace XMLGeneretorApp
         {
             InitializeComponent();
         }
+
+        public static string taLog
+        {
+            get { return taLog; }
+            set { taLog = value; }
+        }
+
+        private void logTextArea_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

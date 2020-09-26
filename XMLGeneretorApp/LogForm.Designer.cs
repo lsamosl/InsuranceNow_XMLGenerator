@@ -28,32 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.logTextArea = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // logTextArea
             // 
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(66, 39);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(433, 215);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.logTextArea.AccessibleName = "taLog";
+            this.logTextArea.Enabled = false;
+            this.logTextArea.Location = new System.Drawing.Point(12, 39);
+            this.logTextArea.Name = "logTextArea";
+            this.logTextArea.Size = new System.Drawing.Size(528, 232);
+            this.logTextArea.TabIndex = 0;
+            this.logTextArea.Text = "";
+            this.logTextArea.TextChanged += new System.EventHandler(this.logTextArea_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Log entries";
             // 
             // LogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 295);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.logTextArea);
             this.Name = "LogForm";
             this.Text = "LogForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox logTextArea;
+        private System.Windows.Forms.Label label1;
     }
 }

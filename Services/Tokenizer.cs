@@ -57,7 +57,10 @@ namespace Services
                 var path = ConfigurationManager.AppSettings.Get("LogFileName");
 
                 if (!File.Exists(path))
-                    File.WriteAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage    DateTime") + Environment.NewLine);
+                {
+                    File.WriteAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage    DateTime") + Environment.NewLine);                    
+                }
+                    
 
                 File.AppendAllText(path, string.Format("{0}    {1}    {2}    {3}    {4}", PolicyNumber, DriverName, Token, e.Message, DateTime.Now) + Environment.NewLine);
 
