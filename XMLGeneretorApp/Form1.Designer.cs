@@ -41,6 +41,8 @@
             this.statusTb = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +70,7 @@
             this.tbExcelPath.Name = "tbExcelPath";
             this.tbExcelPath.Size = new System.Drawing.Size(301, 22);
             this.tbExcelPath.TabIndex = 2;
+            this.tbExcelPath.TextChanged += new System.EventHandler(this.tbExcelPath_TextChanged);
             // 
             // tbOutput
             // 
@@ -76,6 +79,7 @@
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.Size = new System.Drawing.Size(301, 22);
             this.tbOutput.TabIndex = 3;
+            this.tbOutput.TextChanged += new System.EventHandler(this.tbOutput_TextChanged);
             // 
             // button1
             // 
@@ -109,6 +113,7 @@
             // 
             // button4
             // 
+            this.button4.Enabled = false;
             this.button4.Location = new System.Drawing.Point(210, 175);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(162, 27);
@@ -124,7 +129,6 @@
             // 
             // statusTb
             // 
-            this.statusTb.Enabled = false;
             this.statusTb.Location = new System.Drawing.Point(28, 234);
             this.statusTb.Name = "statusTb";
             this.statusTb.Size = new System.Drawing.Size(489, 110);
@@ -152,11 +156,33 @@
             this.errorLabel.Visible = false;
             this.errorLabel.Click += new System.EventHandler(this.errorLabel_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(467, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 17);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Version: ";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(527, 4);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(8, 17);
+            this.versionLabel.TabIndex = 13;
+            this.versionLabel.Text = "\r\n";
+            this.versionLabel.Click += new System.EventHandler(this.label5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 393);
+            this.Controls.Add(this.versionLabel);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.statusTb);
@@ -168,6 +194,8 @@
             this.Controls.Add(this.tbExcelPath);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -191,6 +219,8 @@
         private System.Windows.Forms.RichTextBox statusTb;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label versionLabel;
     }
 }
 

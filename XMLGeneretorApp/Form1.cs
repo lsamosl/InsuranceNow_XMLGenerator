@@ -3,6 +3,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 using XMLParser;
 
 namespace XMLGeneretorApp
@@ -23,6 +25,8 @@ namespace XMLGeneretorApp
         public string emptyPath { get; set; }
         public string processedExcelsPath { get; set; }
         public string XmlOutput { get; set; }
+
+        private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
 
         delegate void del(string data);
         del formDelegate;
@@ -37,6 +41,7 @@ namespace XMLGeneretorApp
             XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
             zipsPath = string.Empty;
             excelPath = string.Empty;
+            versionLabel.Text = version;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,12 +94,17 @@ namespace XMLGeneretorApp
                 button2.Enabled = false;
                 button3.Enabled = false;
 
+                var task = Task.Run(() => this.BeginInvoke(formDelegate, "Reading Excel file..."));
+                //await task;
+                
+                //this.BeginInvoke(formDelegate, "Reading Excel file...");
+
                 ExcelUtil excelUtil = new ExcelUtil(excelPath);
                 var workBook = excelUtil.OpenFile();
                 excelUtil.ProcessFile(workBook, Policies);
                 excelUtil.CloseFile(workBook);
 
-                UpdateStatusTB("Generating XMLs...");                
+                this.BeginInvoke(formDelegate, "Generating XMLs...");
 
                 foreach (Policy p in Policies)
                 {
@@ -105,10 +115,13 @@ namespace XMLGeneretorApp
                     XmlFileNames.Add(fileName);
                     XMLGenerator Generator = new XMLGenerator(xmlPath + fileName, p);
                     Generator.Generate();
-                    total++;
+                    total++;                    
                 }
 
-                UpdateStatusTB("Compressing into zip files");                
+                var recordsReaded = total.ToString() + " policies readed";
+                this.BeginInvoke(formDelegate, recordsReaded);
+                
+                this.BeginInvoke(formDelegate, "Compressing into zip files");                                
 
                 foreach (string xmlFileName in XmlFileNames)
                 {
@@ -153,6 +166,38 @@ namespace XMLGeneretorApp
         {
             statusTb.Text += Environment.NewLine;
             statusTb.Text += newLine;
+        }
+
+        private void UpdateGenerationButton()
+        {
+            if (tbExcelPath.Text != String.Empty && tbOutput.Text != String.Empty)
+            {
+                button4.Enabled = true;
+            }
+            else
+            {
+                button4.Enabled = false;
+            }
+        }
+
+        private void tbExcelPath_TextChanged(object sender, EventArgs e)
+        {
+            UpdateGenerationButton();
+        }
+
+        private void tbOutput_TextChanged(object sender, EventArgs e)
+        {
+            UpdateGenerationButton();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
