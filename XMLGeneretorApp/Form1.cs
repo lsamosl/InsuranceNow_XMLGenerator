@@ -17,7 +17,7 @@ using XMLParser;
 
 namespace XMLGeneretorApp
 {
-    public partial class Form1 : Form
+    public partial class frmGenerate : Form
     {
         public string xmlPath { get; set; }
         public string zipsPath { get; set; }
@@ -28,13 +28,10 @@ namespace XMLGeneretorApp
 
         private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
 
-        delegate void del(string data);
-        del formDelegate;
 
-        public Form1()
+        public frmGenerate()
         {
             InitializeComponent();
-            formDelegate = new del(UpdateStatusTB);
             xmlPath = "C:\\Test\\XMLs\\";
             emptyPath = "C:\\Test\\Empty\\";
             processedExcelsPath = "C:\\Test\\Processed\\";
@@ -82,6 +79,24 @@ namespace XMLGeneretorApp
         {
             try
             {
+                statusTb.Text = string.Empty;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
+
+                backgroundWorker1.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                errorLabel.Visible = true;
+            }
+        }
+
+        private void Generate()
+        {
+            Action action = null;
+            try
+            {
                 string zipFullPath = string.Empty;
                 string zipName = string.Empty;
                 List<Policy> Policies = new List<Policy>();
@@ -91,20 +106,19 @@ namespace XMLGeneretorApp
                 int zipsCreated = 1;
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
-                button2.Enabled = false;
-                button3.Enabled = false;
+                action = () => statusTb.AppendText("Process started at "+DateTime.Now);
+                statusTb.Invoke(action);
 
-                var task = Task.Run(() => this.BeginInvoke(formDelegate, "Reading Excel file..."));
-                //await task;
-                
-                //this.BeginInvoke(formDelegate, "Reading Excel file...");
+                action = () => statusTb.AppendText(Environment.NewLine + "Reading Excel file...");
+                statusTb.Invoke(action);
 
                 ExcelUtil excelUtil = new ExcelUtil(excelPath);
                 var workBook = excelUtil.OpenFile();
                 excelUtil.ProcessFile(workBook, Policies);
                 excelUtil.CloseFile(workBook);
 
-                this.BeginInvoke(formDelegate, "Generating XMLs...");
+                action = () => statusTb.AppendText(Environment.NewLine + "Generating XMLs...");
+                statusTb.Invoke(action); 
 
                 foreach (Policy p in Policies)
                 {
@@ -115,13 +129,13 @@ namespace XMLGeneretorApp
                     XmlFileNames.Add(fileName);
                     XMLGenerator Generator = new XMLGenerator(xmlPath + fileName, p);
                     Generator.Generate();
-                    total++;                    
+                    total++;
                 }
 
                 var recordsReaded = total.ToString() + " policies readed";
-                this.BeginInvoke(formDelegate, recordsReaded);
-                
-                this.BeginInvoke(formDelegate, "Compressing into zip files");                                
+
+                action = () => statusTb.AppendText(Environment.NewLine + "Compressing into zip files...");
+                statusTb.Invoke(action);                            
 
                 foreach (string xmlFileName in XmlFileNames)
                 {
@@ -143,12 +157,21 @@ namespace XMLGeneretorApp
                     }
                 }
 
-                button2.Enabled = true;
-                button3.Enabled = true;                
+                action = () => statusTb.AppendText(Environment.NewLine + "Process completed successfully at "+DateTime.Now);
+                statusTb.Invoke(action);                
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                errorLabel.Visible = true;
+                action = () => statusTb.AppendText(Environment.NewLine + "An error occurred: " + ex.Message);
+                statusTb.Invoke(action);
+
+                action = () => statusTb.AppendText(Environment.NewLine + "The process ended with errors at " + DateTime.Now);
+                statusTb.Invoke(action);
+            }
+            finally
+            {
+                if (!backgroundWorker1.IsBusy)
+                    backgroundWorker1.CancelAsync();
             }
         }
 
@@ -198,6 +221,24 @@ namespace XMLGeneretorApp
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker helperBW = sender as BackgroundWorker;
+            Generate();
+
+            if (helperBW.CancellationPending)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
         }
     }
 }

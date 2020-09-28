@@ -1,6 +1,6 @@
 ﻿namespace XMLGeneretorApp
 {
-    partial class Form1
+    partial class frmGenerate
     {
         /// <summary>
         /// Required designer variable.
@@ -43,12 +43,13 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 82);
+            this.label1.Location = new System.Drawing.Point(47, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 0;
@@ -57,7 +58,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 135);
+            this.label2.Location = new System.Drawing.Point(20, 103);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 17);
             this.label2.TabIndex = 1;
@@ -66,7 +67,7 @@
             // tbExcelPath
             // 
             this.tbExcelPath.Enabled = false;
-            this.tbExcelPath.Location = new System.Drawing.Point(132, 82);
+            this.tbExcelPath.Location = new System.Drawing.Point(127, 50);
             this.tbExcelPath.Name = "tbExcelPath";
             this.tbExcelPath.Size = new System.Drawing.Size(301, 22);
             this.tbExcelPath.TabIndex = 2;
@@ -75,7 +76,7 @@
             // tbOutput
             // 
             this.tbOutput.Enabled = false;
-            this.tbOutput.Location = new System.Drawing.Point(132, 132);
+            this.tbOutput.Location = new System.Drawing.Point(127, 100);
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.Size = new System.Drawing.Size(301, 22);
             this.tbOutput.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(442, 350);
+            this.button1.Location = new System.Drawing.Point(437, 318);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 31);
             this.button1.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(442, 79);
+            this.button2.Location = new System.Drawing.Point(437, 47);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 28);
             this.button2.TabIndex = 5;
@@ -103,7 +104,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(442, 131);
+            this.button3.Location = new System.Drawing.Point(437, 99);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 25);
             this.button3.TabIndex = 6;
@@ -114,7 +115,7 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(210, 175);
+            this.button4.Location = new System.Drawing.Point(205, 143);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(162, 27);
             this.button4.TabIndex = 7;
@@ -129,7 +130,7 @@
             // 
             // statusTb
             // 
-            this.statusTb.Location = new System.Drawing.Point(28, 234);
+            this.statusTb.Location = new System.Drawing.Point(23, 202);
             this.statusTb.Name = "statusTb";
             this.statusTb.Size = new System.Drawing.Size(489, 110);
             this.statusTb.TabIndex = 8;
@@ -139,7 +140,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 214);
+            this.label3.Location = new System.Drawing.Point(20, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 9;
@@ -148,7 +149,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(300, 357);
+            this.errorLabel.Location = new System.Drawing.Point(295, 325);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(133, 17);
             this.errorLabel.TabIndex = 11;
@@ -176,11 +177,16 @@
             this.versionLabel.Text = "\r\n";
             this.versionLabel.Click += new System.EventHandler(this.label5_Click);
             // 
-            // Form1
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // frmGenerate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 393);
+            this.ClientSize = new System.Drawing.Size(585, 368);
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.errorLabel);
@@ -196,8 +202,8 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmGenerate";
+            this.Text = "Generate XML for IN";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -221,6 +227,7 @@
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label versionLabel;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
