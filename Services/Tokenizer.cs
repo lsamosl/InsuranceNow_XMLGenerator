@@ -41,9 +41,17 @@ namespace Services
             try
             {
                 if (isIntranet)
+                {
                     detokenizeString = service.GetValue(naeUser, naePassword, dbUser, dbPswd, tableName, Token, 0);
+                    var path = ConfigurationManager.AppSettings.Get("LogFileName");
+                    File.AppendAllText(path, PolicyNumber + " detokenized succesfully at " + DateTime.Now.ToString() + Environment.NewLine);
+                }
                 else
+                {
                     detokenizeString = Token;
+                }
+                              
+                    
 
                 response = new ResponseDetokenize()
                 {
@@ -58,11 +66,17 @@ namespace Services
 
                 if (!File.Exists(path))
                 {
-                    File.WriteAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage    DateTime") + Environment.NewLine);                    
+                    File.WriteAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage    DateTime") + Environment.NewLine);                                        
                 }
-                    
 
-                File.AppendAllText(path, string.Format("{0}    {1}    {2}    {3}    {4}", PolicyNumber, DriverName, Token, e.Message, DateTime.Now) + Environment.NewLine);
+                String previousText = String.Empty;
+                previousText = File.ReadAllText(path);
+                
+                File.WriteAllText(path, String.Empty);
+                File.AppendAllText(path, "Logs registered at: " + DateTime.Now.ToString() + Environment.NewLine);
+                File.AppendAllText(path, string.Format("PolicyNumber    DriverName    License    ErrorMessage") + Environment.NewLine);                
+                File.AppendAllText(path, string.Format("{0}    {1}    {2}    {3}", PolicyNumber, DriverName, Token, e.Message) + Environment.NewLine);
+                File.AppendAllText(path, previousText);                                
 
                 response.Message = e.Message;
             }

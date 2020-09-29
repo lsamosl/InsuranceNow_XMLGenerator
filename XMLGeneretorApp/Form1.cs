@@ -26,15 +26,15 @@ namespace XMLGeneretorApp
         public string processedExcelsPath { get; set; }
         public string XmlOutput { get; set; }
 
-        private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
-
+        //private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
+        private string version = System.Windows.Forms.Application.ProductVersion;
 
         public frmGenerate()
         {
             InitializeComponent();
-            xmlPath = "C:\\Test\\XMLs\\";
-            emptyPath = "C:\\Test\\Empty\\";
-            processedExcelsPath = "C:\\Test\\Processed\\";
+            xmlPath = "XMLs\\";
+            emptyPath = "Empty\\";
+            processedExcelsPath = "Processed\\";
             XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
             zipsPath = string.Empty;
             excelPath = string.Empty;
@@ -50,7 +50,12 @@ namespace XMLGeneretorApp
         {
             //LogForm logForm = new LogForm();
             //logForm.ShowDialog();
-            System.Diagnostics.Process.Start("notepad.exe", "C:\\Test\\SafeNetLog.txt");
+            var path = ConfigurationManager.AppSettings.Get("LogFileName");
+            if (!File.Exists(path))
+            {
+                File.WriteAllText(path, String.Empty);
+            }
+            System.Diagnostics.Process.Start("notepad.exe", path);
             return;
         }
 
@@ -127,6 +132,10 @@ namespace XMLGeneretorApp
                                                 Replace("[VEHICLES]", p.Vehicles.Count.ToString());
 
                     XmlFileNames.Add(fileName);
+                    if (!Directory.Exists(xmlPath))
+                    {
+                        Directory.CreateDirectory(xmlPath);
+                    }
                     XMLGenerator Generator = new XMLGenerator(xmlPath + fileName, p);
                     Generator.Generate();
                     total++;
@@ -135,7 +144,12 @@ namespace XMLGeneretorApp
                 var recordsReaded = total.ToString() + " policies readed";
 
                 action = () => statusTb.AppendText(Environment.NewLine + "Compressing into zip files...");
-                statusTb.Invoke(action);                            
+                statusTb.Invoke(action);
+
+                if (!Directory.Exists(emptyPath))
+                {
+                    Directory.CreateDirectory(emptyPath);
+                }
 
                 foreach (string xmlFileName in XmlFileNames)
                 {
@@ -143,7 +157,7 @@ namespace XMLGeneretorApp
                     if (zippedFiles % 10 == 0)
                     {
                         zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
-                        zipFullPath = zipsPath + "\\" + zipName;
+                        zipFullPath = zipsPath + "\\" + zipName;                        
                         ZipFile.CreateFromDirectory(emptyPath, zipFullPath);
                         zipsCreated++;
                     }
@@ -167,6 +181,19 @@ namespace XMLGeneretorApp
 
                 action = () => statusTb.AppendText(Environment.NewLine + "The process ended with errors at " + DateTime.Now);
                 statusTb.Invoke(action);
+
+                var path = ConfigurationManager.AppSettings.Get("LogFileName");
+                if (!File.Exists(path))
+                {
+                    File.WriteAllText(path, "An Error ocurred: " + ex.Message + " at " + DateTime.Now.ToString() + Environment.NewLine);
+                }
+
+                String previousText = String.Empty;
+                previousText = File.ReadAllText(path);
+
+                File.WriteAllText(path, String.Empty);
+                File.AppendAllText(path, "An Error ocurred: " + ex.Message + " at " + DateTime.Now.ToString() + Environment.NewLine);
+                File.AppendAllText(path, previousText);                                
             }
             finally
             {
