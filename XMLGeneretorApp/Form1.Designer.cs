@@ -44,12 +44,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnPGPBrowse = new System.Windows.Forms.Button();
+            this.tbOutputPGP = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.outputPGPBrowse = new System.Windows.Forms.FolderBrowserDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.publicKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 50);
+            this.label1.Location = new System.Drawing.Point(47, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 0;
@@ -58,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 103);
+            this.label2.Location = new System.Drawing.Point(20, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 17);
             this.label2.TabIndex = 1;
@@ -67,7 +75,7 @@
             // tbExcelPath
             // 
             this.tbExcelPath.Enabled = false;
-            this.tbExcelPath.Location = new System.Drawing.Point(127, 50);
+            this.tbExcelPath.Location = new System.Drawing.Point(127, 54);
             this.tbExcelPath.Name = "tbExcelPath";
             this.tbExcelPath.Size = new System.Drawing.Size(301, 22);
             this.tbExcelPath.TabIndex = 2;
@@ -76,7 +84,7 @@
             // tbOutput
             // 
             this.tbOutput.Enabled = false;
-            this.tbOutput.Location = new System.Drawing.Point(127, 100);
+            this.tbOutput.Location = new System.Drawing.Point(127, 104);
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.Size = new System.Drawing.Size(301, 22);
             this.tbOutput.TabIndex = 3;
@@ -84,7 +92,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(437, 318);
+            this.button1.Location = new System.Drawing.Point(437, 404);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 31);
             this.button1.TabIndex = 4;
@@ -94,7 +102,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(437, 47);
+            this.button2.Location = new System.Drawing.Point(437, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 28);
             this.button2.TabIndex = 5;
@@ -104,7 +112,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(437, 99);
+            this.button3.Location = new System.Drawing.Point(437, 103);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 25);
             this.button3.TabIndex = 6;
@@ -115,7 +123,7 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(205, 143);
+            this.button4.Location = new System.Drawing.Point(204, 203);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(162, 27);
             this.button4.TabIndex = 7;
@@ -130,9 +138,9 @@
             // 
             // statusTb
             // 
-            this.statusTb.Location = new System.Drawing.Point(23, 202);
+            this.statusTb.Location = new System.Drawing.Point(23, 258);
             this.statusTb.Name = "statusTb";
-            this.statusTb.Size = new System.Drawing.Size(489, 110);
+            this.statusTb.Size = new System.Drawing.Size(489, 140);
             this.statusTb.TabIndex = 8;
             this.statusTb.Text = "";
             this.statusTb.TextChanged += new System.EventHandler(this.statusTb_TextChanged);
@@ -140,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 182);
+            this.label3.Location = new System.Drawing.Point(20, 238);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 9;
@@ -149,7 +157,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(295, 325);
+            this.errorLabel.Location = new System.Drawing.Point(295, 411);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(133, 17);
             this.errorLabel.TabIndex = 11;
@@ -182,11 +190,67 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // btnPGPBrowse
+            // 
+            this.btnPGPBrowse.Location = new System.Drawing.Point(437, 155);
+            this.btnPGPBrowse.Name = "btnPGPBrowse";
+            this.btnPGPBrowse.Size = new System.Drawing.Size(75, 25);
+            this.btnPGPBrowse.TabIndex = 16;
+            this.btnPGPBrowse.Text = "Browse";
+            this.btnPGPBrowse.UseVisualStyleBackColor = true;
+            this.btnPGPBrowse.Click += new System.EventHandler(this.btnPGPBrowse_Click);
+            // 
+            // tbOutputPGP
+            // 
+            this.tbOutputPGP.Enabled = false;
+            this.tbOutputPGP.Location = new System.Drawing.Point(127, 156);
+            this.tbOutputPGP.Name = "tbOutputPGP";
+            this.tbOutputPGP.Size = new System.Drawing.Size(301, 22);
+            this.tbOutputPGP.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 159);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 17);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Output PGP File";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configurationToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(585, 28);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // configurationToolStripMenuItem
+            // 
+            this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.publicKeyToolStripMenuItem});
+            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.configurationToolStripMenuItem.Text = "Configuration";
+            // 
+            // publicKeyToolStripMenuItem
+            // 
+            this.publicKeyToolStripMenuItem.Name = "publicKeyToolStripMenuItem";
+            this.publicKeyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.publicKeyToolStripMenuItem.Text = "Public Key";
+            this.publicKeyToolStripMenuItem.Click += new System.EventHandler(this.publicKeyToolStripMenuItem_Click);
+            // 
             // frmGenerate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 368);
+            this.ClientSize = new System.Drawing.Size(585, 465);
+            this.Controls.Add(this.btnPGPBrowse);
+            this.Controls.Add(this.tbOutputPGP);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.errorLabel);
@@ -200,11 +264,15 @@
             this.Controls.Add(this.tbExcelPath);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "frmGenerate";
             this.Text = "Generate XML for IN";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,6 +296,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label versionLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnPGPBrowse;
+        private System.Windows.Forms.TextBox tbOutputPGP;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FolderBrowserDialog outputPGPBrowse;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem publicKeyToolStripMenuItem;
     }
 }
 

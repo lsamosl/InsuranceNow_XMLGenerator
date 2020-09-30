@@ -12,8 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading.Tasks;
 using XMLParser;
+using Cinchoo.PGP;
+
 
 namespace XMLGeneretorApp
 {
@@ -21,10 +22,14 @@ namespace XMLGeneretorApp
     {
         public string xmlPath { get; set; }
         public string zipsPath { get; set; }
+        public string PGPPath { get; set; }
         public string excelPath { get; set; }
         public string emptyPath { get; set; }
         public string processedExcelsPath { get; set; }
         public string XmlOutput { get; set; }
+        public ChoPGPEncryptDecrypt PGP { get; set; }
+        public string PublicKey { get; set; }
+        public FileInfo PublicKeyPath { get; set; }
 
         //private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
         private string version = System.Windows.Forms.Application.ProductVersion;
@@ -38,7 +43,10 @@ namespace XMLGeneretorApp
             XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
             zipsPath = string.Empty;
             excelPath = string.Empty;
+            PGPPath = string.Empty;
             versionLabel.Text = version;
+            PGP = new ChoPGPEncryptDecrypt();
+            PublicKey = Properties.Settings.Default["PublicKey"].ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -84,14 +92,32 @@ namespace XMLGeneretorApp
         {
             try
             {
+                PublicKey = Properties.Settings.Default["PublicKey"].ToString();
+                if (string.IsNullOrEmpty(PublicKey))
+                {
+                    MessageBox.Show("The public key has not been saved.");
+                    return;
+                }
+                else
+                {
+                    string filename = Path.GetTempFileName();
+
+                    PublicKeyPath = new FileInfo(filename);
+                    PublicKeyPath.Attributes = FileAttributes.Temporary;
+
+                    using (StreamWriter sw = new StreamWriter(filename))
+                        sw.WriteLine(PublicKey);
+                }
+
                 statusTb.Text = string.Empty;
                 button2.Enabled = false;
                 button3.Enabled = false;
                 button4.Enabled = false;
+                btnPGPBrowse.Enabled = false;
 
                 backgroundWorker1.RunWorkerAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 errorLabel.Visible = true;
             }
@@ -100,6 +126,8 @@ namespace XMLGeneretorApp
         private void Generate()
         {
             Action action = null;
+            Dictionary<String, String> ZipFiles = new Dictionary<String, String>();
+
             try
             {
                 string zipFullPath = string.Empty;
@@ -157,7 +185,8 @@ namespace XMLGeneretorApp
                     if (zippedFiles % 10 == 0)
                     {
                         zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
-                        zipFullPath = zipsPath + "\\" + zipName;                        
+                        zipFullPath = zipsPath + "\\" + zipName;
+                        ZipFiles.Add(zipName, zipFullPath);
                         ZipFile.CreateFromDirectory(emptyPath, zipFullPath);
                         zipsCreated++;
                     }
@@ -171,6 +200,18 @@ namespace XMLGeneretorApp
                     }
                 }
 
+                action = () => statusTb.AppendText(Environment.NewLine + "Encrypting Zip Files... ");
+                statusTb.Invoke(action);
+
+                if (!Directory.Exists(PGPPath))
+                    Directory.CreateDirectory(PGPPath);
+
+                foreach (var zipfile in ZipFiles)
+                {
+                    string outputPgpFile = string.Format("{0}\\{1}.pgp", PGPPath, zipfile.Key);
+                    PGP.EncryptFile(zipfile.Value, outputPgpFile, PublicKeyPath.FullName, false, true);
+                }
+                    
                 action = () => statusTb.AppendText(Environment.NewLine + "Process completed successfully at "+DateTime.Now);
                 statusTb.Invoke(action);                
             }
@@ -237,6 +278,8 @@ namespace XMLGeneretorApp
 
         private void tbOutput_TextChanged(object sender, EventArgs e)
         {
+            PGPPath = tbOutput.Text + "\\PGP_Files";
+            tbOutputPGP.Text = PGPPath;
             UpdateGenerationButton();
         }
 
@@ -266,6 +309,24 @@ namespace XMLGeneretorApp
             button2.Enabled = true;
             button3.Enabled = true;
             button4.Enabled = true;
+            btnPGPBrowse.Enabled = true;
+        }
+
+        private void btnPGPBrowse_Click(object sender, EventArgs e)
+        {
+            var result = outputPGPBrowse.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                tbOutputPGP.Text = outputPGPBrowse.SelectedPath;
+                PGPPath = outputPGPBrowse.SelectedPath;
+            }
+        }
+
+        private void publicKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PublicKey form = new PublicKey();
+            form.ShowDialog();
+            return;
         }
     }
 }
