@@ -7,6 +7,7 @@ using System.IO;
 //using System.IO.Directory;
 using System.Configuration;
 using XMLParser;
+using Cinchoo.PGP;
 
 namespace ConsoleTest
 {
@@ -20,6 +21,8 @@ namespace ConsoleTest
                 string zipsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("zipsPath"));
                 string excelPath = Convert.ToString(ConfigurationManager.AppSettings.Get("excelPath"));
                 string emptyPath = Convert.ToString(ConfigurationManager.AppSettings.Get("emptyPath"));
+                string pgpPath = Convert.ToString(ConfigurationManager.AppSettings.Get("pgpPath"));
+                string publicKey = Convert.ToString(ConfigurationManager.AppSettings.Get("publicKey"));
                 string processedExcelsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("processedExcelsPath"));
 
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
@@ -34,6 +37,9 @@ namespace ConsoleTest
                 int total = 1;
                 int zippedFiles = 0;
                 int zipsCreated = 1;
+
+                ChoPGPEncryptDecrypt pgp = new ChoPGPEncryptDecrypt();
+
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
                 Console.WriteLine("Processing excel file...");
@@ -67,7 +73,8 @@ namespace ConsoleTest
                     {
                         zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
                         zipFullPath = zipsPath + zipName;                        
-                        ZipFile.CreateFromDirectory(emptyPath, zipFullPath);                        
+                        ZipFile.CreateFromDirectory(emptyPath, zipFullPath);                       
+                                                
                         zipsCreated++;
                     }
 
@@ -76,8 +83,15 @@ namespace ConsoleTest
                         string filePath = xmlPath + xmlFileName;
                         zip.CreateEntryFromFile(filePath, xmlFileName);
                         zippedFiles++;
-                        File.Delete(filePath);
-                    }                    
+                        File.Delete(filePath);                        
+                    }
+
+                    if (zippedFiles % 10 == 0)
+                    {
+                        Console.WriteLine("Encrypting zip number " + zipsCreated);
+                        var pgpOutputFilePath = pgpPath + zipName + ".pgp";
+                        pgp.EncryptFile(zipFullPath, pgpOutputFilePath, publicKey, false, true);
+                    }
                 }
 
                 string[] splitedPath = ExcelInput.Split('\\');
