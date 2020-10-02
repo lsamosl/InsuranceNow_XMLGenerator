@@ -1,13 +1,15 @@
-﻿using ExcelParser;
-using Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO.Compression;
-using System.IO;
 //using System.IO.Directory;
 using System.Configuration;
+using System.IO;
+//using System.IO.Compression;
+using Models;
+using ExcelParser;
 using XMLParser;
+
 using Cinchoo.PGP;
+using Ionic.Zip;
 
 namespace ConsoleTest
 {
@@ -24,6 +26,7 @@ namespace ConsoleTest
                 string pgpPath = Convert.ToString(ConfigurationManager.AppSettings.Get("pgpPath"));
                 string publicKey = Convert.ToString(ConfigurationManager.AppSettings.Get("publicKey"));
                 string processedExcelsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("processedExcelsPath"));
+                string zipsPassword = Convert.ToString(ConfigurationManager.AppSettings.Get("zipsPassword"));
 
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
 
@@ -72,18 +75,27 @@ namespace ConsoleTest
                     if (zippedFiles % 10 == 0)
                     {
                         zipName = "InsuranceNow_" + zipsTimestamp + "_" + zipsCreated.ToString() + ".zip";
-                        zipFullPath = zipsPath + zipName;                        
-                        ZipFile.CreateFromDirectory(emptyPath, zipFullPath);                       
+                        zipFullPath = zipsPath + zipName;
+                        
+                        using (ZipFile zip = new ZipFile(zipFullPath))
+                        {
+                            zip.Password = zipsPassword;                            
+                            zip.Save();
+                        }
                                                 
                         zipsCreated++;
-                    }
+                    }                                       
 
-                    using (ZipArchive zip = ZipFile.Open(zipFullPath, ZipArchiveMode.Update))
+                    using (ZipFile zip = ZipFile.Read(zipFullPath))
                     {
                         string filePath = xmlPath + xmlFileName;
-                        zip.CreateEntryFromFile(filePath, xmlFileName);
+
+                        zip.Password = zipsPassword;
+                        zip.AddFile(filePath, String.Empty);
+                        zip.Save();
                         zippedFiles++;
-                        File.Delete(filePath);                        
+                        
+                        File.Delete(filePath);
                     }
 
                     if (zippedFiles % 10 == 0)
