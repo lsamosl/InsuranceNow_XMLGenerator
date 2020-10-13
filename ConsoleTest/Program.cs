@@ -46,6 +46,13 @@ namespace ConsoleTest
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
 
                 Console.WriteLine("Processing excel file...");
+
+                if (ExcelInput == null)
+                {
+                    Console.WriteLine("No spreadsheet file was found (.xlsm, .xlsx, .xls) at " + excelPath);
+                    Environment.Exit(0);
+                }
+
                 ExcelUtil excelUtil = new ExcelUtil(ExcelInput);
                 var workBook = excelUtil.OpenFile();
                 excelUtil.ProcessFile(workBook, Policies);
