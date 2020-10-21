@@ -32,6 +32,7 @@ namespace XMLGeneretorApp
         public string PublicKey { get; set; }
         public FileInfo PublicKeyPath { get; set; }
         public string zipsPassword { get; set; }
+        public bool enableZipsPassword { get; set; }
 
         //private string version = Convert.ToString(ConfigurationManager.AppSettings.Get("version"));
         private string version = System.Windows.Forms.Application.ProductVersion;
@@ -50,6 +51,7 @@ namespace XMLGeneretorApp
             PGP = new ChoPGPEncryptDecrypt();
             PublicKey = Properties.Settings.Default["PublicKey"].ToString();
             zipsPassword = Properties.Settings.Default["zipsPassword"].ToString();
+            enableZipsPassword = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -115,12 +117,15 @@ namespace XMLGeneretorApp
                         sw.WriteLine(PublicKey);
                 }
 
-                if (string.IsNullOrEmpty(zipsPassword))
+                if (enableZipsPassword)
                 {
-                    MessageBox.Show("A password is needed");
-                    return;
+                    if (string.IsNullOrEmpty(zipsPassword))
+                    {
+                        MessageBox.Show("A password is needed");
+                        return;
+                    }
                 }
-
+                
                 statusTb.Text = string.Empty;
                 button2.Enabled = false;
                 button3.Enabled = false;
@@ -152,6 +157,9 @@ namespace XMLGeneretorApp
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");                
 
                 action = () => passwordToolStripMenuItem.Enabled = false;
+                statusTb.Invoke(action);
+
+                action = () => enablePasswordZipsToolStripMenuItem.Enabled = false;
                 statusTb.Invoke(action);
 
                 action = () => statusTb.AppendText("Process started at "+DateTime.Now);
@@ -205,7 +213,10 @@ namespace XMLGeneretorApp
 
                         using (ZipFile zip = new ZipFile(zipFullPath))
                         {
-                            zip.Password = zipsPassword;
+                            if (enableZipsPassword)
+                            {
+                                zip.Password = zipsPassword;
+                            }                            
                             zip.Save();
                         }
 
@@ -216,7 +227,11 @@ namespace XMLGeneretorApp
                     {
                         string filePath = xmlPath + xmlFileName;
 
-                        zip.Password = zipsPassword;
+                        if (enableZipsPassword)
+                        {
+                            zip.Password = zipsPassword;
+                        }
+                                                
                         zip.AddFile(filePath, String.Empty);
                         zip.Save();
                         zippedFiles++;
@@ -238,6 +253,9 @@ namespace XMLGeneretorApp
                 }
                     
                 action = () => statusTb.AppendText(Environment.NewLine + "Process completed successfully at "+DateTime.Now);
+                statusTb.Invoke(action);
+
+                action = () => enablePasswordZipsToolStripMenuItem.Enabled = true;
                 statusTb.Invoke(action);
 
                 action = () => passwordToolStripMenuItem.Enabled = true;
@@ -362,6 +380,12 @@ namespace XMLGeneretorApp
             Password form = new Password();
             form.ShowDialog();
             return;
+        }
+
+        private void enablePasswordZipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            enableZipsPassword = enablePasswordZipsToolStripMenuItem.Checked;
+            passwordToolStripMenuItem.Enabled = enableZipsPassword;            
         }        
     }
 }
