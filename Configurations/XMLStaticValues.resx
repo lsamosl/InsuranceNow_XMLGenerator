@@ -358,4 +358,22 @@
   <data name="Coverage_Rental_Name" xml:space="preserve">
     <value>RE</value>
   </data>
+  <data name="Coverage_CDW_Description" xml:space="preserve">
+    <value>Waiver of Collision Deductible</value>
+  </data>
+  <data name="Coverage_CDW_Name" xml:space="preserve">
+    <value>CDW</value>
+  </data>
+  <data name="Coverage_UMPD_Description" xml:space="preserve">
+    <value>UM-Property Damage - Per Accident</value>
+  </data>
+  <data name="Coverage_UMPD_Name" xml:space="preserve">
+    <value>UMPD</value>
+  </data>
+  <data name="Coverage_UMPD_Value" xml:space="preserve">
+    <value>3500</value>
+  </data>
+  <data name="DTOInsured_PartyInfo_NonDriverParty" xml:space="preserve">
+    <value>NonDriverParty</value>
+  </data>
 </root>

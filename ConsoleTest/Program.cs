@@ -28,6 +28,8 @@ namespace ConsoleTest
                 string processedExcelsPath = Convert.ToString(ConfigurationManager.AppSettings.Get("processedExcelsPath"));
                 string zipsPassword = Convert.ToString(ConfigurationManager.AppSettings.Get("zipsPassword"));
 
+                bool enableZipsPassword = Convert.ToBoolean(Convert.ToString(ConfigurationManager.AppSettings.Get("enableZipsPassword")));
+
                 string XmlOutput = "InsuranceNow_[POLICYNUMBER]_Drivers_[DRIVERS]_Vehicles_[VEHICLES].xml";
 
                 string[] files = Directory.GetFiles(excelPath, "*", SearchOption.AllDirectories);
@@ -86,7 +88,11 @@ namespace ConsoleTest
                         
                         using (ZipFile zip = new ZipFile(zipFullPath))
                         {
-                            zip.Password = zipsPassword;                            
+                            if (enableZipsPassword)
+                            {
+                                zip.Password = zipsPassword;
+                            }
+                                                        
                             zip.Save();
                         }
                                                 
@@ -97,7 +103,11 @@ namespace ConsoleTest
                     {
                         string filePath = xmlPath + xmlFileName;
 
-                        zip.Password = zipsPassword;
+                        if (enableZipsPassword)
+                        {
+                            zip.Password = zipsPassword;
+                        }
+                        
                         zip.AddFile(filePath, String.Empty);
                         zip.Save();
                         zippedFiles++;
