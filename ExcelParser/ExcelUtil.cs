@@ -87,7 +87,11 @@ namespace ExcelParser
                 policyNumber = (string)rangeObject.Value2;
 
                 do
-                {                        
+                {
+                    //var driverName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_FirstName].Value2.ToString().Trim();
+                    //var driverGender1 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString();
+                    //var driverGender = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_Gender].Value2.ToString().Trim() == "M" ? "Male" : "Female";
+  
                     DriverList.Add(new Driver
                     {
                         FirstName = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_FirstName].Value2.ToString().Trim(),
@@ -107,6 +111,8 @@ namespace ExcelParser
                         Sr22 = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_sr22].Value2.ToString().Trim() == "Y" ? "Yes" : "No",
                         PolicyNumber = policyNumber
                     });
+
+                    //Driver dr = DriverList[0];
 
                     IndexRow++;
                     rangeObject = DriverSheet.Cells[IndexRow, ExcelConfiguration.Driver_PolicyNumber];

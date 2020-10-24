@@ -31,7 +31,7 @@ namespace XMLParser
                 int countDrivers = 1;
                 Driver principalDriver = Policy.Drivers.Count > 0 ? Policy.Drivers[0] : null;
                 string fullName = string.Format("{0} {1}", Policy.FirstName, Policy.LastName);
-                string Gender = principalDriver != null ? (principalDriver.Gender == "M" ? "Male" : "Female") : string.Empty;
+                string Gender = principalDriver != null ? principalDriver.Gender : string.Empty;
                 string term = string.Format("{0} {1}", Int32.Parse(Policy.Term).ToString(), "Months");
                 string[] NameTypeCd = XMLStaticValues.PartyInfo_NameInfo_NameTypeCd.Split('|');
                 string[] PersonTypeCd = XMLStaticValues.PartyInfo_PersonInfo_PersonTypeCd.Split('|'); 
@@ -229,6 +229,60 @@ namespace XMLParser
                             writer.WriteEndElement(); //End DTOCoverage
                         }
 
+                        if (!string.IsNullOrEmpty(Policy.General.UmpdCdw))
+                        {                            
+                            if (string.IsNullOrEmpty(v.CollDeduct) && string.IsNullOrEmpty(v.CompDeduct))
+                            {
+                                writer.WriteStartElement("DTOCoverage");
+
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_UMPD_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_UMPD_Description);
+
+                                writer.WriteStartElement("DTOLimit");
+                                writer.WriteAttributeString("LimitCd", XMLStaticValues.DTOCoverage_DTOLimit_LimitCd);
+                                writer.WriteAttributeString("TypeCd", XMLStaticValues.DTOCoverage2_DTOLimit_TypeCd);
+                                writer.WriteAttributeString("Value", XMLStaticValues.Coverage_UMPD_Value);
+                                writer.WriteEndElement(); //End DTOLimit
+
+                                writer.WriteEndElement();
+                            }
+                            else
+                            {
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CPR_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CPR_Description);
+
+                                writer.WriteStartElement("DTODeductible");
+                                writer.WriteAttributeString("DeductibleCD", XMLStaticValues.Deductible_DeductibleCd);
+                                writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
+                                writer.WriteAttributeString("Value", v.Coverages.CPR.Value1);
+                                writer.WriteEndElement();
+
+                                writer.WriteEndElement();
+
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_COLL_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_COLL_Description);                                
+
+                                writer.WriteStartElement("DTODeductible");
+                                writer.WriteAttributeString("DeductibleCD", XMLStaticValues.Deductible_DeductibleCd);
+                                writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
+                                writer.WriteAttributeString("Value", v.Coverages.COLL.Value1);
+                                writer.WriteEndElement();
+
+                                writer.WriteEndElement();
+
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CDW_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CDW_Description);
+                                writer.WriteEndElement();
+                            }                            
+                        }
+
                         if (v.Coverages.CPR.hasCoverage)
                         {
                             writer.WriteStartElement("DTOCoverage");
@@ -288,7 +342,7 @@ namespace XMLParser
                             writer.WriteEndElement(); //End DTOLimit
 
                             writer.WriteEndElement(); //End DTOCoverage
-                        }
+                        }                        
 
                         writer.WriteEndElement(); //End DTORisk
                     }
@@ -308,6 +362,7 @@ namespace XMLParser
 
                     writer.WriteAttributeString("PersonTypeCd", PersonTypeCd[0]);
                     writer.WriteAttributeString("GenderCd", Gender);
+                    writer.WriteAttributeString("DisplayGender", Gender);
                     writer.WriteAttributeString("BirthDt", principalDriver != null ? principalDriver.BirthDate : string.Empty);
                     writer.WriteAttributeString("MaritalStatusCd", principalDriver != null ? principalDriver.MaritalStatus : string.Empty);
                     writer.WriteAttributeString("OccupationClassCd", principalDriver != null ? principalDriver.Occupation : string.Empty);
@@ -325,7 +380,7 @@ namespace XMLParser
 
                     writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd);
                     writer.WriteAttributeString("DriverNumber", 1.ToString());
-                    writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal" : "Excluded");
+                    writer.WriteAttributeString("DriverStatusCd", d.DriverStatus == "Active" ? "Principal" : "Excluded");                    
 
                     if (response.Result)
                         writer.WriteAttributeString("LicenseNumber", response.DetokenizedString);
@@ -386,7 +441,7 @@ namespace XMLParser
                     #region <PartyInfo>
                     writer.WriteStartElement("PartyInfo");
 
-                    writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOInsured_PartyInfo_PartyTypeCd);
+                    writer.WriteAttributeString("PartyTypeCd", d.DriverStatus == "Active" ? XMLStaticValues.DTOInsured_PartyInfo_PartyTypeCd : XMLStaticValues.DTOInsured_PartyInfo_NonDriverParty);                                                               
 
                     #region <PersonInfo>
                     writer.WriteStartElement("PersonInfo");
@@ -541,13 +596,14 @@ namespace XMLParser
                             var licenseResponse = tokenizerService.Detokenize(driver.LicenseNumber);
 
                             writer.WriteStartElement("PartyInfo");
-                            writer.WriteAttributeString("PartyTypeCd", XMLStaticValues.DTOApplication_PartyInfo_PartyTypeCd);
+                            writer.WriteAttributeString("PartyTypeCd", driver.DriverStatus == "Active" ? XMLStaticValues.DTOApplication_PartyInfo_PartyTypeCd : XMLStaticValues.DTOInsured_PartyInfo_NonDriverParty);                            
                             writer.WriteAttributeString("Status", XMLStaticValues.DTOApplication_PartyInfo_Status);
                             
                             writer.WriteStartElement("PersonInfo");
 
                             writer.WriteAttributeString("PersonTypeCd", PersonTypeCd[0]);
                             writer.WriteAttributeString("GenderCd", driver.Gender);
+                            writer.WriteAttributeString("DisplayGender", driver.Gender);
                             writer.WriteAttributeString("BirthDt", driver.BirthDate);
                             writer.WriteAttributeString("MaritalStatusCd", driver.MaritalStatus);
                             writer.WriteAttributeString("OccupationClassCd", driver.Occupation);

@@ -19,7 +19,7 @@ namespace Configurations {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class XMLStaticValues {
@@ -75,6 +75,24 @@ namespace Configurations {
         public static string Coverage_BI_Name {
             get {
                 return ResourceManager.GetString("Coverage_BI_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiver of Collision Deductible.
+        /// </summary>
+        public static string Coverage_CDW_Description {
+            get {
+                return ResourceManager.GetString("Coverage_CDW_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CDW.
+        /// </summary>
+        public static string Coverage_CDW_Name {
+            get {
+                return ResourceManager.GetString("Coverage_CDW_Name", resourceCulture);
             }
         }
         
@@ -192,6 +210,33 @@ namespace Configurations {
         public static string Coverage_UMBI_Name {
             get {
                 return ResourceManager.GetString("Coverage_UMBI_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UM-Property Damage - Per Accident.
+        /// </summary>
+        public static string Coverage_UMPD_Description {
+            get {
+                return ResourceManager.GetString("Coverage_UMPD_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UMPD.
+        /// </summary>
+        public static string Coverage_UMPD_Name {
+            get {
+                return ResourceManager.GetString("Coverage_UMPD_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3500.
+        /// </summary>
+        public static string Coverage_UMPD_Value {
+            get {
+                return ResourceManager.GetString("Coverage_UMPD_Value", resourceCulture);
             }
         }
         
@@ -516,6 +561,15 @@ namespace Configurations {
         public static string DTOCoverage2_DTOLimit_TypeCd {
             get {
                 return ResourceManager.GetString("DTOCoverage2_DTOLimit_TypeCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NonDriverParty.
+        /// </summary>
+        public static string DTOInsured_PartyInfo_NonDriverParty {
+            get {
+                return ResourceManager.GetString("DTOInsured_PartyInfo_NonDriverParty", resourceCulture);
             }
         }
         
