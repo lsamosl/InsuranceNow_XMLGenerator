@@ -50,25 +50,34 @@ namespace XMLGeneretorApp
 
         private void buttonSetPassword_Click(object sender, EventArgs e)
         {
-            if (tbPassword.Text.Equals(tbConfirmPassword.Text))
+            if (string.IsNullOrEmpty(tbPassword.Text) && string.IsNullOrEmpty(tbConfirmPassword.Text))
             {
-                password = tbPassword.Text;
-
-                if (alert.Visible)
-                {
-                    alert.Visible = false;
-                }
-
-                Properties.Settings.Default["zipsPassword"] = tbPassword.Text;
-                Properties.Settings.Default.Save();
-
-                MessageBox.Show("Password has been saved");
-                this.Close();
+                MessageBox.Show("Password cannot be blank");
             }
             else
             {
-                alert.Visible = true;
-            }            
+                if (tbPassword.Text.Equals(tbConfirmPassword.Text))
+                {
+                    password = tbPassword.Text;
+
+                    if (alert.Visible)
+                    {
+                        alert.Visible = false;
+                    }
+
+                    Properties.Settings.Default["zipsPassword"] = tbPassword.Text;
+                    Properties.Settings.Default.Save();
+
+                    MessageBox.Show("Password has been saved");
+                    this.Close();
+                }
+                else
+                {
+                    alert.Visible = true;
+                }
+            }
+
+                        
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
