@@ -46,5 +46,17 @@ namespace XMLGeneretorApp.Properties {
                 this["zipsPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool zipsPasswordEnabled {
+            get {
+                return ((bool)(this["zipsPasswordEnabled"]));
+            }
+            set {
+                this["zipsPasswordEnabled"] = value;
+            }
+        }
     }
 }

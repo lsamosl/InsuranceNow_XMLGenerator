@@ -18,8 +18,23 @@ namespace XMLGeneretorApp
         public Password()
         {
             InitializeComponent();
-            tbPassword.Text = Properties.Settings.Default["zipsPassword"] != null ? Properties.Settings.Default["zipsPassword"].ToString() : String.Empty;
-            tbConfirmPassword.Text = Properties.Settings.Default["zipsPassword"] != null ? Properties.Settings.Default["zipsPassword"].ToString() : String.Empty;
+            var zipsPasswordEnabled = Convert.ToBoolean(Properties.Settings.Default["zipsPasswordEnabled"].ToString());
+
+            enablePassCheck.Checked = zipsPasswordEnabled;
+                       
+            if (zipsPasswordEnabled)
+            {
+                tbPassword.Text = Properties.Settings.Default["zipsPassword"] != null ? Properties.Settings.Default["zipsPassword"].ToString() : String.Empty;
+                tbConfirmPassword.Text = Properties.Settings.Default["zipsPassword"] != null ? Properties.Settings.Default["zipsPassword"].ToString() : String.Empty;
+            }
+            else
+            {
+                tbPassword.Enabled = false;
+                tbConfirmPassword.Enabled = false;
+                buttonSetPassword.Enabled = false;
+            }
+
+            
             password = tbPassword.Text;
         }
 
@@ -54,6 +69,25 @@ namespace XMLGeneretorApp
             {
                 alert.Visible = true;
             }            
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default["zipsPasswordEnabled"] = enablePassCheck.Checked;
+
+            if(enablePassCheck.Checked)
+            {                 
+                tbPassword.Enabled = true;
+                tbConfirmPassword.Enabled = true;
+                buttonSetPassword.Enabled = true;
+            }
+            else
+            {
+                tbPassword.Enabled = false;
+                tbConfirmPassword.Enabled = false;
+                buttonSetPassword.Enabled = false;
+            }
+            
         }
     }
 }

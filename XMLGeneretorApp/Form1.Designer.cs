@@ -52,7 +52,6 @@
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.publicKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enablePasswordZipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,8 +233,7 @@
             // 
             this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.publicKeyToolStripMenuItem,
-            this.passwordToolStripMenuItem,
-            this.enablePasswordZipsToolStripMenuItem});
+            this.passwordToolStripMenuItem});
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
             this.configurationToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
             this.configurationToolStripMenuItem.Text = "Configuration";
@@ -243,25 +241,16 @@
             // publicKeyToolStripMenuItem
             // 
             this.publicKeyToolStripMenuItem.Name = "publicKeyToolStripMenuItem";
-            this.publicKeyToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.publicKeyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.publicKeyToolStripMenuItem.Text = "Public Key";
             this.publicKeyToolStripMenuItem.Click += new System.EventHandler(this.publicKeyToolStripMenuItem_Click);
             // 
             // passwordToolStripMenuItem
             // 
-            this.passwordToolStripMenuItem.Enabled = false;
             this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.passwordToolStripMenuItem.Text = "Password";
             this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
-            // 
-            // enablePasswordZipsToolStripMenuItem
-            // 
-            this.enablePasswordZipsToolStripMenuItem.CheckOnClick = true;
-            this.enablePasswordZipsToolStripMenuItem.Name = "enablePasswordZipsToolStripMenuItem";
-            this.enablePasswordZipsToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.enablePasswordZipsToolStripMenuItem.Text = "Enable zip\'s password";
-            this.enablePasswordZipsToolStripMenuItem.Click += new System.EventHandler(this.enablePasswordZipsToolStripMenuItem_Click);
             // 
             // frmGenerate
             // 
@@ -324,7 +313,6 @@
         private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem publicKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem passwordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem enablePasswordZipsToolStripMenuItem;
     }
 }
 

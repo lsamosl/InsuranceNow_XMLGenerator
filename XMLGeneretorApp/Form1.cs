@@ -51,7 +51,7 @@ namespace XMLGeneretorApp
             PGP = new ChoPGPEncryptDecrypt();
             PublicKey = Properties.Settings.Default["PublicKey"].ToString();
             zipsPassword = Properties.Settings.Default["zipsPassword"].ToString();
-            enableZipsPassword = false;
+            enableZipsPassword = Convert.ToBoolean(Properties.Settings.Default["zipsPasswordEnabled"].ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -100,6 +100,7 @@ namespace XMLGeneretorApp
             {
                 PublicKey = Properties.Settings.Default["PublicKey"].ToString();
                 zipsPassword = Properties.Settings.Default["zipsPassword"].ToString();
+                enableZipsPassword = Convert.ToBoolean(Properties.Settings.Default["zipsPasswordEnabled"].ToString());
 
                 if (string.IsNullOrEmpty(PublicKey))
                 {
@@ -157,10 +158,7 @@ namespace XMLGeneretorApp
                 String zipsTimestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");                
 
                 action = () => passwordToolStripMenuItem.Enabled = false;
-                statusTb.Invoke(action);
-
-                action = () => enablePasswordZipsToolStripMenuItem.Enabled = false;
-                statusTb.Invoke(action);
+                statusTb.Invoke(action);                
 
                 action = () => statusTb.AppendText("Process started at "+DateTime.Now);
                 statusTb.Invoke(action);                
@@ -253,10 +251,7 @@ namespace XMLGeneretorApp
                 }
                     
                 action = () => statusTb.AppendText(Environment.NewLine + "Process completed successfully at "+DateTime.Now);
-                statusTb.Invoke(action);
-
-                action = () => enablePasswordZipsToolStripMenuItem.Enabled = true;
-                statusTb.Invoke(action);
+                statusTb.Invoke(action);                
 
                 action = () => passwordToolStripMenuItem.Enabled = true;
                 statusTb.Invoke(action);
@@ -380,12 +375,6 @@ namespace XMLGeneretorApp
             Password form = new Password();
             form.ShowDialog();
             return;
-        }
-
-        private void enablePasswordZipsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            enableZipsPassword = enablePasswordZipsToolStripMenuItem.Checked;
-            passwordToolStripMenuItem.Enabled = enableZipsPassword;            
-        }        
+        }          
     }
 }

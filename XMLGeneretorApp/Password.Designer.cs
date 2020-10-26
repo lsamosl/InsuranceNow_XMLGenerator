@@ -34,6 +34,7 @@
             this.tbConfirmPassword = new System.Windows.Forms.TextBox();
             this.buttonSetPassword = new System.Windows.Forms.Button();
             this.alert = new System.Windows.Forms.Label();
+            this.enablePassCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -93,11 +94,26 @@
             this.alert.Visible = false;
             this.alert.Click += new System.EventHandler(this.alert_Click);
             // 
+            // enablePassCheck
+            // 
+            this.enablePassCheck.AutoSize = true;
+            this.enablePassCheck.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.enablePassCheck.Checked = true;
+            this.enablePassCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.enablePassCheck.Location = new System.Drawing.Point(41, 12);
+            this.enablePassCheck.Name = "enablePassCheck";
+            this.enablePassCheck.Size = new System.Drawing.Size(138, 21);
+            this.enablePassCheck.TabIndex = 6;
+            this.enablePassCheck.Text = "Enable password";
+            this.enablePassCheck.UseVisualStyleBackColor = true;
+            this.enablePassCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Password
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 163);
+            this.Controls.Add(this.enablePassCheck);
             this.Controls.Add(this.alert);
             this.Controls.Add(this.buttonSetPassword);
             this.Controls.Add(this.tbConfirmPassword);
@@ -119,5 +135,6 @@
         private System.Windows.Forms.TextBox tbConfirmPassword;
         private System.Windows.Forms.Button buttonSetPassword;
         private System.Windows.Forms.Label alert;
+        private System.Windows.Forms.CheckBox enablePassCheck;
     }
 }
