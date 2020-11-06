@@ -235,7 +235,7 @@ namespace XMLParser
                             {
                                 writer.WriteStartElement("DTOCoverage");
 
-                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("Status", XMLStaticValues.DTOCoverage_Status_Deleted);
                                 writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_UMPD_Name);
                                 writer.WriteAttributeString("Description", XMLStaticValues.Coverage_UMPD_Description);
 
@@ -392,7 +392,22 @@ namespace XMLParser
                     writer.WriteAttributeString("RelationshipToInsuredCd", d.RelationShip);
                     writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
                     writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
-                    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType);
+
+                    if (string.IsNullOrEmpty(d.LicenseState))
+                    {
+                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
+                    }
+
+                    if (d.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_CaliforniaDriver))
+                    {
+                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_US);
+                    }
+
+                    if (d.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                    {
+                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                    }                     
+                    
                     writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
                     writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(d.Sr22) ? d.Sr22 : "No");
                     writer.WriteAttributeString("OriginalLicenseDt", d.DateFirstLicense);
@@ -475,20 +490,8 @@ namespace XMLParser
 
                     #region <Addr>
 
-                    if(string.IsNullOrEmpty(Policy.MailingAddress) && !string.IsNullOrEmpty(Policy.GaragingAddress))
-                    {
-                        writer.WriteStartElement("Addr");
-
-                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
-                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
-                        writer.WriteAttributeString("City", Policy.GaragingCity);
-                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
-                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
-
-                        writer.WriteEndElement(); //End Addr
-                    }
-                    else
-                    {
+                    if(!string.IsNullOrEmpty(Policy.MailingAddress))
+                    {                        
                         writer.WriteStartElement("Addr");
 
                         writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
@@ -498,6 +501,19 @@ namespace XMLParser
                         writer.WriteAttributeString("PostalCode", Policy.MailingZip);
 
                         writer.WriteEndElement(); //End Addr
+                    }
+
+                    if (!string.IsNullOrEmpty(Policy.GaragingAddress))
+                    {
+                        writer.WriteStartElement("Addr");
+
+                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
+                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
+                        writer.WriteAttributeString("City", Policy.GaragingCity);
+                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
+                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
+
+                        writer.WriteEndElement(); //End Addr                        
                     }
                     
                     #endregion
@@ -615,6 +631,7 @@ namespace XMLParser
 
                             writer.WriteAttributeString("DriverInfoCd", XMLStaticValues.PartyInfo_DriverInfo_DriverInfoCd);
                             writer.WriteAttributeString("DriverNumber", driverNumber.ToString());
+                            writer.WriteAttributeString("DriverTypeCd", driver.DriverStatus == "Active" ? "Principal" : "Excluded");
                             writer.WriteAttributeString("DriverStatusCd", driver.DriverStatus == "Active" ? "Principal" : "Excluded");
 
                             if (licenseResponse.Result)
@@ -628,7 +645,22 @@ namespace XMLParser
                             writer.WriteAttributeString("DriverStartDt", driver.DateFirstLicense);
                             writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(driver.MatureDriver) ? driver.MatureDriver : "No");
                             writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
-                            writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType);
+
+                            if (string.IsNullOrEmpty(driver.LicenseState))
+                            {
+                                writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
+                            }
+
+                            if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_CaliforniaDriver))
+                            {
+                                writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_US);
+                            }
+
+                            if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                            {
+                                writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                            }                                                        
+                            
                             writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
                             writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(driver.Sr22) ? driver.Sr22 : "No");
                             writer.WriteAttributeString("OriginalLicenseDt", driver.DateFirstLicense);                            

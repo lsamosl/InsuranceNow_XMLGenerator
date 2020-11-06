@@ -529,6 +529,15 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleted.
+        /// </summary>
+        public static string DTOCoverage_Status_Deleted {
+            get {
+                return ResourceManager.GetString("DTOCoverage_Status_Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Limit1|Limit2.
         /// </summary>
         public static string DTOCoverage1_DTOLimit_LimitCd {
@@ -727,11 +736,29 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CA.
+        /// </summary>
+        public static string PartyInfo_DriverInfo_CaliforniaDriver {
+            get {
+                return ResourceManager.GetString("PartyInfo_DriverInfo_CaliforniaDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ContactDriver.
         /// </summary>
         public static string PartyInfo_DriverInfo_DriverInfoCd {
             get {
                 return ResourceManager.GetString("PartyInfo_DriverInfo_DriverInfoCd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to i.
+        /// </summary>
+        public static string PartyInfo_DriverInfo_InternationalDriver {
+            get {
+                return ResourceManager.GetString("PartyInfo_DriverInfo_InternationalDriver", resourceCulture);
             }
         }
         
@@ -745,11 +772,29 @@ namespace Configurations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Foreign.
+        /// </summary>
+        public static string PartyInfo_DriverInfo_LicenseType_Foreign {
+            get {
+                return ResourceManager.GetString("PartyInfo_DriverInfo_LicenseType_Foreign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No License.
+        /// </summary>
+        public static string PartyInfo_DriverInfo_LicenseType_NoLicense {
+            get {
+                return ResourceManager.GetString("PartyInfo_DriverInfo_LicenseType_NoLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to US License.
         /// </summary>
-        public static string PartyInfo_DriverInfo_LicenseType {
+        public static string PartyInfo_DriverInfo_LicenseType_US {
             get {
-                return ResourceManager.GetString("PartyInfo_DriverInfo_LicenseType", resourceCulture);
+                return ResourceManager.GetString("PartyInfo_DriverInfo_LicenseType_US", resourceCulture);
             }
         }
         

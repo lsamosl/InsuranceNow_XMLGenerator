@@ -316,7 +316,7 @@
   <data name="PartyInfo_DriverInfo_LicenseStatus" xml:space="preserve">
     <value>Valid</value>
   </data>
-  <data name="PartyInfo_DriverInfo_LicenseType" xml:space="preserve">
+  <data name="PartyInfo_DriverInfo_LicenseType_US" xml:space="preserve">
     <value>US License</value>
   </data>
   <data name="PartyInfo_DriverInfo_Race" xml:space="preserve">
@@ -375,5 +375,20 @@
   </data>
   <data name="DTOInsured_PartyInfo_NonDriverParty" xml:space="preserve">
     <value>NonDriverParty</value>
+  </data>
+  <data name="DTOCoverage_Status_Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_CaliforniaDriver" xml:space="preserve">
+    <value>CA</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_InternationalDriver" xml:space="preserve">
+    <value>i</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_LicenseType_Foreign" xml:space="preserve">
+    <value>Foreign</value>
+  </data>
+  <data name="PartyInfo_DriverInfo_LicenseType_NoLicense" xml:space="preserve">
+    <value>No License</value>
   </data>
 </root>
