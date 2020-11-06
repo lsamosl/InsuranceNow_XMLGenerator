@@ -393,20 +393,25 @@ namespace XMLParser
                     writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(d.MatureDriver) ? d.MatureDriver : "No");
                     writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
 
-                    if (string.IsNullOrEmpty(d.LicenseState))
-                    {
-                        writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
-                    }
+                    //if (string.IsNullOrEmpty(d.LicenseState))
+                    //{
+                    //    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                    //    //writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
+                    //}
 
                     if (d.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_CaliforniaDriver))
                     {
                         writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_US);
                     }
-
-                    if (d.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                    else
                     {
                         writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
-                    }                     
+                    }
+
+                    //if (d.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                    //{
+                    //    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                    //}                     
                     
                     writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
                     writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(d.Sr22) ? d.Sr22 : "No");
@@ -646,20 +651,30 @@ namespace XMLParser
                             writer.WriteAttributeString("MatureDriverInd", !String.IsNullOrEmpty(driver.MatureDriver) ? driver.MatureDriver : "No");
                             writer.WriteAttributeString("Race", XMLStaticValues.PartyInfo_DriverInfo_Race);
 
-                            if (string.IsNullOrEmpty(driver.LicenseState))
-                            {
-                                writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
-                            }
-
                             if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_CaliforniaDriver))
                             {
                                 writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_US);
                             }
-
-                            if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                            else
                             {
                                 writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
-                            }                                                        
+                            }
+
+                            //if (string.IsNullOrEmpty(driver.LicenseState))
+                            //{
+                            //    //writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_NoLicense);
+                            //    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                            //}
+
+                            //if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_CaliforniaDriver))
+                            //{
+                            //    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_US);
+                            //}
+
+                            //if (driver.LicenseState.Equals(XMLStaticValues.PartyInfo_DriverInfo_InternationalDriver))
+                            //{
+                            //    writer.WriteAttributeString("LicenseType", XMLStaticValues.PartyInfo_DriverInfo_LicenseType_Foreign);
+                            //}                                                        
                             
                             writer.WriteAttributeString("LicenseStatus", XMLStaticValues.PartyInfo_DriverInfo_LicenseStatus);
                             writer.WriteAttributeString("SR22Ind", !String.IsNullOrEmpty(driver.Sr22) ? driver.Sr22 : "No");
