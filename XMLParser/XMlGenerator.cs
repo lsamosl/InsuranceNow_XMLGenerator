@@ -231,7 +231,41 @@ namespace XMLParser
 
                         if (!string.IsNullOrEmpty(Policy.General.UmpdCdw))
                         {                            
-                            if (string.IsNullOrEmpty(v.CollDeduct) && string.IsNullOrEmpty(v.CompDeduct))
+                            if (v.Coverages.CPR.hasCoverage && v.Coverages.COLL.hasCoverage)
+                            {
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CPR_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CPR_Description);
+
+                                writer.WriteStartElement("DTODeductible");
+                                writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
+                                writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
+                                writer.WriteAttributeString("Value", v.Coverages.CPR.Value1);
+                                writer.WriteEndElement();
+
+                                writer.WriteEndElement();
+
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_COLL_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_COLL_Description);
+
+                                writer.WriteStartElement("DTODeductible");
+                                writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
+                                writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
+                                writer.WriteAttributeString("Value", v.Coverages.COLL.Value1);
+                                writer.WriteEndElement();
+
+                                writer.WriteEndElement();
+
+                                writer.WriteStartElement("DTOCoverage");
+                                writer.WriteAttributeString("Status", XMLStaticValues.DTOCoverage_Status_Deleted);
+                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CDW_Name);
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CDW_Description);
+                                writer.WriteEndElement();
+                            }
+                            else
                             {
                                 writer.WriteStartElement("DTOCoverage");
 
@@ -245,81 +279,50 @@ namespace XMLParser
                                 writer.WriteAttributeString("Value", XMLStaticValues.Coverage_UMPD_Value);
                                 writer.WriteEndElement(); //End DTOLimit
 
-                                writer.WriteEndElement();
+                                writer.WriteEndElement();                                
                             }
-                            else
+                        }
+                        else
+                        {
+                            if (v.Coverages.CPR.hasCoverage)
                             {
                                 writer.WriteStartElement("DTOCoverage");
+
                                 writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
                                 writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CPR_Name);
                                 writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CPR_Description);
 
                                 writer.WriteStartElement("DTODeductible");
-                                writer.WriteAttributeString("DeductibleCD", XMLStaticValues.Deductible_DeductibleCd);
+
+                                writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
                                 writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
-                                writer.WriteAttributeString("Value", v.Coverages.CPR.Value1);
-                                writer.WriteEndElement();
+                                writer.WriteAttributeString("Value", v.Coverages.CPR.InputValue);
 
-                                writer.WriteEndElement();
+                                writer.WriteEndElement(); //End DTODeductible
 
+                                writer.WriteEndElement(); //End DTOCoverage
+                            }
+
+                            if (v.Coverages.COLL.hasCoverage)
+                            {
                                 writer.WriteStartElement("DTOCoverage");
+
                                 writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
                                 writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_COLL_Name);
-                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_COLL_Description);                                
+                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_COLL_Description);
 
                                 writer.WriteStartElement("DTODeductible");
-                                writer.WriteAttributeString("DeductibleCD", XMLStaticValues.Deductible_DeductibleCd);
+
+                                writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
                                 writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
-                                writer.WriteAttributeString("Value", v.Coverages.COLL.Value1);
-                                writer.WriteEndElement();
+                                writer.WriteAttributeString("Value", v.Coverages.COLL.InputValue);
 
-                                writer.WriteEndElement();
+                                writer.WriteEndElement(); //End DTODeductible
 
-                                writer.WriteStartElement("DTOCoverage");
-                                writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
-                                writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CDW_Name);
-                                writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CDW_Description);
-                                writer.WriteEndElement();
-                            }                            
+                                writer.WriteEndElement(); //End DTOCoverage
+                            }
                         }
-
-                        if (v.Coverages.CPR.hasCoverage)
-                        {
-                            writer.WriteStartElement("DTOCoverage");
-
-                            writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
-                            writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_CPR_Name);
-                            writer.WriteAttributeString("Description", XMLStaticValues.Coverage_CPR_Description);
-
-                            writer.WriteStartElement("DTODeductible");
-
-                            writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
-                            writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
-                            writer.WriteAttributeString("Value", v.Coverages.CPR.InputValue);
-
-                            writer.WriteEndElement(); //End DTODeductible
-
-                            writer.WriteEndElement(); //End DTOCoverage
-                        }
-
-                        if (v.Coverages.COLL.hasCoverage)
-                        {
-                            writer.WriteStartElement("DTOCoverage");
-
-                            writer.WriteAttributeString("Status", XMLStaticValues.Coverage_Status);
-                            writer.WriteAttributeString("CoverageCd", XMLStaticValues.Coverage_COLL_Name);
-                            writer.WriteAttributeString("Description", XMLStaticValues.Coverage_COLL_Description);
-
-                            writer.WriteStartElement("DTODeductible");
-
-                            writer.WriteAttributeString("DeductibleCd", XMLStaticValues.Deductible_DeductibleCd);
-                            writer.WriteAttributeString("TypeCd", XMLStaticValues.Deductible_TypeCd);
-                            writer.WriteAttributeString("Value", v.Coverages.COLL.InputValue);
-
-                            writer.WriteEndElement(); //End DTODeductible
-
-                            writer.WriteEndElement(); //End DTOCoverage
-                        }
+                        
 
                         if (v.Coverages.Rental.hasCoverage)
                         {
@@ -495,53 +498,27 @@ namespace XMLParser
 
                     #region <Addr>
 
-                    if(!string.IsNullOrEmpty(Policy.MailingAddress))
-                    {                        
-                        writer.WriteStartElement("Addr");
+                    writer.WriteStartElement("Addr");
 
-                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
-                        writer.WriteAttributeString("Addr1", Policy.MailingAddress);
-                        writer.WriteAttributeString("City", Policy.MailingCity);
-                        writer.WriteAttributeString("StateProvCd", Policy.MailingState);
-                        writer.WriteAttributeString("PostalCode", Policy.MailingZip);
+                    writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[0]);
+                    writer.WriteAttributeString("Addr1", Policy.MailingAddress);
+                    writer.WriteAttributeString("City", Policy.MailingCity);
+                    writer.WriteAttributeString("StateProvCd", Policy.MailingState);
+                    writer.WriteAttributeString("PostalCode", Policy.MailingZip);
 
-                        writer.WriteEndElement(); //End Addr
-                    }
+                    writer.WriteEndElement(); //End Addr                    
 
-                    if (!string.IsNullOrEmpty(Policy.GaragingAddress))
-                    {
-                        writer.WriteStartElement("Addr");
+                    writer.WriteStartElement("Addr");
 
-                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
-                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
-                        writer.WriteAttributeString("City", Policy.GaragingCity);
-                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
-                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
+                    writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
+                    writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
+                    writer.WriteAttributeString("City", Policy.GaragingCity);
+                    writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
+                    writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
 
-                        writer.WriteEndElement(); //End Addr                        
-                    }
+                    writer.WriteEndElement(); //End Addr
                     
-                    #endregion
-
-                    #region <Addr>
-
-                    if(Policy.MailingAddress != Policy.GaragingAddress &&
-                       Policy.MailingCity != Policy.GaragingCity &&
-                       Policy.MailingState != Policy.GaragingState &&
-                       Policy.MailingZip != Policy.GaragingZip)
-                    {
-                        writer.WriteStartElement("Addr");
-
-                        writer.WriteAttributeString("AddrTypeCd", AddrTypeCd[1]);
-                        writer.WriteAttributeString("Addr1", Policy.GaragingAddress);
-                        writer.WriteAttributeString("City", Policy.GaragingCity);
-                        writer.WriteAttributeString("StateProvCd", Policy.GaragingState);
-                        writer.WriteAttributeString("PostalCode", Policy.GaragingZip);
-
-                        writer.WriteEndElement(); //End Addr
-                    }
-
-                    #endregion
+                    #endregion                   
 
                     writer.WriteEndElement(); //End PartyInfo
                     #endregion
